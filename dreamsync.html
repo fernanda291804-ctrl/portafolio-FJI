@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DreamSync — Caso de estudio de Fernanda Jaimes. Cómo convertir neurotecnología fría en una herramienta de autoconocimiento cercana." />
+  <title>DreamSync · Fernanda Jaimes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/dreamsync.css" />
+</head>
+<body>
+  <div class="ds-starfield" aria-hidden="true"></div>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+  <div class="case-progress" aria-hidden="true" role="progressbar" aria-label="Progreso de lectura"></div>
+
+  <header role="banner">
+    <nav class="nav" aria-label="Navegación principal">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Fernanda Jaimes</a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html#proyectos" class="nav-link">Proyectos</a></li>
+          <li><a href="sobre-mi.html"  class="nav-link">Sobre mí</a></li>
+          <li><a href="index.html#contacto"  class="nav-link">Contacto</a></li>
+        </ul>
+        <button class="nav-toggle" aria-controls="nav-mobile-ds" aria-expanded="false" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <nav id="nav-mobile-ds" class="nav-mobile ds-mobile-nav" aria-label="Menú móvil">
+      <a href="index.html#proyectos" class="nav-link">Proyectos</a>
+      <a href="sobre-mi.html"  class="nav-link">Sobre mí</a>
+      <a href="index.html#contacto"  class="nav-link">Contacto</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ═══════════════════════════════
+         1 · HERO
+    ════════════════════════════════ -->
+    <section class="ds-hero" aria-label="Introducción a DreamSync">
+      <div class="ds-hero-teal" aria-hidden="true"></div>
+      <!-- Fade inferior — elimina el corte con la sección siguiente -->
+      <div class="ds-hero__fade" aria-hidden="true"></div>
+      <div class="container ds-hero__content">
+
+        <div class="ds-hero__tags hero-animate-1">
+          <span class="ds-tag">Landing Page</span>
+          <span class="ds-tag">Identidad Visual</span>
+          <span class="ds-tag">Neurotecnología</span>
+          <span class="ds-tag">HTML · CSS · JS</span>
+        </div>
+
+        <h1 class="ds-hero__title hero-animate-2">
+          DreamSync
+          <em>Graba lo que la mente olvida.</em>
+        </h1>
+
+        <div class="ds-hero__meta hero-animate-3">
+          <div><p class="ds-meta-label">Rol</p><p class="ds-meta-value">UX/UI Designer</p></div>
+          <div><p class="ds-meta-label">Tipo</p><p class="ds-meta-value">Landing Page · Proyecto académico</p></div>
+          <div><p class="ds-meta-label">Año</p><p class="ds-meta-value">2025</p></div>
+          <div><p class="ds-meta-label">Herramientas</p><p class="ds-meta-value">Figma · HTML · CSS · JS</p></div>
+        </div>
+
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════
+         1 · CONTEXTO
+    ════════════════════════════════ -->
+    <section class="ds-section ds-section--light" id="contexto" aria-labelledby="ctx-title">
+      <div class="ds-glow" style="background:#8B5CF6;width:clamp(300px,40vw,600px);height:clamp(300px,40vw,600px);top:-80px;left:-60px;" aria-hidden="true"></div>
+      <div class="container">
+
+        <span class="ds-label anim-ready">01 — Contexto</span>
+
+        <!-- El Problema -->
+        <h2 id="ctx-title" class="ds-heading anim-rise">
+          La neurotecnología asusta.<br/>
+          <em>El reto era hacerla deseable.</em>
+        </h2>
+        <p class="ds-lead anim-ready" style="max-width:660px;">
+          DreamSync nace como un proyecto conceptual basado en una premisa tecnológica del MIT: una interfaz cerebro-computadora (BCI) capaz de transformar la actividad neuronal REM en video. El desafío del proyecto consistió en tomar esta tecnología brillante, pero potencialmente aterradora, y diseñar un puente visual que la hiciera accesible y deseable para el usuario promedio.
+        </p>
+        <div class="ds-two-col anim-ready" style="margin-top:clamp(24px,3vw,40px);">
+          <div class="ds-card">
+            <p class="ds-card__label" style="color:#D946EF;">El problema</p>
+            <p class="ds-body">La neurotecnología suele percibirse como un territorio frío, clínico y distante. Para el usuario promedio, la idea de 'grabar el cerebro' despierta temores instintivos de invasión y pérdida de control, evocando narrativas de una ciencia ficción distópica.</p>
+          </div>
+          <div class="ds-card">
+            <p class="ds-card__label" style="color:#22d3ee;">El objetivo</p>
+            <p class="ds-body">Transformar esa barrera del miedo en una invitación al autoconocimiento. El reto fue diseñar una experiencia que se sienta cercana, segura y fascinante, logrando que el usuario perciba a DreamSync no como un sensor intrusivo, sino como un aliado en la exploración de su subconsciente.</p>
+          </div>
+        </div>
+
+        <div class="ds-divider anim-line"></div>
+
+        <!-- Arquetipos -->
+        <span class="ds-label anim-ready">Arquetipos</span>
+        <p class="ds-lead anim-ready" style="max-width:660px;margin-bottom:clamp(24px,3vw,40px);">
+          De lo abstracto a lo humano: Arquetipos que guiaron la estrategia.
+        </p>
+        <div class="ds-three-col anim-ready">
+          <div class="ds-arch-card">
+            <p class="ds-arch-num">Arquetipo 01</p>
+            <p class="ds-arch-role">La terapeuta</p>
+            <p class="ds-arch-quote">"El inconsciente es la caja negra de la mente. Si pudiéramos verlo, el avance terapéutico sería exponencial."</p>
+            <span class="ds-arch-tag" style="background:rgba(99,102,241,0.18);color:#6366F1;">Necesita credibilidad</span>
+            <p class="ds-arch-need">Busca validación objetiva. Cualquier toque "new age" la aleja.</p>
+          </div>
+          <div class="ds-arch-card">
+            <p class="ds-arch-num">Arquetipo 02</p>
+            <p class="ds-arch-role">El guionista</p>
+            <p class="ds-arch-quote">"Los sueños son la última frontera narrativa. La única puerta al inconsciente que me permite crear historias completamente libres."</p>
+            <span class="ds-arch-tag" style="background:rgba(236,72,153,0.18);color:#EC4899;">Necesita originalidad</span>
+            <p class="ds-arch-need">Busca narrativas que emergen solo en el mundo onírico. Pierde sus mejores ideas al despertar.</p>
+          </div>
+          <div class="ds-arch-card">
+            <p class="ds-arch-num">Arquetipo 03</p>
+            <p class="ds-arch-role">El tecnófilo</p>
+            <p class="ds-arch-quote">"Hay un universo entero dentro de mí cuando duermo. Quiero el mapa para recorrerlo."</p>
+            <span class="ds-arch-tag" style="background:rgba(217,70,239,0.18);color:#D946EF;">Necesita métricas</span>
+            <p class="ds-arch-need">Busca patrones con datos. Le faltan herramientas para hacer sus sueños medibles.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════
+         2 · EL PROCESO DE ALQUIMIA
+    ════════════════════════════════ -->
+    <section class="ds-section ds-section--light" id="proceso" aria-labelledby="proc-title">
+      <div class="ds-glow" style="background:#D946EF;width:clamp(250px,35vw,520px);height:clamp(250px,35vw,520px);top:-40px;right:-80px;" aria-hidden="true"></div>
+      <div class="container">
+
+        <span class="ds-label anim-ready">03 — El proceso</span>
+        <h2 id="proc-title" class="ds-heading anim-rise">
+          La alquimia del diseño:
+          <em>convertir lo técnico en mágico.</em>
+        </h2>
+        <p class="ds-lead anim-ready" style="max-width:660px;margin-bottom:clamp(48px,6vw,80px);">
+          El proceso no fue lineal. Hubo una hipótesis inicial, un momento de honestidad sobre lo que no funcionaba, y un pivot que definió la identidad real de DreamSync.
+        </p>
+
+        <!-- Mockup de pantalla — slider de comparación -->
+        <div class="ds-mockup-frame anim-ready">
+          <div class="ds-mockup-frame__bar">
+            <span class="ds-mockup-frame__dot"></span>
+            <span class="ds-mockup-frame__dot"></span>
+            <span class="ds-mockup-frame__dot"></span>
+          </div>
+          <div class="ds-mockup-frame__screen">
+
+            <div class="ds-comparison-slider" id="cmpSlider" role="img" aria-label="Comparación interactiva entre Propuesta 1 y Propuesta 2 de DreamSync">
+
+              <!-- Base: Propuesta 2 (dirección final) -->
+              <div class="ds-cmp-base">
+                <img src="./assets/images/Bosque.png" alt="Propuesta 2 — Bosque mágico · Guías animales · Dirección final"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#080514,#1a0a2e,#2d0050);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:rgba(255,255,255,0.28);font-size:13px;text-align:center;padding:24px;">
+                  <span style="font-size:40px;">🌌</span>
+                  <span>Propuesta 2 · versión cósmica</span>
+                </div>
+              </div>
+
+              <!-- Overlay: Propuesta 1 (se revela al mover hacia la derecha) -->
+              <div class="ds-cmp-overlay" id="cmpOverlay">
+                <img src="./assets/images/Ballena.png" alt="Propuesta 1 — Azules oceánicos · Ballenas · Primera dirección"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a3a6e,#2a5898);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:rgba(255,255,255,0.28);font-size:13px;text-align:center;padding:24px;">
+                  <span style="font-size:40px;">🐋</span>
+                  <span>Propuesta 1 · versión ballenas</span>
+                </div>
+              </div>
+
+              <!-- Handle central -->
+              <div class="ds-cmp-handle" id="cmpHandle" aria-hidden="true">
+                <div class="ds-cmp-line"></div>
+                <div class="ds-cmp-knob">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M6 4l-4 5 4 5M12 4l4 5-4 5" stroke="#4C319A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="ds-cmp-line"></div>
+              </div>
+
+            </div>
+
+          </div><!-- /screen -->
+        </div><!-- /mockup-frame -->
+
+        <!-- Leyenda + hint — fuera del frame -->
+        <div class="ds-cmp-labels anim-ready" aria-hidden="true">
+          <span class="ds-cmp-ext-label">← Propuesta 1 · Primera dirección</span>
+          <span class="ds-cmp-ext-label ds-cmp-ext-label--v2">Propuesta 2 · Dirección final →</span>
+        </div>
+        <p class="ds-cmp-hint">Pasa el cursor — o arrastra — para comparar</p>
+
+        <!-- Cita del proceso creativo -->
+        <div class="ds-cmp-quote anim-ready">
+          <p>"El cambio fue necesario: el diseño inicial se sentía distante. Mi objetivo era guiar y hacer sentir acompañado al usuario desde el primer momento. Evolucioné la landing hacia una experiencia inmersiva que sustituye la frialdad técnica por un refugio humano de exploración."</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════
+         3 · PRODUCTO FINAL
+    ════════════════════════════════ -->
+    <section class="ds-section ds-section--light" id="producto" aria-labelledby="prod-title">
+      <div class="container">
+
+        <span class="ds-label anim-ready">03 — Producto final</span>
+        <h2 id="prod-title" class="ds-heading anim-rise">
+          Tres guías. <em>Te acompañan en el viaje de tu inconsciente.</em>
+        </h2>
+        <p class="ds-lead anim-ready" style="max-width:660px;margin-bottom:clamp(40px,5vw,64px);">
+          La clave del producto final fue la integración de tres animales guía como pilares de navegación. Su presencia aporta calidez y cercanía, transformando una tecnología compleja en un recorrido humano e intuitivo sin sacrificar el rigor científico.
+        </p>
+
+        <!-- Los 3 guías — imágenes reales del proyecto -->
+        <div class="ds-guides-grid anim-ready">
+
+          <!-- Mapache: gradiente rosa→violeta (#EC4899 → #8B5CF6) -->
+          <div class="ds-guide" style="--guide-glow:#ec48992e;--guide-shadow:#EC4899 ;">
+            <div class="ds-guide__img-wrap">
+              <img src="assets/img/dreamsync/Mapache.png" alt="Guía Mapache — Inspiración Creativa" class="ds-guide__img"/>
+            </div>
+            <p class="ds-guide__name">El mapache</p>
+            <span class="ds-guide__type">Inspiración creativa</span>
+            <p class="ds-guide__for">Para guionistas y escritores.</p>
+          </div>
+
+          <!-- Lobo: gradiente fuchsia→naranja (#D946EF → #F97316) -->
+          <div class="ds-guide" style="--guide-glow:rgba(217,70,239,0.16);--guide-shadow:#F97316;">
+            <div class="ds-guide__img-wrap">
+              <img src="assets/img/dreamsync/wolf.png" alt="Guía Lobo — Exploración Personal" class="ds-guide__img"/>
+            </div>
+            <p class="ds-guide__name">El lobo</p>
+            <span class="ds-guide__type">Exploración personal</span>
+            <p class="ds-guide__for">Para exploradores del inconsciente.</p>
+          </div>
+
+          <!-- Búho: gradiente violeta→índigo (#8B5CF6 → #6366F1) -->
+          <div class="ds-guide" style="--guide-glow:rgba(99,102,241,0.18);--guide-shadow:#6366F1;">
+            <div class="ds-guide__img-wrap">
+              <img src="assets/img/dreamsync/Buho.png" alt="Guía Búho — Análisis Terapéutico" class="ds-guide__img"/>
+            </div>
+            <p class="ds-guide__name">El búho</p>
+            <span class="ds-guide__type">Análisis terapéutico</span>
+            <p class="ds-guide__for">Para psicólogos y terapeutas.</p>
+          </div>
+
+        </div>
+
+        <!-- Mockup de pantalla — landing interactiva -->
+        <div class="ds-mockup-frame anim-ready">
+          <div class="ds-mockup-frame__bar">
+            <span class="ds-mockup-frame__dot"></span>
+            <span class="ds-mockup-frame__dot"></span>
+            <span class="ds-mockup-frame__dot"></span>
+            <span class="ds-mockup-frame__urlbar">dreamsync · sitio web final · interactivo</span>
+          </div>
+          <div class="ds-mockup-frame__screen ds-mockup-frame__screen--live">
+            <iframe
+              src="dreamsync-live/dreamsync.html"
+              title="DreamSync — Sitio web interactivo"
+              style="border:none;display:block;"
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Navegación entre proyectos -->
+    <div class="container" style="padding-bottom: clamp(72px, 9vw, 120px);">
+      <nav class="ds-case-nav" aria-label="Navegación entre casos de estudio">
+        <a href="index.html#proyectos" class="ds-nav-item">
+          <span class="ds-nav-dir">← Volver</span>
+          <span class="ds-nav-name">Todos los proyectos</span>
+        </a>
+        <a href="kyros.html" class="ds-nav-item ds-nav-item--next">
+          <span class="ds-nav-dir">Siguiente →</span>
+          <span class="ds-nav-name">KYROS — App Salud + IA</span>
+        </a>
+      </nav>
+    </div>
+
+  </main>
+
+  <footer class="ds-footer" role="contentinfo">
+    <div class="ds-footer-inner">
+      <p class="ds-footer__copy">© 2025 Fernanda Jaimes · DreamSync</p>
+      <nav class="ds-footer__links">
+        <a href="kyros.html" class="ds-footer__link">KYROS</a>
+        <a href="luma.html"  class="ds-footer__link">LUMA</a>
+        <a href="index.html" class="ds-footer__link">Portfolio</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+
+  <!-- Mac Frame Scaling — renders content at 1440×900, scales to fit screen area -->
+  <script>
+  (function () {
+    var NATIVE_W = 1440;
+    var NATIVE_H = 900;
+
+    function scaleMacFrames() {
+      // ── Live iframes: scale 1440×900 → fit screen ──────────────
+      document.querySelectorAll('.ds-mockup-frame__screen--live').forEach(function (screen) {
+        var iframe = screen.querySelector('iframe');
+        if (!iframe) return;
+        var sw = screen.offsetWidth;
+        var sh = screen.offsetHeight;
+        var scale = sw / NATIVE_W;
+        iframe.style.position        = 'absolute';
+        iframe.style.top             = '0';
+        iframe.style.left            = '0';
+        iframe.style.width           = NATIVE_W + 'px';
+        iframe.style.height          = Math.round(sh / scale) + 'px';
+        iframe.style.border          = 'none';
+        iframe.style.display         = 'block';
+        iframe.style.transformOrigin = 'top left';
+        iframe.style.transform       = 'scale(' + scale + ')';
+      });
+
+      // ── Comparison slider: set explicit pixel height ────────────
+      document.querySelectorAll('.ds-mockup-frame__screen .ds-comparison-slider').forEach(function (slider) {
+        var screen = slider.closest('.ds-mockup-frame__screen');
+        if (!screen) return;
+        var sh = screen.offsetHeight;
+        if (sh > 0) slider.style.height = sh + 'px';
+      });
+    }
+
+    // Run immediately, after full load, and on resize
+    scaleMacFrames();
+    window.addEventListener('load',   scaleMacFrames);
+    window.addEventListener('resize', scaleMacFrames);
+  })();
+  </script>
+
+  <!-- Comparison Slider — auto-animate + hover-follow + drag -->
+  <script>
+  (function () {
+    var slider  = document.getElementById('cmpSlider');
+    var overlay = document.getElementById('cmpOverlay');
+    var handle  = document.getElementById('cmpHandle');
+    if (!slider || !overlay || !handle) return;
+
+    var pct        = 50;   // current displayed position
+    var targetPct  = 50;   // where we're heading
+    var autoPlay   = true;
+    var interacting = false;
+    var resumeTimer;
+    var t = Math.PI * 0.5; // sin(π/2)=1 → starts at center then drifts
+
+    /* ── Apply position ─────────────────────────── */
+    function applyPos(p) {
+      overlay.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
+      handle.style.left = p + '%';
+    }
+
+    /* ── Convert clientX to percentage ─────────── */
+    function xToPct(clientX) {
+      var rect = slider.getBoundingClientRect();
+      return Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
+    }
+
+    /* ── rAF loop ───────────────────────────────── */
+    function tick() {
+      if (autoPlay) {
+        t += 0.007;
+        targetPct = 50 + Math.sin(t) * 28; // oscillate 22% ↔ 78%
+      }
+      // Lerp toward target — slower during auto, snappier during hover
+      var speed = autoPlay ? 0.04 : 0.16;
+      pct += (targetPct - pct) * speed;
+      applyPos(pct);
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    /* ── Schedule auto-resume ───────────────────── */
+    function scheduleResume(delay) {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () { autoPlay = true; }, delay);
+    }
+
+    /* ── Mouse: hover follows cursor without click ─ */
+    slider.addEventListener('mousemove', function (e) {
+      if (interacting) return; // drag takes over
+      clearTimeout(resumeTimer);
+      autoPlay = false;
+      targetPct = xToPct(e.clientX);
+    });
+    slider.addEventListener('mouseleave', function () {
+      if (!interacting) scheduleResume(1800);
+    });
+
+    /* ── Mouse: drag for precision ──────────────── */
+    slider.addEventListener('mousedown', function (e) {
+      interacting = true;
+      clearTimeout(resumeTimer);
+      autoPlay = false;
+      targetPct = xToPct(e.clientX);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', function (e) {
+      if (interacting) targetPct = xToPct(e.clientX);
+    });
+    document.addEventListener('mouseup', function () {
+      if (interacting) { interacting = false; scheduleResume(2200); }
+    });
+
+    /* ── Touch ──────────────────────────────────── */
+    slider.addEventListener('touchstart', function (e) {
+      interacting = true;
+      clearTimeout(resumeTimer);
+      autoPlay = false;
+      targetPct = xToPct(e.touches[0].clientX);
+    }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      if (interacting) targetPct = xToPct(e.touches[0].clientX);
+    }, { passive: true });
+    document.addEventListener('touchend', function () {
+      if (interacting) { interacting = false; scheduleResume(2200); }
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2109 @@
+Reset_inicio
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+    margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+
+body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    /* Bloquea el scroll horizontal */
+    position: relative;
+}
+
+.cyan-theme .counter {
+    color: #22d3ee;
+}
+
+.violet-theme .counter {
+    color: #a78bfa;
+}
+
+.fuchsia-theme .counter {
+    color: #f472b6;
+}
+
+.counter {
+    font-family: Inter;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 88px;
+}
+
+.starfield-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Se queda detrás de todo el contenido */
+    pointer-events: none;
+    /* No interfiere con los clics */
+    background: transparent;
+    overflow: hidden;
+}
+
+.star-dot {
+    position: absolute;
+    background-color: #FFFFFF;
+    /* Blanco puro */
+    border-radius: 50%;
+    /* Los hace círculos */
+    opacity: 0.6;
+    /* Efecto de resplandor sutil */
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    /* Animación para que respiren/parpadeen suavemente */
+    animation: pulse-star 4s infinite ease-in-out;
+}
+
+@keyframes pulse-star {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* --- Header --- */
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #fafafa;
+    font-family: 'Inter', sans-serif;
+    /* Bloqueamos el scroll horizontal por seguridad */
+    overflow-x: hidden;
+
+    /* CAPAS DE LUZ: */
+    background:
+        /* 1. Brillo Cian en la esquina superior izquierda (Hero) */
+        radial-gradient(circle at 10% 10%, rgba(34, 211, 238, 0.15) 0%, transparent 40%),
+        /* 2. Brillo Fucsia cerca de las Experiencias */
+        radial-gradient(circle at 90% 30%, rgba(217, 70, 239, 0.12) 0%, transparent 40%),
+        /* 3. Brillo Violeta profundo en los Pilares */
+        radial-gradient(circle at 20% 60%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        /* 4. Fondo base con tus colores primarios */
+        linear-gradient(180deg,
+            #3B3161 0%,
+            /* Color inicial (Saved Info) */
+            #4C319A 30%,
+            /* Transición suave */
+            #1E1B4B 70%,
+            /* Deep Blue de tus componentes */
+            #0F172A 100%
+            /* Cierre oscuro */
+        );
+
+    background-attachment: fixed;
+    /* El fondo se queda quieto mientras el contenido fluye */
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+body {
+    animation: pulseGlow 8s infinite ease-in-out;
+}
+
+.pilar-reconstruccion::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    filter: blur(60px);
+    /* Suaviza los bordes para el efecto onírico */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- Contenedor Principal (Fondo y Estrellas) --- */
+.hero-section {
+    min-height: 100vh;
+    /* Fondo degradado profundo visto en el diseño */
+    background: radial-gradient(circle at 50% 50%, #4b2c85 0%, #1a0b3a 100%);
+    color: #fafafa;
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Navbar / Logo --- */
+.navbar {
+    width: 100%;
+    margin-bottom: 5rem;
+    padding: 3rem 0 0 5%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fafafa;
+}
+
+.moon-icon {
+    font-size: 40px;
+}
+
+/* --- Texto con Degradado (Conoce tu otro yo) --- */
+.gradient-text {
+    font-size: 3.5rem;
+    background: linear-gradient(90deg, #F472B6, #E9D5FF);
+    /* Rosa a Púrpura */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.hero-content {
+    max-width: 700px;
+    /* Limita el ancho del texto como en el diseño */
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- Título Principal (H1) --- */
+.hero-content h1 {
+    color: #fafafa;
+    font-family: Inter;
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 98px;
+    /* 108.889% */
+}
+
+/* --- Subtítulo con Degradado (H2) --- */
+.gradient-text {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-family: 'Playfair Display', serif;
+    /* Opcional: si usas una fuente serif para este texto */
+    background: linear-gradient(90deg, #F472B6, #E9D5FF);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* --- Descripción (P) --- */
+.description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    /* Texto sutilmente transparente */
+    max-width: 500px;
+    /* El párrafo es más estrecho en el diseño */
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+/* Ajuste adicional para el logo: asegura que la imagen de la luna sea blanca o del tamaño adecuado */
+.moon-icon img {
+    width: 24px;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* --- Botones --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--boton-hero, linear-gradient(90deg, var(--gradiente-guia1, #EC4899) 0%, var(--gradiente-guia1-1, #8B5CF6) 100%));
+    color: #fafafa;
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fafafa;
+    gap: 10px;
+}
+
+.play-icon {
+    font-size: 0.8rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding-left: 5%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- Body --- */
+
+/* --- Contenedor de la Sección --- */
+.primera-seccion {
+    padding: 100px 20px;
+    text-align: center;
+    color: #fafafa;
+}
+
+.primera-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    /* Centra el contenedor en la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centra los elementos dentro del flex */
+}
+
+/* --- Badge "NUESTRAS EXPERIENCIAS" --- */
+.badge {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fafafa;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fafafa;
+    gap: 10px;
+}
+
+/* --- Título (H1) --- */
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    /* Tamaño fluido */
+    font-weight: 300;
+    /* Letra delgada y elegante como en la referencia */
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    font-family: 'Inter', sans-serif;
+    /* O la fuente que estés usando */
+}
+
+/* --- Subtítulo (P) --- */
+.hero-sub {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    /* Texto grisáceo suave */
+    max-width: 650px;
+    /* Limita el ancho para que el texto no se extienda demasiado */
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+#seccion-mapache,
+#seccion-lobo,
+#seccion-buho {
+    padding: 120px 0;
+    /* 120px de espacio arriba y abajo */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* Evita que se encimen si usaste position absolute antes */
+    clear: both;
+}
+
+/* --- ESTILO GLOBAL DE SECCIONES (El Molde) --- */
+#seccion-mapache,
+#seccion-lobo,
+#seccion-buho {
+    padding: 80px 10%;
+    /* CLAVE: El 10% es lo que alinea todo al centro */
+    width: 100%;
+    color: #fafafa;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* --- CONTENEDORES (Simetría de columnas) --- */
+.mapache-container,
+.seccion-lobo-container,
+.seccion-buho-container {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    gap: 80px;
+    /* Espacio exacto entre avatar y texto */
+    align-items: flex-start;
+}
+
+/* --- 3. Tipografía Corregida (Proyecto1-p2/Desk/H4) --- */
+.guia-title-primary {
+    color: var(--blanco-base, #FAFAFA);
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    /* Valor solicitado */
+    font-weight: 300;
+    /* Valor solicitado */
+    line-height: 32px;
+    /* Valor solicitado */
+    margin-bottom: 8px;
+    font-style: normal;
+}
+
+.title-secondary {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    /* Estilo bold para el subtítulo */
+    color: #FAFAFA;
+    margin-bottom: 20px;
+}
+
+.description-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* --- SIDEBARS (Eje de los Avatares) --- */
+.mapache-sidebar,
+.seccion-lobo-sidebar,
+.seccion-buho-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    /* Ancho fijo para que el texto de la derecha empiece en el mismo punto */
+    flex-shrink: 0;
+}
+
+/* --- AJUSTES DE AVATARES --- */
+.avatar-wrapper,
+.avatar-wrapper-lobo,
+.avatar-wrapper-buho {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- CONTENIDO (Texto a la derecha) --- */
+.mapache-content,
+.seccion-lobo-content,
+.seccion-buho-content {
+    flex: 1;
+}
+
+/* --- ICONOS DE CATEGORÍA (MOLDE ÚNICO) --- */
+
+.icon-category-box,
+.icon-category-box-lobo,
+.icon-category-box-buho {
+    /* 1. Dimensiones exactas solicitadas */
+    width: 40px;
+    height: 40px;
+
+    /* 2. Centrado perfecto del icono (SVG) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 3. Estética */
+    border-radius: 10px;
+    /* Reducción proporcional al tamaño de 40px */
+    margin-bottom: 25px;
+    /* Espacio con el título */
+    flex-shrink: 0;
+    /* Evita que se deforme si hay mucho texto */
+}
+
+/* --- COLORES ESPECÍFICOS (Variantes) --- */
+/* Mapache */
+.avatar-wrapper {
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+}
+
+.icon-category-box {
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+    border-radius: 12px;
+    width: 70px;
+    height: 70px;
+}
+
+/* Lobo */
+.avatar-wrapper-lobo {
+    background: linear-gradient(270deg, #D946EF, #F97316);
+}
+
+.icon-category-box-lobo {
+    background: linear-gradient(270deg, #D946EF, #F97316);
+    border-radius: 12px;
+    width: 70px;
+    height: 70px;
+}
+
+/* Búho */
+.avatar-wrapper-buho {
+    background: linear-gradient(112deg, #8B5CF6, #6366F1);
+}
+
+.icon-category-box-buho {
+    background: linear-gradient(112deg, #8B5CF6, #6366F1);
+    border-radius: 12px;
+    width: 70px;
+    height: 70px;
+}
+
+/* --- BOTÓN  --- */
+.btn-mapache {
+    display: inline-block;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+    color: #fafafa !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: transform 0.2s ease;
+}
+
+.btn-lobo {
+    display: inline-block;
+    padding: 14px 35px;
+    background: linear-gradient(270deg, #D946EF, #F97316);
+    color: #fafafa !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: transform 0.2s ease;
+}
+
+.btn-buho {
+    display: inline-block;
+    padding: 14px 35px;
+    background: linear-gradient(112deg, #8B5CF6, #6366F1);
+    color: #fafafa !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: transform 0.2s ease;
+}
+
+
+.avatar-label,
+.avatar-label-lobo,
+.avatar-label-buho {
+    display: flex;
+    /* 1. Activa el contenedor flexible */
+    flex-direction: column;
+    /* 2. Fuerza el texto a dos renglones (stack) */
+    align-items: center;
+    /* 3. Centra horizontalmente respecto al círculo */
+    text-align: center;
+    /* 4. Asegura que el texto interno esté centrado */
+    margin-top: 15px;
+    line-height: 1.2;
+    color: #FAFAFA;
+}
+
+.avatar-label,
+span {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.avatar-label strong {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* --- Contenedor Exterior --- */
+.cta-card {
+    margin: 4rem 0;
+    display: flex;
+    /* CAMBIO: Usamos center para que la caja se vea en medio de la pantalla */
+    justify-content: center;
+    width: 100%;
+}
+
+/* --- Tu Caja Específica --- */
+.cta-card .cta-card-inner {
+    width: 478.958px;
+    max-width: 100%;
+    height: 252px;
+    padding: 40px;
+    /* Ajustamos ligeramente para que el texto respire */
+
+    /* Tu fondo y bordes originales */
+    background: rgba(139, 92, 246, 0.08);
+    border-radius: 12px;
+    border: 2px solid rgba(233, 213, 255, 0.18);
+
+    /* Centrado interno del texto y botón */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    /* Espacio entre el texto y el botón */
+    text-align: center;
+}
+
+/* --- Estilo de Texto dentro de tu caja --- */
+.cta-card-inner h2 {
+    font-family: 'Playfair Display', serif;
+    /* Elegancia de DreamSync */
+    color: #fafafa;
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* --- Botón "Habla con un guía" --- */
+.btn-habla-guia {
+    display: inline-block;
+    padding: 12px 35px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #fafafa;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+.btn-habla-guia:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* --- SECCIÓN REVELACIÓN --- */
+.seccion-porque {
+    padding: 120px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- El Badge Pill --- */
+.porque-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Borde blanco tenue */
+    border-radius: 50px;
+    color: #fafafa;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+/* --- El Título (H2) --- */
+.porque-titulo {
+    font-family: 'Inter', sans-serif;
+    color: #fafafa;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    /* Tamaño fluido */
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+/* --- Texto con Degradado (imposible revelado) --- */
+.porque-gradient {
+    /* Degradado de azul suave a rosa místico */
+    background: linear-gradient(90deg, #a5b4fc, #f472b6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Playfair Display', serif;
+    /* Estilo elegante */
+    font-style: normal;
+    font-size: 40px;
+}
+
+/* --- El Subtítulo --- */
+.porque-subtitulo {
+    font-size: 1.20rem;
+    color: rgba(255, 255, 255, 0.7);
+    /* Gris claro traslúcido */
+    max-width: 750px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+/* --- ESTILOS COMPARTIDOS (Para evitar repetir código) --- */
+.pilar-container,
+.pilar-acceso-container,
+.pilar-tecnologia-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    /* Clave: Ancla los números absolutos */
+}
+
+
+
+/* --- SECCIÓN PILAR 01 --- */
+.pilar-reconstruccion {
+    padding: 50px 10%;
+    position: relative;
+    overflow: hidden;
+    color: #fafafa;
+}
+
+.pilar-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* --- Número de Fondo Estilizado --- */
+.pilar-numero {
+    top: -40px;
+    left: -20px;
+    font-size: 5rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    /* Color muy tenue para que no interfiera con el texto */
+    color: rgba(59, 130, 246, 0.50);
+    z-index: 0;
+    user-select: none;
+    filter: blur(4px);
+    line-height: 98px;
+}
+
+/* --- Contenido --- */
+.pilar-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+/* --- Icono con Brillo --- */
+.pilar-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(180deg, var(--gradiente-beneficio-1, #22D3EE) 0%, var(--gradiente-beneficio-1-1, #3B82F6) 100%);
+    /* Degradado azul */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px #22D3EE;
+}
+
+.pilar-icon img {
+    width: 24px;
+}
+
+/* --- Tipografía --- */
+.pilar-titulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.pilar-subtitulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    color: #38bdf8;
+    /* Azul cyan resaltado */
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.pilar-descripcion {
+    font-family: 'Playfair Display', serif;
+    /* Fuente Serif elegante */
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+/* --- SECCIÓN PILAR 02 --- */
+
+.pilar-acceso {
+    padding: 100px 10%;
+    position: relative;
+    overflow: hidden;
+    color: #fafafa;
+}
+
+.pilar-acceso-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* --- Número de Fondo Estilizado --- */
+.pilar-acceso-numero {
+    top: -40px;
+    left: -20px;
+    font-size: 5rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    color: var(--gradiente-beneficio-2, #A78BFA);
+    z-index: 0;
+    user-select: none;
+    filter: blur(4px);
+    line-height: 98px;
+}
+
+/* --- Contenido --- */
+.pilar-acceso-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+/* --- Icono con Brillo --- */
+.pilar-acceso-icono {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(112deg, var(--gradiente-guia1-1, #8B5CF6) 20.64%, var(--gradiente-guia3, #6366F1) 86.59%);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px #6366F1;
+}
+
+.pilar-acceso-icono img {
+    width: 24px;
+}
+
+/* --- Tipografía --- */
+.pilar-acceso-titulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.pilar-acceso-subtitulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    color: #A78BFA;
+    /* Azul cyan resaltado */
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.pilar-acceso-descripcion {
+    font-family: 'Playfair Display', serif;
+    /* Fuente Serif elegante */
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+/* --- SECCIÓN PILAR 03 --- */
+
+.pilar-tecnologia {
+    padding: 100px 10%;
+    position: relative;
+    overflow: hidden;
+    color: #fafafa;
+}
+
+.pilar-tecnologia-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* --- Número de Fondo Estilizado --- */
+.pilar-tecnologia-numero {
+    top: -40px;
+    left: -20px;
+    font-size: 5rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    color: var(--gradiente-beneficio-3, #F472B6);
+    z-index: 0;
+    user-select: none;
+    filter: blur(4px);
+    line-height: 98px;
+}
+
+/* --- Contenido --- */
+.pilar-tecnologia-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+/* --- Icono con Brillo --- */
+.pilar-tecnologia-icono {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(112deg, var(--gradiente-guia1-1, #F472B6) 20.64%, var(--gradiente-guia3, #F43F5E) 86.59%);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px #F472B6;
+}
+
+.pilar-tecnologia-icono img {
+    width: 24px;
+}
+
+/* --- Tipografía --- */
+.pilar-tecnologia-titulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.pilar-tecnologia-subtitulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    color: #F472B6;
+    /* Azul cyan resaltado */
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.pilar-tecnologia-descripcion {
+    font-family: 'Playfair Display', serif;
+    /* Fuente Serif elegante */
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+
+/* --- SECCIÓN VALIDACIÓN CIENTÍFICA --- */
+
+.seccion-validacion {
+    padding: 80px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.validacion-container {
+    max-width: 900px;
+}
+
+/* --- Badge Estilo Píldora --- */
+.badge-cientifico {
+    display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    color: #fafafa;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* --- Título Principal --- */
+.titulo-validacion {
+    font-family: 'Inter', sans-serif;
+    color: #fafafa;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+/* --- Texto Serif con Degradado --- */
+.texto-gradiente-serif {
+    background: linear-gradient(90deg, var(--gradiente-titulo-seccin, #A5B4FC) 0%, var(--gradiente-text-pink, #F472B6) 100%);
+    background-clip: text;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 48px;
+}
+
+/* --- Subtítulo --- */
+.subtitulo-validacion {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 650px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* --- SECCIÓN DE ESTADÍSTICAS --- */
+
+
+.stats-section {
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+    color: #fafafa;
+    font-family: 'Inter', sans-serif;
+}
+
+.stats-container-main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    /* Esto ahora sí funcionará para las 3 tarjetas */
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.stat-card {
+    width: 100%;
+    max-width: 1200px;
+    /* Límite para pantallas muy grandes */
+    margin: 0 auto;
+    border: 2px solid var(--gradiente-beneficio-2-2, #A855F7);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(59, 130, 246, 0.30) 0%, rgba(30, 27, 75, 0.50) 100%);
+    backdrop-filter: blur(10px);
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.stat-texts h3 {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--blanco-base, #FAFAFA);
+    /* Proyecto1-p2/Desk/H3 */
+    font-family: Inter;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 56px;
+    /* 116.667% */
+}
+
+.stat-texts p {
+    color: var(--luces-fondo, #E9D5FF);
+    text-align: center;
+    font-family: Inter;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 30px;
+    /* 125% */
+}
+
+/* --- CONFIGURACIÓN DE COLORES POR TEMA --- */
+.cyan-theme {
+    --radar-color: #22D3EE;
+}
+
+.violet-theme {
+    --radar-color: #A78BFA;
+}
+
+.fuchsia-theme {
+    --radar-color: #D946EF;
+}
+
+/* --- Gráfico de Tarjeta --- */
+
+.neural-network {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.network-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.target-network {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.target-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* CSS */
+.moon-network {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.moon-svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* --- Estilo de los Números (Counters) --- */
+
+.stat-icon-badge,
+.stat-icon-badge-life,
+.stat-icon-badge-eye {
+    margin: 10px !important;
+    /* Quitamos márgenes viejos para que el gap mande */
+}
+
+.stat-value {
+    font-size: 5rem;
+    font-weight: 300;
+    margin: 0 !important;
+    /* Quitamos márgenes viejos */
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+}
+
+
+.suffix-mas {
+    color: var(--gradiente-beneficio-1, #22D3EE);
+    text-align: center;
+    font-family: Inter;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 88px;
+}
+
+.suffix-porcentaje-morado {
+    color: var(--gradiente-beneficio-2-2, #8B5CF6);
+    text-align: center;
+    font-family: Inter;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 88px;
+}
+
+.suffix-porcentaje-fuchsia {
+    color: var(--gradiente-beneficio-2-2, #F472B6);
+    text-align: center;
+    font-family: Inter;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 88px;
+}
+
+.stat-card h3,
+.stat-card p {
+    margin: 0;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+/* Footer centrado */
+/* --- Contenedor estilo Píldora --- */
+.stats-footer-info {
+    /* 1. Dimensiones y Centrado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    /* Espacio entre el texto y el círculo verde */
+    width: fit-content;
+    /* Se ajusta al ancho del contenido */
+    margin: 60px auto 0;
+    /* Centra el bloque y le da aire arriba */
+    padding: 12px 40px;
+    /* Espacio interno para la forma de píldora */
+
+    /* 2. Estética (Color y Bordes) */
+    background-color: #A855F74D;
+    /* Morado traslúcido */
+    border: 1px solid #E9D5FF;
+    /* Borde morado claro */
+    border-radius: 50px;
+    /* Crea el efecto redondeado total */
+    backdrop-filter: blur(8px);
+    /* Efecto de vidrio esmerilado */
+}
+
+/* --- Estilo del Texto --- */
+.stats-footer-info p {
+    color: #fafafa;
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin: 0;
+    /* Quitamos márgenes por defecto del párrafo */
+}
+
+/* --- Estilo del Círculo Verde --- */
+.stats-footer-info img {
+    width: 14px;
+    height: 14px;
+    display: block;
+    /* Opcional: un pequeño resplandor verde para que resalte */
+    filter: drop-shadow(0 0 5px #009951);
+}
+
+.stats-footer-info img {
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Estilos para la caja del icono RELOJ --- */
+.stat-icon-badge {
+    /* 1. Definimos el tamaño de la caja cuadrada */
+    width: 60px;
+    height: 60px;
+
+    /* 2. Color de fondo degradado azul con bordes suaves */
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--gradiente-beneficio-1, #22D3EE) 0%, var(--gradiente-beneficio-1-1, #3B82F6) 100%);
+    /* Bordes suaves como en la imagen */
+
+    /* 3. Centrado perfecto del icono (img) dentro de la caja */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 4. Sombra/Resplandor cian brillante */
+    box-shadow: 0 5px 5px #22D3EE;
+
+    /* Asegura que la caja misma esté centrada horizontalmente en la tarjeta */
+    margin: 0 auto;
+}
+
+/* --- Estilos para la imagen (el reloj) dentro de la caja --- */
+.stat-icon-badge img {
+    /* Controlamos el tamaño del icono */
+    width: 30px;
+    height: 30px;
+
+    /* CLAVE: Esto vuelve blanco el icono si tu SVG es negro originalmente */
+    filter: brightness(0) invert(1);
+}
+
+/* --- Estilos para la caja del icono LIFE --- */
+.stat-icon-badge-life {
+    /* 1. Definimos el tamaño de la caja cuadrada */
+    width: 60px;
+    height: 60px;
+
+    /* 2. Color de fondo degradado azul con bordes suaves */
+    border-radius: 12px;
+    background: var(--guia3, linear-gradient(112deg, var(--gradiente-guia1-1, #8B5CF6) 20.64%, var(--gradiente-guia3, #6366F1) 86.59%));
+
+    /* 3. Centrado perfecto del icono (img) dentro de la caja */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 4. Sombra/Resplandor cian brillante */
+    box-shadow: 0 5px 5px #8B5CF6;
+
+    /* Asegura que la caja misma esté centrada horizontalmente en la tarjeta */
+    margin: 0 auto;
+}
+
+/* --- Estilos para la imagen (el reloj) dentro de la caja --- */
+.stat-icon-badge img {
+    /* Controlamos el tamaño del icono */
+    width: 30px;
+    height: 30px;
+
+    /* CLAVE: Esto vuelve blanco el icono si tu SVG es negro originalmente */
+    filter: brightness(0) invert(1);
+}
+
+
+/* --- Estilos para la caja del icono EYE --- */
+.stat-icon-badge-eye {
+    /* 1. Definimos el tamaño de la caja cuadrada */
+    width: 60px;
+    height: 60px;
+
+    /* 2. Color de fondo degradado azul con bordes suaves */
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--gradiente-beneficio-3, #F472B6) 0%, var(--gradiente-beneficio-3-3, #F43F5E) 100%);
+
+    /* 3. Centrado perfecto del icono (img) dentro de la caja */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 4. Sombra/Resplandor cian brillante */
+    box-shadow: 0 5px 5px #F472B6;
+
+    /* Asegura que la caja misma esté centrada horizontalmente en la tarjeta */
+    margin: 0 auto;
+}
+
+.stat-icon-badge img,
+.stat-icon-badge-life img,
+.stat-icon-badge-eye img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    filter: brightness(0) invert(1);
+    /* Los vuelve blancos */
+}
+
+
+
+/* --- SECCIÓN VOCES DEL BOSQUE --- */
+.voces-seccion {
+    padding: 80px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Badge Píldora --- */
+.voces-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Borde blanco sutil */
+    border-radius: 50px;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* --- Título (H2) --- */
+.voces-titulo {
+    font-family: 'Inter', sans-serif;
+    color: #FFFFFF;
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    /* Tamaño fluido */
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+/* --- Énfasis con Degradado Rosa --- */
+.voces-gradient {
+    font-family: 'Playfair Display', serif;
+    /* Fuente elegante */
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.60) 0%, var(--gradiente-beneficio-3, #F472B6) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 48px;
+}
+
+/* --- Descripción Inferior --- */
+.voces-descripcion {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    /* Gris suave */
+    max-width: 800px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0 auto 80px;
+}
+
+/* --- TARJETA DE TESTIMONIO --- */
+.testimonial-card {
+    /* Mantenemos tu fondo y bordes de la sección anterior */
+    background: radial-gradient(50% 50% at 50% 50%, rgba(59, 130, 246, 0.30) 0%, rgba(30, 27, 75, 0.50) 100%);
+    border: 2px solid #A855F7;
+    border-radius: 40px;
+    padding: 120px 0;
+    /* Quitamos padding lateral para no empujar la tarjeta */
+    width: 100%;
+    /* Aseguramos que ocupe todo el ancho */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+/* --- BLOQUE DEL GUÍA --- */
+.guia-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.guia-avatar-glow {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--color-guia) 0%, transparent 75%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.6s ease-in-out;
+}
+
+.guia-avatar-glow img {
+    width: 150px;
+}
+
+.guia-label {
+    color: var(--blanco-base, #FAFAFA);
+    text-align: center;
+    /* Proyecto1-p2/Desk/Body-M */
+    font-family: "Playfair Display";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    /* 144.444% */
+}
+
+.guia-label span {
+    font-weight: 600;
+}
+
+/* --- CONECTOR VERTICAL --- */
+.vertical-connector {
+    width: 5px;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(168, 85, 247, 0.5), transparent);
+    margin: 20px auto;
+}
+
+/* --- BLOQUE DE CITA --- */
+.stars-row {
+    color: #FBBF24;
+    /* Color dorado para las estrellas */
+    font-size: 1.2rem;
+    margin: 15px 0 30px;
+}
+
+.testimonial-quote {
+    color: var(--luces-fondo, #E9D5FF);
+    font-family: "Playfair Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    /* 133.333% */
+    align-self: stretch;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.testimonial-divider {
+    width: 80%;
+    max-width: 850px;
+    border: 0;
+    /* Usamos la variable para el color del borde */
+    border-top: 1px solid var(--color-linea);
+    margin-bottom: 40px;
+    /* Añadimos una transición suave */
+    transition: border-color 0.6s ease-in-out;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- PIE DEL AUTOR --- */
+.author-name {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+    color: #FAFAFA;
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 40px;
+    /* 125% */
+    width: 100%;
+}
+
+.author-role {
+    color: var(--luces-fondo, #E9D5FF);
+    /* Proyecto1-p2/Desk/Body-L */
+    font-family: "Playfair Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    /* 133.333% */
+}
+
+.author-meta {
+    font-size: 0.9rem;
+    color: #A78BFA;
+    letter-spacing: 0.5px;
+}
+
+/* --- CONTENEDOR DE NAVEGACIÓN --- */
+.testimonial-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    /* Espacio entre flechas y puntos */
+    margin-top: 60px;
+    /* Separación de la tarjeta */
+    width: 100%;
+}
+
+/* --- Carrusel testimonios (BOTONES CIRCULARES) --- */
+/* --- CONTENEDOR DE NAVEGACIÓN --- */
+.testimonial-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Espaciado exacto de Figma entre flechas e indicadores */
+    gap: 198px;
+    margin-top: 60px;
+    width: 100%;
+}
+
+/* --- BOTONES / FLECHAS --- */
+.nav-arrow {
+    width: 80px;
+    /* Círculo exterior */
+    height: 80px;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-arrow img {
+    width: 40px;
+    /* Tamaño del icono en Figma */
+    height: 40px;
+    filter: brightness(0) invert(1);
+    /* Vuelve blanco el icono si es negro */
+}
+
+.nav-arrow:hover {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: #A855F7;
+    transform: scale(1.05);
+}
+
+/* --- INDICADORES (Dots & Pill) --- */
+.nav-indicators {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    /* Espacio entre puntos */
+    border-radius: 70px;
+}
+
+.indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    /* Color púrpura oscuro al 20% indicado en Figma */
+    background: #8B5CF680;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilo de Píldora Activa */
+.indicator.active {
+    width: 60px;
+    height: 20px;
+    border-radius: 70px;
+    /* Usamos una variable que cambiaremos por JS o por clase */
+    background: var(--active-dot-color);
+    transition: all 0.4s ease;
+}
+
+/* Contenedor para que las tarjetas no se empujen hacia abajo */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Alinea al inicio para evitar saltos de altura */
+    /* Quitamos el min-height fijo para que sea dinámico */
+    min-height: auto;
+}
+
+/* Ocultar tarjetas por defecto */
+.testimonial-card {
+    position: absolute;
+    /* Las tarjetas ocultas no ocupan espacio */
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+/* Mostrar solo la activa */
+.testimonial-card.active {
+    position: relative;
+    /* CLAVE: La tarjeta activa ahora sí ocupa espacio real */
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+#testimonio-1 {
+    --color-guia: #8B5CF6;
+    --gradiente-indicador: linear-gradient(112deg, #8B5CF6 20.64%, #6366F1 86.59%);
+    --color-linea: #8B5CF6;
+}
+
+#testimonio-2 {
+    --color-guia: #F97316;
+    --gradiente-indicador: linear-gradient(112deg, #D946EF 20.64%, #F97316 86.59%);
+    --color-linea: #F97316;
+}
+
+/* --- SECCIÓN NEWSLETTER --- */
+.newsletter-seccion {
+    padding: 100px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Badge "Mantente Conectado" */
+.newsletter-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+/* Títulos */
+.newsletter-titulo {
+    font-family: 'Inter', sans-serif;
+    color: #fafafa;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.newsletter-descripcion {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    max-width: 700px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+/* --- FORMULARIO --- */
+/* --- CONTENEDOR (FORM) --- */
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    /* Espacio entre los dos elementos según Figma */
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* --- CUADRO DE TEXTO (INPUT) --- */
+.newsletter-input {
+    /* Color de fondo oscuro y borde lavanda sutil */
+    background: rgba(30, 27, 75, 0.4);
+    border: 1.5px solid #A78BFA;
+
+    /* Forma de píldora perfecta */
+    border-radius: 100px;
+    padding: 18px 35px;
+
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    width: 450px;
+    /* Ancho fijo para mantener la proporción de Figma */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+    border-color: #C084FC;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+/* --- BOTÓN GRADIENTE --- */
+.btn-suscribirse {
+    /* Gradiente de Rosa a Violeta */
+    background: var(--boton-hero, linear-gradient(90deg, var(--gradiente-guia1, #EC4899) 0%, var(--gradiente-guia1-1, #8B5CF6) 100%));
+    border: none;
+
+    /* Forma de píldora perfecta */
+    border-radius: 100px;
+    padding: 18px 45px;
+
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-suscribirse:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(217, 70, 239, 0.3);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- FOOTER GENERAL --- */
+.ds-footer {
+    padding: 100px 5% 40px;
+    color: #fafafa;
+    border-top: 1px solid rgba(168, 85, 247, 0.1);
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    /* Columna de marca más ancha */
+    gap: 60px;
+}
+
+/* --- COLUMNA DE MARCA --- */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.footer-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 300px;
+}
+
+.footer-avatars {
+    display: flex;
+    gap: 20px;
+
+}
+
+.footer-avatars img {
+    width: 100px;
+    /* Tamaño pequeño según diseño */
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.2));
+}
+
+.avatar-link:hover {
+    /* Se hace más grande al pasar el mouse */
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.5));
+}
+
+/* --- COLUMNAS DE LINKS --- */
+.footer-title {
+    position: relative;
+    padding-bottom: 16px;
+    /* Espacio para que la línea no toque las letras */
+    display: inline-block;
+    /* Asegura que la línea nazca desde el inicio del texto */
+    color: #fafafa;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 65px;
+    /* Largo exacto de la barra en Figma */
+    height: 4px;
+    /* Grosor de la barra decorativa */
+    /* Gradiente místico de DreamSync */
+    background: linear-gradient(90deg, #8B5CF6 0%, #6366F1 100%);
+    border-radius: 10px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    /* Separación de la línea al texto */
+    left: 0;
+    background-color: #A78BFA;
+    /* Color lavanda del subrayado */
+    transition: width 0.3s ease;
+    /* Efecto de crecimiento suave */
+}
+
+.footer-links a:hover,
+.footer-links a.active {
+    color: #Fafafa;
+    /* El texto se aclara al seleccionarlo */
+}
+
+.footer-links a:hover::after,
+.footer-links a.active::after {
+    width: 100%;
+    /* La línea crece hasta cubrir el ancho del texto */
+}
+
+.footer-links a:hover {
+    color: #A78BFA;
+    /* Cambio a lavanda en hover */
+}
+
+/* --- LÍNEA FINAL --- */
+.footer-bottom-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent);
+    margin-top: 80px;
+}
+
+/* --- CONTENEDOR INFERIOR --- */
+.footer-bottom-content {
+    text-align: center;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    /* Espaciado entre bloques según Figma */
+}
+
+/* Copyright */
+.footer-copyright {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+}
+
+/* --- ICONOS DE REDES SOCIALES --- */
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.social-btn {
+    width: 60px;
+    /* Círculo exterior */
+    height: 60px;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    /* Borde morado sutil */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: #A78BFA;
+    transform: translateY(-3px);
+}
+
+/* --- SELECTOR DE IDIOMA --- */
+/* --- CONTENEDOR DEL DROPDOWN --- */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Botón base (Píldora) */
+.btn-lang {
+    background: rgba(30, 27, 75, 0.4);
+    border: 1px solid rgba(168, 85, 247, 0.5);
+    border-radius: 100px;
+    padding: 12px 40px;
+    color: #FFFFFF;
+    font-family: 'Playfair Display', serif;
+    /* Fuente narrativa */
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Lista de opciones (Aparece arriba del botón) */
+.lang-options {
+    position: absolute;
+    /* CAMBIO: De bottom a top para que aparezca abajo del botón */
+    top: 110%;
+    left: 50%;
+    /* Ajuste de animación: inicia 10px arriba para caer suavemente */
+    transform: translateX(-50%) translateY(-10px);
+    background: #0D162D;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    list-style: none;
+    padding: 10px 0;
+    width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* IMPORTANTE: Asegúrate que esté por encima de otros elementos */
+    z-index: 100;
+}
+
+/* Mostrar al pasar el mouse (o vía JS) */
+.lang-dropdown:hover .lang-options {
+    opacity: 1;
+    visibility: visible;
+    /* Llega a su posición final */
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Elementos de la lista */
+.lang-item {
+    display: block;
+    padding: 10px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.lang-item:hover {
+    background: rgba(168, 85, 247, 0.1);
+    color: #fafafa;
+}
+
+/* Estilo para el idioma seleccionado */
+.lang-item.active {
+    color: #A78BFA;
+    font-weight: 600;
+}
+
+
+/* --- AVISO LEGAL --- */
+.footer-disclaimer {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    /* Color más tenue para el disclaimer */
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}

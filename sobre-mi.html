@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sobre Fernanda Jaimes — UX/UI Designer y Diseñadora Industrial con Maestría en Diseño de Experiencia Digital. Especializada en salud, educación y fintech." />
+  <meta name="author" content="Fernanda Jaimes" />
+  <title>Sobre mí · Fernanda Jaimes</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    /* Page-specific styles */
+    .sobre-mi-page {
+      min-height: 100vh;
+      padding-top: clamp(120px, 14vh, 160px);
+      padding-bottom: clamp(96px, 12vw, 160px);
+      background: var(--color-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient blobs */
+    .sobre-mi-page-blobs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .sobre-mi-page-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+    }
+
+    .sobre-mi-page-blob--1 {
+      width: clamp(350px, 45vw, 680px);
+      height: clamp(350px, 45vw, 680px);
+      background: rgba(123, 94, 167, 0.08);
+      top: -80px;
+      right: -60px;
+    }
+
+    .sobre-mi-page-blob--2 {
+      width: clamp(280px, 36vw, 540px);
+      height: clamp(280px, 36vw, 540px);
+      background: rgba(74, 144, 217, 0.07);
+      bottom: 5%;
+      left: -40px;
+    }
+
+    .sobre-mi-page-blob--3 {
+      width: clamp(200px, 26vw, 400px);
+      height: clamp(200px, 26vw, 400px);
+      background: rgba(232, 107, 160, 0.05);
+      top: 45%;
+      left: 30%;
+    }
+
+    /* Page header */
+    .sobre-mi-page__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-24);
+      margin-bottom: clamp(64px, 8vw, 96px);
+    }
+
+    .sobre-mi-page__eyebrow {
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--color-violet-aurora);
+    }
+
+    .sobre-mi-page__divider {
+      flex: 1;
+      height: 1px;
+      background: var(--gradient-aurora);
+      opacity: 0.2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <header role="banner">
+    <nav class="nav nav--light" aria-label="Navegación principal">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Fernanda Jaimes — inicio">
+          Fernanda Jaimes
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html#proyectos" class="nav-link">Proyectos</a></li>
+          <li><a href="sobre-mi.html"         class="nav-link nav-link--active">Sobre mí</a></li>
+          <li><a href="index.html#contacto"   class="nav-link">Contacto</a></li>
+        </ul>
+        <button
+          class="nav-toggle"
+          aria-controls="nav-mobile-sm"
+          aria-expanded="false"
+          aria-label="Abrir menú de navegación"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <nav id="nav-mobile-sm" class="nav-mobile nav-mobile--light" aria-label="Menú móvil">
+      <a href="index.html#proyectos" class="nav-link">Proyectos</a>
+      <a href="sobre-mi.html"        class="nav-link">Sobre mí</a>
+      <a href="index.html#contacto"  class="nav-link">Contacto</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="sobre-mi-page" aria-labelledby="sobre-mi-title">
+
+      <!-- Ambient blobs -->
+      <div class="sobre-mi-page-blobs" aria-hidden="true">
+        <div class="sobre-mi-page-blob sobre-mi-page-blob--1"></div>
+        <div class="sobre-mi-page-blob sobre-mi-page-blob--2"></div>
+        <div class="sobre-mi-page-blob sobre-mi-page-blob--3"></div>
+      </div>
+
+      <div class="container" style="position:relative;z-index:2;">
+
+        <!-- Page header -->
+        <div class="sobre-mi-page__header anim-line">
+          <span class="sobre-mi-page__eyebrow">Sobre mí</span>
+          <div class="sobre-mi-page__divider" aria-hidden="true"></div>
+          <span class="label" style="color:var(--color-text-muted);">UX/UI Designer · Máster BAU Barcelona</span>
+        </div>
+
+        <!-- Grid: bio + skills -->
+        <div class="sobre-mi-grid">
+
+          <!-- Bio column -->
+          <div class="sobre-mi-bio">
+            <h1 id="sobre-mi-title" class="sobre-mi-name anim-rise">
+              Hola, soy Fer
+            </h1>
+
+            <div class="anim-ready anim-delay-2">
+              <p class="sobre-mi-text sobre-mi-text--lead">
+                Como diseñadora industrial, entendí pronto que aunque hoy habitamos un mundo digital, las personas seguimos buscando lo mismo: soluciones que nos devuelvan el bienestar y la simplicidad.
+              </p>
+              <p class="sobre-mi-text">
+                Creo en la alquimia del diseño: ese punto exacto donde la investigación profunda se materializa en algo que simplifica la vida. Traduzco mi mentalidad de creadora al ecosistema digital, construyendo interfaces más humanas y coherentes.
+              </p>
+              <p class="sobre-mi-text sobre-mi-text--mission">
+                Mi misión es descifrar lo complejo para diseñar una vida diaria más fácil.
+              </p>
+            </div>
+
+            <div class="anim-ready anim-delay-3">
+              <a href="assets/cv-fernanda-jaimes.pdf"
+                 class="contact-pill sobre-mi-cv"
+                 download
+                 aria-label="Descargar CV completo de Fernanda Jaimes">
+                Descargar CV
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Skills column -->
+          <div class="sobre-mi-skills anim-ready anim-delay-2">
+
+            <div class="skill-cat">
+              <p class="skill-cat__title">Research</p>
+              <div class="skill-pills">
+                <span class="skill-pill">Entrevistas</span>
+                <span class="skill-pill">User Testing</span>
+                <span class="skill-pill">Journey Maps</span>
+                <span class="skill-pill">Desk Research</span>
+                <span class="skill-pill">Personas</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <p class="skill-cat__title">Diseño Visual</p>
+              <div class="skill-pills">
+                <span class="skill-pill">Figma</span>
+                <span class="skill-pill">Design Systems</span>
+                <span class="skill-pill">Prototipado</span>
+                <span class="skill-pill">Motion</span>
+                <span class="skill-pill">Accesibilidad</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <p class="skill-cat__title">Herramientas</p>
+              <div class="skill-pills">
+                <span class="skill-pill">FigJam</span>
+                <span class="skill-pill">Notion</span>
+                <span class="skill-pill">Maze</span>
+                <span class="skill-pill">Hotjar</span>
+                <span class="skill-pill">Miro</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <p class="skill-cat__title">Código</p>
+              <div class="skill-pills">
+                <span class="skill-pill">HTML5</span>
+                <span class="skill-pill">CSS Vanilla</span>
+                <span class="skill-pill">JavaScript</span>
+                <span class="skill-pill">API IA</span>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /sobre-mi-grid -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer__copy">© 2025 Fernanda Jaimes · Diseñado y construido desde cero.</p>
+      <nav class="footer__links" aria-label="Casos de estudio">
+        <a href="dreamsync.html" class="footer__link">DreamSync</a>
+        <span class="footer__sep" aria-hidden="true">·</span>
+        <a href="kyros.html"     class="footer__link">KYROS</a>
+        <span class="footer__sep" aria-hidden="true">·</span>
+        <a href="luma.html"      class="footer__link">LUMA</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

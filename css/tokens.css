@@ -1,0 +1,138 @@
+/* ============================================================
+   TOKENS.CSS — Design System Variables
+   Portfolio Personal · Fernanda Jaimes · UX/UI Designer
+   ============================================================ */
+
+:root {
+
+  /* ── COLOR PALETTE ─────────────────────────────────────── */
+  --color-deep-space:     #0D0B1A;
+  --color-violet-aurora:  #7B5EA7;
+  --color-blue-mid:       #4A90D9;
+  --color-turquoise:      #2BBFCF;
+  --color-rose-accent:    #E86BA0;
+  --color-lavender-light: #F5F0FF;
+  --color-white:          #FFFFFF;
+
+  --color-text-primary:   #1A0A3C;
+  --color-text-secondary: #5A4880;
+  --color-text-muted:     #9B8FC0;
+  --color-teal-aurora:    #2BBFCF;
+  --color-border:         rgba(123, 94, 167, 0.15);
+
+  /* Case study accents */
+  --color-accent-dreamsync: #7B5EA7;
+  --color-accent-kyros:     #4A90D9;
+  --color-accent-luma:      #2BBFCF;
+
+  /* ── GRADIENTS ─────────────────────────────────────────── */
+  --gradient-aurora: linear-gradient(
+    135deg,
+    #7B5EA7 0%,
+    #4A90D9 35%,
+    #2BBFCF 65%,
+    #E86BA0 100%
+  );
+
+  --gradient-aurora-subtle: linear-gradient(
+    135deg,
+    rgba(123, 94, 167, 0.08) 0%,
+    rgba(74, 144, 217, 0.08) 35%,
+    rgba(43, 191, 207, 0.08) 65%,
+    rgba(232, 107, 160, 0.08) 100%
+  );
+
+  --gradient-aurora-contact: linear-gradient(
+    135deg,
+    rgba(123, 94, 167, 0.12) 0%,
+    rgba(74, 144, 217, 0.10) 35%,
+    rgba(43, 191, 207, 0.10) 65%,
+    rgba(232, 107, 160, 0.12) 100%
+  );
+
+  /* ── TYPOGRAPHY ────────────────────────────────────────── */
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans:    'Plus Jakarta Sans', system-ui, sans-serif; /* alias */
+  --font-heading: 'Marcellus', Georgia, serif;
+  --font-serif:   'Marcellus', Georgia, serif;
+
+  --text-hero:    clamp(48px, 7vw, 96px);
+  --text-display: clamp(36px, 5vw, 64px);
+  --text-h1:      clamp(28px, 4vw, 48px);
+  --text-h2:      clamp(22px, 3vw, 36px);
+  --text-h3:      20px;
+  --text-body-lg: 18px;
+  --text-body:    16px;
+  --text-small:   14px;
+  --text-label:   11px;
+
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+
+  --leading-tight:  1.2;
+  --leading-snug:   1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight:  -0.03em;
+  --tracking-snug:   -0.02em;
+  --tracking-normal: -0.01em;
+  --tracking-wide:   0.08em;
+
+  /* ── SPACING ───────────────────────────────────────────── */
+  --space-4:   4px;
+  --space-6:   6px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-28:  28px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-80:  80px;
+  --space-96:  96px;
+  --space-128: 128px;
+  --space-160: 160px;
+
+  /* ── BORDER RADIUS ─────────────────────────────────────── */
+  --radius-sm:     8px;
+  --radius-md:     12px;
+  --radius-lg:     20px;
+  --radius-pill:   100px;
+  --radius-circle: 50%;
+
+  /* ── SHADOWS ───────────────────────────────────────────── */
+  --shadow-sm:    0 2px 8px rgba(13, 11, 26, 0.06);
+  --shadow-md:    0 8px 32px rgba(13, 11, 26, 0.10);
+  --shadow-lg:    0 24px 64px rgba(13, 11, 26, 0.14);
+  --shadow-aurora: 0 12px 40px rgba(123, 94, 167, 0.20);
+  --shadow-hover:  0 20px 60px rgba(123, 94, 167, 0.25);
+
+  /* ── TRANSITIONS ───────────────────────────────────────── */
+  --transition-fast:   0.15s ease;
+  --transition-base:   0.25s ease;
+  --transition-slow:   0.4s ease;
+  --transition-slower: 0.6s ease-out;
+
+  /* ── GLASS ─────────────────────────────────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.06);
+  --glass-bg-dark: rgba(13, 11, 26, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-blur:   blur(12px);
+
+  /* ── LAYOUT ────────────────────────────────────────────── */
+  --max-width:       1280px;
+  --gutter:          24px;
+  --padding-x:       40px;
+  --padding-x-mobile: 20px;
+
+  /* ── Z-INDEX SCALE ─────────────────────────────────────── */
+  --z-base:    1;
+  --z-overlay: 10;
+  --z-nav:     100;
+  --z-cursor:  1000;
+}

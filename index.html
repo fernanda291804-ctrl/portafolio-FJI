@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fernanda Jaimes — UX/UI Designer. Diseñadora Industrial con Maestría en Diseño de Experiencia Digital. Especializada en salud, educación y fintech." />
+  <meta name="author" content="Fernanda Jaimes" />
+  <meta property="og:title" content="Fernanda Jaimes · UX/UI Designer" />
+  <meta property="og:description" content="Portfolio de diseño UX/UI — Proyectos en salud, educación y fintech con enfoque en investigación y sistemas de diseño." />
+  <meta property="og:type" content="website" />
+
+  <title>Fernanda Jaimes · UX/UI Designer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <header role="banner">
+    <nav class="nav nav--light" aria-label="Navegación principal">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Fernanda Jaimes — inicio">
+          Fernanda Jaimes
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="nav-links" role="list">
+          <li><a href="#proyectos" class="nav-link" data-section="proyectos">Proyectos</a></li>
+          <li><a href="sobre-mi.html" class="nav-link">Sobre mí</a></li>
+          <li><a href="#contacto" class="nav-link" data-section="contacto">Contacto</a></li>
+        </ul>
+
+        <!-- Mobile toggle -->
+        <button
+          class="nav-toggle"
+          aria-controls="nav-mobile"
+          aria-expanded="false"
+          aria-label="Abrir menú de navegación"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <nav id="nav-mobile" class="nav-mobile nav-mobile--light" aria-label="Menú móvil">
+      <a href="#proyectos" class="nav-link">Proyectos</a>
+      <a href="sobre-mi.html" class="nav-link">Sobre mí</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ── SECCIÓN 1: HERO — Holográfico ────────────────────── -->
+    <section id="hero-section" class="hero-holo" aria-label="Introducción">
+
+      <!-- Blobs holográficos pastel -->
+      <div class="holo-blobs" aria-hidden="true">
+        <div class="holo-blob holo-blob--1"></div>
+        <div class="holo-blob holo-blob--2"></div>
+        <div class="holo-blob holo-blob--3"></div>
+        <div class="holo-blob holo-blob--4"></div>
+        <div class="holo-blob holo-blob--5"></div>
+      </div>
+
+      <!-- Capa de colores desplazándose — aurora overlay -->
+      <div class="hero-holo__aurora" aria-hidden="true"></div>
+
+      <!-- Capa de profundidad de campo — desenfoca el fondo, texto queda nítido -->
+      <div class="hero-holo__dof" aria-hidden="true"></div>
+
+      <!-- Grain noise — encima del blur para que la textura sea nítida -->
+      <div class="grainy-overlay holo-grain" aria-hidden="true"></div>
+
+      <!-- Fade-out suave hacia el contenido -->
+      <div class="hero-holo__fade" aria-hidden="true"></div>
+
+      <!-- Top label — aparece tras la transición del nombre -->
+      <div class="hero-holo__top" id="hero-top">
+        <div class="container">
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-16);">
+            <p class="label" style="color: rgba(80,50,160,0.50);">Product Designer · Barcelona 2026</p>
+            <p class="label" style="color: rgba(80,50,160,0.35);">Disponible para proyectos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nombre centrado — protagonista de la pantalla -->
+      <div class="hero-holo__center">
+        <h1 class="hero-holo__name" aria-label="Fernanda Jaimes">
+          <span class="hero-holo__word" id="holo-word-1" aria-hidden="true">FERNANDA</span>
+          <span class="hero-holo__word" id="holo-word-2" aria-hidden="true">JAIMES</span>
+        </h1>
+      </div>
+
+    </section>
+
+    <!-- Transición suave — ambos fondos comparten el tono base -->
+    <div class="hero-holo__transition" aria-hidden="true"></div>
+
+    <!-- ── FRASE CENTRADA ─────────────────────────────────── -->
+    <div class="hero-phrase-section" aria-label="Filosofía de diseño">
+      <div class="container" style="position:relative;z-index:1;">
+        <p class="hero-phrase-main anim-rise">
+          Descifrar lo complejo para diseñar<br/>una vida más fácil.
+        </p>
+        <p class="hero-phrase-sub anim-rise anim-delay-1">
+          Mi método es simple: pequeños cambios, grandes impactos.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── SECCIÓN 2: PROYECTOS ───────────────────────────── -->
+    <section id="proyectos" class="proyectos-section" aria-labelledby="proyectos-title">
+
+      <!-- Blobs holográficos — posición asimétrica distinta a las otras secciones -->
+      <div class="proyectos-blobs" aria-hidden="true">
+        <div class="proyectos-blob proyectos-blob--1"></div>
+        <div class="proyectos-blob proyectos-blob--2"></div>
+        <div class="proyectos-blob proyectos-blob--3"></div>
+      </div>
+
+      <div class="container proyectos-container">
+
+        <!-- Header editorial -->
+          <div class="proyectos-header anim-line">
+            <span class="label" style="color: var(--color-violet-aurora);">Casos de estudio</span>
+            <h2 id="proyectos-title" class="sr-only">Proyectos</h2>
+            <span class="label" style="color: var(--color-text-muted);">— 03 proyectos</span>
+          </div>
+
+          <!-- Lista tipográfica de proyectos -->
+          <div class="project-list" role="list">
+
+          <!-- 01 · DreamSync -->
+          <article class="project-row anim-rise"
+                   role="listitem"
+                   style="--accent: #9B7EC8;"
+                   data-preview-bg="linear-gradient(135deg, #f5f0ff 0%, #fce4ef 100%)"
+                   data-preview-label="Landing Page · 2025">
+            <a href="dreamsync.html" class="project-row__link" aria-label="Ver caso de estudio DreamSync — Landing Page 2025">
+              <span class="project-row__num" aria-hidden="true">01</span>
+              <div class="project-row__body">
+                <div class="project-row__tags" aria-hidden="true">
+                  <span class="project-row__tag">Landing Page</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">Identidad visual</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">2025</span>
+                </div>
+                <h3 class="project-row__title">DreamSync</h3>
+              </div>
+              <div class="project-row__cta" aria-hidden="true">
+                <span class="project-row__cta-text">Ver caso</span>
+                <svg class="project-row__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          </article>
+
+          <!-- 02 · KYROS — proyecto estrella -->
+          <article class="project-row project-row--featured anim-rise anim-delay-1"
+                   role="listitem"
+                   style="--accent: #4A90D9;"
+                   data-preview-bg="linear-gradient(135deg, #0d0b1a 0%, #1a2340 60%, #0d1e38 100%)"
+                   data-preview-label="App Design · IA · 2026">
+            <a href="kyros.html" class="project-row__link" aria-label="Ver caso de estudio KYROS — App de salud con IA, proyecto estrella">
+              <span class="project-row__num" aria-hidden="true">02</span>
+              <div class="project-row__body">
+                <div class="project-row__tags" aria-hidden="true">
+                  <span class="project-row__tag project-row__tag--star">★ Proyecto estrella</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">App Design</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">IA Real</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">2026</span>
+                </div>
+                <h3 class="project-row__title">KYROS</h3>
+              </div>
+              <div class="project-row__cta" aria-hidden="true">
+                <span class="project-row__cta-text">Ver caso</span>
+                <svg class="project-row__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          </article>
+
+          <!-- 03 · LUMA -->
+          <article class="project-row anim-rise anim-delay-2"
+                   role="listitem"
+                   style="--accent: #2BBFCF;"
+                   data-preview-bg="linear-gradient(135deg, #e8fafb 0%, #c8f0f5 100%)"
+                   data-preview-label="TFM · Bienestar · WIP">
+            <a href="luma.html" class="project-row__link" aria-label="Ver caso de estudio LUMA — TFM Máster, en proceso">
+              <span class="project-row__num" aria-hidden="true">03</span>
+              <div class="project-row__body">
+                <div class="project-row__tags" aria-hidden="true">
+                  <span class="project-row__tag project-row__tag--wip">● En proceso</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">TFM · Máster BAU</span>
+                  <span class="project-row__dot" aria-hidden="true">·</span>
+                  <span class="project-row__tag">Bienestar femenino</span>
+                </div>
+                <h3 class="project-row__title">LUMA</h3>
+              </div>
+              <div class="project-row__cta" aria-hidden="true">
+                <span class="project-row__cta-text">Ver proceso</span>
+                <svg class="project-row__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          </article>
+
+          </div><!-- /project-list -->
+
+      </div>
+    </section>
+
+        <!-- ── SECCIÓN 5: CONTACTO ────────────────────────────── -->
+    <section id="contacto" class="contact-section" aria-labelledby="contacto-title">
+
+      <!-- Blobs holográficos de fondo — vivos y visibles -->
+      <div class="contact-blobs" aria-hidden="true">
+        <div class="contact-blob contact-blob--1"></div>
+        <div class="contact-blob contact-blob--2"></div>
+        <div class="contact-blob contact-blob--3"></div>
+      </div>
+
+      <div class="container contact-container">
+
+        <!-- Header -->
+          <div class="contact-header anim-line">
+            <span class="label" style="color: var(--color-violet-aurora);">Contacto</span>
+            <span class="contact-avail">
+              <span class="contact-avail__dot" aria-hidden="true"></span>
+              Disponible para proyectos
+            </span>
+          </div>
+
+          <!-- Headline serif italic -->
+          <h2 id="contacto-title" class="contact-headline anim-rise anim-delay-1">
+            Hagamos que lo complejo<br/>se sienta natural.
+          </h2>
+
+          <!-- Tres acciones directas -->
+          <div class="contact-pills-row anim-ready anim-delay-2">
+            <a href="mailto:fernanda291804@gmail.com"
+               class="contact-pill"
+               aria-label="Enviar email a Fernanda Jaimes">
+              Correo
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2 4l6 5 6-5M2 4h12v9H2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com/in/fernandajaimes"
+               target="_blank" rel="noopener noreferrer"
+               class="contact-pill" aria-label="LinkedIn de Fernanda Jaimes">
+              LinkedIn
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="./assets/Documents/Fernanda Jaimes:diseñadora ux:ui.pdf"
+               class="contact-pill"
+               download
+               aria-label="Descargar CV de Fernanda Jaimes">
+              Descargar CV
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer__copy">© 2025 Fernanda Jaimes · Diseñado y construido desde cero.</p>
+      <nav class="footer__links" aria-label="Casos de estudio">
+        <a href="dreamsync.html" class="footer__link">DreamSync</a>
+        <span class="footer__sep" aria-hidden="true">·</span>
+        <a href="kyros.html" class="footer__link">KYROS</a>
+        <span class="footer__sep" aria-hidden="true">·</span>
+        <a href="luma.html" class="footer__link">LUMA</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Indicador lateral de sección -->
+  <nav class="section-indicator" aria-label="Navegación por secciones" id="section-indicator">
+    <div class="section-indicator__dots" role="list">
+      <button class="section-indicator__dot active" data-target="hero-section" aria-label="Ir a inicio"    title="Inicio"></button>
+      <button class="section-indicator__dot"        data-target="proyectos"    aria-label="Ir a proyectos" title="Proyectos"></button>
+      <button class="section-indicator__dot"        data-target="contacto"     aria-label="Ir a contacto"  title="Contacto"></button>
+    </div>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>
