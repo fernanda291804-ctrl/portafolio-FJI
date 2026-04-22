@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/portal.css" />
 </head>
 
 <body>
@@ -95,8 +96,8 @@
       <div class="hero-holo__top" id="hero-top">
         <div class="container">
           <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-16);">
-            <p class="label" style="color: rgba(80,50,160,0.50);">Product Designer · Barcelona 2026</p>
-            <p class="label" style="color: rgba(80,50,160,0.35);">Disponible para proyectos</p>
+            <p class="label" style="color: #2D1B5C; font-weight: 500;">Product Designer · Barcelona 2026</p>
+            <p class="label" style="color: #2D1B5C; font-weight: 500;">Disponible para proyectos</p>
           </div>
         </div>
       </div>
@@ -121,176 +122,313 @@
           Descifrar lo complejo para diseñar<br/>una vida más fácil.
         </p>
         <p class="hero-phrase-sub anim-rise anim-delay-1">
-          Mi método es simple: pequeños cambios, grandes impactos.
+          Mi método es simple: pequeños cambios, grande impacto.
         </p>
       </div>
     </div>
 
-    <!-- ── SECCIÓN 2: PROYECTOS ───────────────────────────── -->
-    <section id="proyectos" class="proyectos-section" aria-labelledby="proyectos-title">
+    <!-- ── SECCIÓN 2: PROYECTOS — La Sala de las Puertas ───── -->
+    <section id="proyectos" class="portal-room" aria-labelledby="proyectos-title">
 
-      <!-- Blobs holográficos — posición asimétrica distinta a las otras secciones -->
-      <div class="proyectos-blobs" aria-hidden="true">
-        <div class="proyectos-blob proyectos-blob--1"></div>
-        <div class="proyectos-blob proyectos-blob--2"></div>
-        <div class="proyectos-blob proyectos-blob--3"></div>
-      </div>
+      <div class="portal-room__sticky">
 
-      <div class="container proyectos-container">
+        <!-- Atmósfera holográfica de fondo -->
+        <div class="portal-atmosphere" aria-hidden="true">
+          <div class="portal-blob portal-blob--1"></div>
+          <div class="portal-blob portal-blob--2"></div>
+          <div class="portal-blob portal-blob--3"></div>
+        </div>
 
-        <!-- Header editorial -->
-          <div class="proyectos-header anim-line">
-            <span class="label" style="color: var(--color-violet-aurora);">Casos de estudio</span>
-            <h2 id="proyectos-title" class="sr-only">Proyectos</h2>
-            <span class="label" style="color: var(--color-text-muted);">— 03 proyectos</span>
+        <!-- Suelo ajedrezado con perspectiva — guiño a Alicia -->
+        <div class="portal-floor" aria-hidden="true"></div>
+
+        <!-- Partículas flotantes generadas por JS -->
+        <div class="portal-particles" aria-hidden="true"></div>
+
+        <!-- Header tipográfico -->
+        <header class="portal-room__header">
+          <span class="portal-room__label">Proyectos</span>
+          <h2 id="proyectos-title" class="portal-room__title">
+            Casos de estudio <br/><em>seleccionados.</em>
+          </h2>
+        </header>
+
+        <!-- Escenario 3D — aquí viven las puertas -->
+        <div class="portal-stage" role="region" aria-roledescription="carrusel" aria-label="Selecciona un proyecto">
+
+          <div class="portal-carousel" id="portal-carousel">
+
+            <!-- ── PUERTA 01 · DreamSync — violeta profundo · noche ── -->
+            <article class="portal-door"
+                     data-project="dreamsync"
+                     data-index="0"
+                     style="
+                       --door-angle: 0deg;
+                       --accent: #4C319A;
+                       --enter-core: #4C319A;
+                       --enter-mid:  #1E1B4B;
+                       --enter-edge: #0F172A;
+                     ">
+              <a href="dreamsync.html"
+                 class="portal-door__link"
+                 aria-label="Entrar al mundo de DreamSync — Landing page 2025">
+                <span class="portal-door__aura" aria-hidden="true"></span>
+                <div class="portal-door__frame">
+                  <span class="portal-door__meta" aria-hidden="true">Landing · 2025</span>
+                  <h3 class="portal-door__name">DreamSync</h3>
+                  <span class="portal-door__keyhole" aria-hidden="true"></span>
+                  <span class="portal-door__motto" aria-hidden="true">Descansa</span>
+
+                  <!-- Hojas que se abren al entrar -->
+                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
+                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
+                </div>
+              </a>
+            </article>
+
+            <!-- ── PUERTA 02 · KYROS (estrella) — coral cálido + azul periwinkle ── -->
+            <article class="portal-door portal-door--featured"
+                     data-project="kyros"
+                     data-index="1"
+                     style="
+                       --door-angle: 120deg;
+                       --accent: #738DE1;
+                       --enter-core: #FBBBA2;
+                       --enter-mid:  #A9B3E8;
+                       --enter-edge: #738DE1;
+                     ">
+              <a href="kyros.html"
+                 class="portal-door__link"
+                 aria-label="Entrar al mundo de KYROS — App de salud con IA, proyecto estrella">
+                <span class="portal-door__aura" aria-hidden="true"></span>
+                <div class="portal-door__frame">
+                  <span class="portal-door__meta" aria-hidden="true">App · IA · 2026</span>
+                  <h3 class="portal-door__name">KYROS</h3>
+                  <span class="portal-door__keyhole" aria-hidden="true"></span>
+                  <span class="portal-door__motto" aria-hidden="true">Descifra</span>
+
+                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
+                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
+                </div>
+              </a>
+            </article>
+
+            <!-- ── PUERTA 03 · LUMA (WIP) — violeta suave + lavanda luz ── -->
+            <article class="portal-door"
+                     data-project="luma"
+                     data-index="2"
+                     style="
+                       --door-angle: 240deg;
+                       --accent: #9B7CBF;
+                       --enter-core: #faf8fe;
+                       --enter-mid:  #F1E8FB;
+                       --enter-edge: #d8b8ea;
+                     ">
+              <a href="luma.html"
+                 class="portal-door__link"
+                 aria-label="Entrar al mundo de LUMA — TFM, bienestar femenino, en proceso">
+                <span class="portal-door__aura" aria-hidden="true"></span>
+                <div class="portal-door__frame">
+                  <span class="portal-door__meta" aria-hidden="true">TFM · Bienestar · WIP</span>
+                  <h3 class="portal-door__name">LUMA</h3>
+                  <span class="portal-door__keyhole" aria-hidden="true"></span>
+                  <span class="portal-door__motto" aria-hidden="true">Florece</span>
+
+                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
+                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
+                </div>
+              </a>
+            </article>
+
+          </div><!-- /portal-carousel -->
+
+        </div><!-- /portal-stage -->
+
+        <!-- Controles -->
+        <div class="portal-controls">
+
+          <div class="portal-dots" role="tablist">
+            <button class="portal-arrow portal-arrow--prev" aria-label="Puerta anterior">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <button class="portal-dot is-active" data-index="0" role="tab" aria-label="DreamSync">
+              <span class="portal-dot__indicator" aria-hidden="true"></span>
+            </button>
+            <button class="portal-dot" data-index="1" role="tab" aria-label="KYROS">
+              <span class="portal-dot__indicator" aria-hidden="true"></span>
+            </button>
+            <button class="portal-dot" data-index="2" role="tab" aria-label="LUMA">
+              <span class="portal-dot__indicator" aria-hidden="true"></span>
+            </button>
+
+            <button class="portal-arrow portal-arrow--next" aria-label="Siguiente puerta">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
           </div>
 
-          <!-- Lista tipográfica de proyectos -->
-          <div class="project-list" role="list">
+          <p class="portal-hint">
+            Haz <span>scroll</span> para girar el pasillo · <span>clic</span> para caer dentro
+          </p>
 
-          <!-- 01 · DreamSync -->
-          <article class="project-row anim-rise"
-                   role="listitem"
-                   style="--accent: #9B7EC8;"
-                   data-preview-bg="linear-gradient(135deg, #f5f0ff 0%, #fce4ef 100%)"
-                   data-preview-label="Landing Page · 2025">
-            <a href="dreamsync.html" class="project-row__link" aria-label="Ver caso de estudio DreamSync — Landing Page 2025">
-              <span class="project-row__num" aria-hidden="true">01</span>
-              <div class="project-row__body">
-                <div class="project-row__tags" aria-hidden="true">
-                  <span class="project-row__tag">Landing Page</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">Identidad visual</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">2025</span>
-                </div>
-                <h3 class="project-row__title">DreamSync</h3>
-              </div>
-              <div class="project-row__cta" aria-hidden="true">
-                <span class="project-row__cta-text">Ver caso</span>
-                <svg class="project-row__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </a>
-          </article>
+        </div>
 
-          <!-- 02 · KYROS — proyecto estrella -->
-          <article class="project-row project-row--featured anim-rise anim-delay-1"
-                   role="listitem"
-                   style="--accent: #4A90D9;"
-                   data-preview-bg="linear-gradient(135deg, #0d0b1a 0%, #1a2340 60%, #0d1e38 100%)"
-                   data-preview-label="App Design · IA · 2026">
-            <a href="kyros.html" class="project-row__link" aria-label="Ver caso de estudio KYROS — App de salud con IA, proyecto estrella">
-              <span class="project-row__num" aria-hidden="true">02</span>
-              <div class="project-row__body">
-                <div class="project-row__tags" aria-hidden="true">
-                  <span class="project-row__tag project-row__tag--star">★ Proyecto estrella</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">App Design</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">IA Real</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">2026</span>
-                </div>
-                <h3 class="project-row__title">KYROS</h3>
-              </div>
-              <div class="project-row__cta" aria-hidden="true">
-                <span class="project-row__cta-text">Ver caso</span>
-                <svg class="project-row__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </a>
-          </article>
+      </div><!-- /portal-room__sticky -->
 
-          <!-- 03 · LUMA -->
-          <article class="project-row anim-rise anim-delay-2"
-                   role="listitem"
-                   style="--accent: #2BBFCF;"
-                   data-preview-bg="linear-gradient(135deg, #e8fafb 0%, #c8f0f5 100%)"
-                   data-preview-label="TFM · Bienestar · WIP">
-            <a href="luma.html" class="project-row__link" aria-label="Ver caso de estudio LUMA — TFM Máster, en proceso">
-              <span class="project-row__num" aria-hidden="true">03</span>
-              <div class="project-row__body">
-                <div class="project-row__tags" aria-hidden="true">
-                  <span class="project-row__tag project-row__tag--wip">● En proceso</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">TFM · Máster BAU</span>
-                  <span class="project-row__dot" aria-hidden="true">·</span>
-                  <span class="project-row__tag">Bienestar femenino</span>
-                </div>
-                <h3 class="project-row__title">LUMA</h3>
-              </div>
-              <div class="project-row__cta" aria-hidden="true">
-                <span class="project-row__cta-text">Ver proceso</span>
-                <svg class="project-row__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </a>
-          </article>
-
-          </div><!-- /project-list -->
-
-      </div>
     </section>
 
-        <!-- ── SECCIÓN 5: CONTACTO ────────────────────────────── -->
-    <section id="contacto" class="contact-section" aria-labelledby="contacto-title">
+    <!-- ── SECCIÓN 5: CONTACTO — Al fondo de la madriguera ─── -->
+    <section id="contacto" class="final-hall" aria-labelledby="contacto-title">
 
-      <!-- Blobs holográficos de fondo — vivos y visibles -->
-      <div class="contact-blobs" aria-hidden="true">
-        <div class="contact-blob contact-blob--1"></div>
-        <div class="contact-blob contact-blob--2"></div>
-        <div class="contact-blob contact-blob--3"></div>
+      <!-- Ambiente: luz cálida desde arriba + blobs + polvo flotante -->
+      <div class="final-hall__atmosphere" aria-hidden="true">
+        <div class="final-hall__halo"></div>
+        <div class="final-hall__blob final-hall__blob--1"></div>
+        <div class="final-hall__blob final-hall__blob--2"></div>
+        <div class="final-hall__blob final-hall__blob--3"></div>
+        <div class="final-hall__dust" id="final-hall-dust"></div>
       </div>
 
-      <div class="container contact-container">
+      <div class="container final-hall__container">
 
-        <!-- Header -->
-          <div class="contact-header anim-line">
-            <span class="label" style="color: var(--color-violet-aurora);">Contacto</span>
-            <span class="contact-avail">
-              <span class="contact-avail__dot" aria-hidden="true"></span>
-              Disponible para proyectos
+        <!-- Intro — "Al fondo de la madriguera" -->
+        <header class="final-hall__intro">
+          <span class="final-hall__eyebrow">Contacto</span>
+
+          <!-- Badge de disponibilidad — arriba, prominente -->
+          <div class="final-hall__avail-row">
+            <span class="final-hall__avail">
+              <span class="final-hall__avail-dot" aria-hidden="true"></span>
+              Disponible para proyectos · 2026
             </span>
           </div>
 
-          <!-- Headline serif italic -->
-          <h2 id="contacto-title" class="contact-headline anim-rise anim-delay-1">
-            Hagamos que lo complejo<br/>se sienta natural.
+          <h2 id="contacto-title" class="final-hall__headline">
+            La llave para empezar es un <em>mensaje.</em>
           </h2>
+        </header>
 
-          <!-- Tres acciones directas -->
-          <div class="contact-pills-row anim-ready anim-delay-2">
-            <a href="mailto:fernanda291804@gmail.com"
-               class="contact-pill"
-               aria-label="Enviar email a Fernanda Jaimes">
-              Correo
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M2 4l6 5 6-5M2 4h12v9H2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+        <div class="final-hall__grid">
+
+          <!-- LEFT: Retrato — clickable → sobre-mi -->
+          <figure class="final-hall__portrait">
+            <a href="sobre-mi.html"
+               class="final-hall__portrait-link"
+               aria-label="Descubre más sobre Fernanda">
+              <div class="final-hall__portrait-frame">
+                <img src="./assets/images/sobre-mi/Portafolio_fer_foto.png"
+                     alt="Fernanda Jaimes, diseñadora UX/UI"
+                     class="final-hall__portrait-img"
+                     loading="lazy"/>
+                <span class="final-hall__portrait-glow" aria-hidden="true"></span>
+
+                <!-- Overlay que aparece al hacer hover -->
+                <span class="final-hall__portrait-overlay" aria-hidden="true">
+                  <span class="final-hall__portrait-overlay-text">
+                    ¿Quieres saber<br/>más sobre mí?
+                  </span>
+                  <span class="final-hall__portrait-overlay-cta">
+                    Conóceme
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </span>
+              </div>
             </a>
-            <a href="https://linkedin.com/in/fernandajaimes"
-               target="_blank" rel="noopener noreferrer"
-               class="contact-pill" aria-label="LinkedIn de Fernanda Jaimes">
-              LinkedIn
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a href="./assets/Documents/Fernanda Jaimes:diseñadora ux:ui.pdf"
-               class="contact-pill"
-               download
-               aria-label="Descargar CV de Fernanda Jaimes">
-              Descargar CV
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+            <figcaption class="final-hall__portrait-caption">
+              Fernanda Jaimes
+              <span>Product Designer · Barcelona</span>
+            </figcaption>
+          </figure>
+
+          <!-- RIGHT: Llave + frase + CTAs + disponibilidad -->
+          <div class="final-hall__content">
+
+            <!-- Llave ornamental flotante (SVG con gradiente aurora) -->
+            <svg class="final-hall__key" viewBox="0 0 200 420" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="key-aurora-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%"   stop-color="#7B5EA7"/>
+                  <stop offset="40%"  stop-color="#4A90D9"/>
+                  <stop offset="70%"  stop-color="#2BBFCF"/>
+                  <stop offset="100%" stop-color="#E86BA0"/>
+                </linearGradient>
+              </defs>
+              <!-- Cabeza -->
+              <circle cx="100" cy="80"  r="58" stroke="url(#key-aurora-grad)" stroke-width="3" fill="none"/>
+              <circle cx="100" cy="80"  r="22" stroke="url(#key-aurora-grad)" stroke-width="2" fill="none"/>
+              <!-- Decoración de la cabeza -->
+              <circle cx="100" cy="40"  r="4"  fill="url(#key-aurora-grad)"/>
+              <circle cx="100" cy="120" r="4"  fill="url(#key-aurora-grad)"/>
+              <!-- Vástago -->
+              <rect x="97"  y="138" width="6"  height="240" fill="url(#key-aurora-grad)"/>
+              <!-- Dientes -->
+              <rect x="103" y="330" width="22" height="8"   fill="url(#key-aurora-grad)"/>
+              <rect x="103" y="350" width="16" height="8"   fill="url(#key-aurora-grad)"/>
+              <rect x="103" y="370" width="22" height="8"   fill="url(#key-aurora-grad)"/>
+            </svg>
+
+            <p class="final-hall__lede">
+              Si te interesa mi perfil para tu equipo o quieres que trabajemos en una idea juntos, no dudes en contactarme.
+            </p>
+
+            <!-- CTAs — etiquetas de llave -->
+            <div class="final-hall__keys" role="group" aria-label="Formas de contacto">
+
+              <a href="mailto:fernanda291804@gmail.com"
+                 class="final-hall__key-tag final-hall__key-tag--primary"
+                 aria-label="Enviar correo a Fernanda">
+                <span class="final-hall__key-tag-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2 4l6 5 6-5M2 4h12v9H2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="final-hall__key-tag-label">
+                  Escríbeme
+                </span>
+                <span class="final-hall__key-tag-arrow" aria-hidden="true">→</span>
+              </a>
+
+              <a href="https://www.linkedin.com/in/fer-jaimes/"
+                 target="_blank" rel="noopener noreferrer"
+                 class="final-hall__key-tag"
+                 aria-label="Perfil de LinkedIn">
+                <span class="final-hall__key-tag-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6.5v6M4 4v.5M7 12.5V8.5a2 2 0 0 1 4 0v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="final-hall__key-tag-label">
+                  LinkedIn
+                </span>
+                <span class="final-hall__key-tag-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a href="./assets/Documents/Fernanda Jaimes:diseñadora ux:ui.pdf"
+                 class="final-hall__key-tag"
+                 download
+                 aria-label="Descargar CV">
+                <span class="final-hall__key-tag-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 3v9M4 8l4 4 4-4M3 14h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="final-hall__key-tag-label">
+                  CV
+                </span>
+                <span class="final-hall__key-tag-arrow" aria-hidden="true">↓</span>
+              </a>
+
+            </div>
+
           </div>
 
+        </div>
 
       </div>
     </section>
@@ -299,15 +437,67 @@
 
   <!-- ── FOOTER ──────────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">
-    <div class="footer-inner">
-      <p class="footer__copy">© 2025 Fernanda Jaimes · Diseñado y construido desde cero.</p>
-      <nav class="footer__links" aria-label="Casos de estudio">
-        <a href="dreamsync.html" class="footer__link">DreamSync</a>
-        <span class="footer__sep" aria-hidden="true">·</span>
-        <a href="kyros.html" class="footer__link">KYROS</a>
-        <span class="footer__sep" aria-hidden="true">·</span>
-        <a href="luma.html" class="footer__link">LUMA</a>
-      </nav>
+
+    <!-- Atmósfera sutil — continuidad con final-hall -->
+    <div class="footer__atmosphere" aria-hidden="true">
+      <div class="footer__blob footer__blob--1"></div>
+      <div class="footer__blob footer__blob--2"></div>
+    </div>
+
+    <div class="footer__inner">
+
+      <!-- Frase de cierre narrativa -->
+
+      <!-- Grid: marca · proyectos · redes -->
+      <div class="footer__grid">
+
+        <!-- Marca -->
+        <div class="footer__col footer__col--brand">
+          <a href="index.html" class="footer__logo" aria-label="Fernanda Jaimes · inicio">
+            Fernanda Jaimes
+          </a>
+          <p class="footer__tag">Product Designer · Barcelona</p>
+        </div>
+
+        <!-- Proyectos -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Mundos</h3>
+          <nav class="footer__nav" aria-label="Casos de estudio">
+            <a href="dreamsync.html" class="footer__link">DreamSync</a>
+            <a href="kyros.html"     class="footer__link">KYROS</a>
+            <a href="luma.html"      class="footer__link">LUMA</a>
+          </nav>
+        </div>
+
+        <!-- Enlaces -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Enlaces</h3>
+          <nav class="footer__nav" aria-label="Enlaces del sitio">
+            <a href="sobre-mi.html"   class="footer__link">Sobre mí</a>
+            <a href="#contacto"       class="footer__link">Contacto</a>
+          </nav>
+        </div>
+
+        <!-- Redes -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Por si quieres</h3>
+          <nav class="footer__nav" aria-label="Redes y contacto">
+            <a href="mailto:fernanda291804@gmail.com" class="footer__link">Escríbeme</a>
+            <a href="https://www.linkedin.com/in/fer-jaimes/" target="_blank" rel="noopener noreferrer" class="footer__link">LinkedIn ↗</a>
+          </nav>
+        </div>
+
+      </div>
+
+      <!-- Línea divisoria aurora -->
+      <div class="footer__divider" aria-hidden="true"></div>
+
+      <!-- Base: copyright + guiño -->
+      <div class="footer__base">
+        <p class="footer__copy">© 2026 Fernanda Jaimes Infante</p>
+
+      </div>
+
     </div>
   </footer>
 
@@ -323,6 +513,7 @@
   <!-- Scripts -->
   <script src="js/main.js" defer></script>
   <script src="js/animations.js" defer></script>
+  <script src="js/portal.js" defer></script>
 
 </body>
 </html>

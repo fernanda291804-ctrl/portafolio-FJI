@@ -193,9 +193,7 @@ body {
   background: rgba(123, 94, 167, 0.08);
   border-color: rgba(123, 94, 167, 0.22);
 }
-.ds-section--light .ds-card__label {
-  /* specific colors already set inline */
-}
+/* .ds-section--light .ds-card__label intentionally omitted: colors set inline where needed */
 .ds-section--light .ds-bench-card {
   background: rgba(123, 94, 167, 0.04);
   border-color: rgba(123, 94, 167, 0.10);
@@ -360,6 +358,12 @@ body {
   justify-content: flex-end;
   padding-block: clamp(130px, 18vh, 200px) clamp(64px, 8vh, 100px);
   position: relative;
+  /* Nuevo fondo: degradado lineal (top → bottom) solicitado */
+  background-color: #0F172A; /* fallback */
+  background-image: linear-gradient(180deg, #0F172A 0%, #2A0F40 45%, #581C88 100%);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
   /* Sin overflow:hidden — los blobs sangran naturalmente hacia abajo
      y el fondo fixed los absorbe sin corte visible */
 }

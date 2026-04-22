@@ -14,10 +14,11 @@
   --color-lavender-light: #F5F0FF;
   --color-white:          #FFFFFF;
 
-  --color-text-primary:   #1A0A3C;
-  --color-text-secondary: #5A4880;
-  --color-text-muted:     #9B8FC0;
-  --color-teal-aurora:    #2BBFCF;
+  --color-text-primary:   #1A0A3C;   /* 15.1:1 on #F5F3FD · AAA */
+  --color-text-secondary: #4A3A72;   /*  7.3:1 on #F5F3FD · AAA (era #5A4880) */
+  --color-text-muted:     #6B5F93;   /*  4.6:1 on #F5F3FD · AA  (era #9B8FC0 → fallaba) */
+  --color-teal-aurora:    #2BBFCF;   /* decorativo — no usar para texto */
+  --color-teal-dark:      #0E5F68;   /*  7.6:1 on #F5F3FD · AAA — para texto turquesa */
   --color-border:         rgba(123, 94, 167, 0.15);
 
   /* Case study accents */

@@ -103,25 +103,29 @@
       border: 1px solid rgba(254,192,249,0.35);
     }
 
-    /* ── Team role badges ──────────────────────────────── */
+    /* ── Team role labels ──────────────────────────────── */
     .role-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
-      border-radius: 100px;
-      font-size: 11px;
+      display: inline-block;
+      padding: 4px 0;
+      margin-right: 18px;
+      font-size: 12px;
+      letter-spacing: 0.02em;
       font-weight: 500;
-      background: rgba(155,124,191,0.08);
       color: #6A3FA0;
-      border: 1px solid rgba(155,124,191,0.18);
-      margin: 3px;
+      position: relative;
+    }
+    .role-badge + .role-badge::before {
+      content: "·";
+      position: absolute;
+      left: -11px;
+      color: rgba(106,63,160,0.45);
     }
     .role-badge--lead {
-      background: rgba(155,124,191,0.14);
       color: #5A2A90;
-      border-color: rgba(155,124,191,0.28);
-      font-weight: 600;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
     }
 
     /* ── Ecosystem cards ───────────────────────────────── */
@@ -329,21 +333,19 @@
       color: white;
     }
     .stage-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 11px;
-      border-radius: 100px;
-      font-size: 10px;
-      letter-spacing: 0.07em;
+      display: inline-block;
+      padding: 0 0 4px 0;
+      font-size: 11px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: var(--space-10, 10px);
+      border-bottom: 1px solid currentColor;
     }
-    .stage-pill--research  { background: rgba(155,124,191,0.10); color: #6A3FA0; border: 1px solid rgba(155,124,191,0.20); }
-    .stage-pill--ideacion  { background: rgba(254,192,249,0.16); color: #8A2A9A; border: 1px solid rgba(254,192,249,0.30); }
-    .stage-pill--lovable   { background: rgba(241,232,251,0.65); color: #5A3A7A; border: 1px solid rgba(155,124,191,0.22); }
-    .stage-pill--testing   { background: rgba(53,51,52,0.05);   color: #353334; border: 1px solid rgba(53,51,52,0.12); }
+    .stage-pill--research  { color: #6A3FA0; }
+    .stage-pill--ideacion  { color: #8A2A9A; }
+    .stage-pill--lovable   { color: #5A3A7A; }
+    .stage-pill--testing   { color: #353334; }
 
     /* ── Next steps ────────────────────────────────────── */
     .luma-next-step {
@@ -467,189 +469,162 @@
 
       <div class="container" style="position:relative;z-index:3;">
 
-        <!-- Tags -->
+        <!-- Tags (texto, sin cápsulas) -->
         <div class="case-hero__meta hero-animate-1">
-          <div style="display:flex;gap:var(--space-8);flex-wrap:wrap;align-items:center;">
-            <span class="tag tag-luma-lavender">Treabajo de fin de máster · Máster BAU</span>
-            <span class="tag tag-luma-pink">FemTech</span>
-            <span class="tag tag-luma-lavender">UX Research</span>
-            <span class="tag tag-luma-pink">Lovable + IA</span>
-          </div>
+          <p style="font-size:var(--text-label);letter-spacing:0.14em;text-transform:uppercase;color:#6A3FA0;font-weight:500;">
+            TFM · Máster BAU <span style="color:rgba(106,63,160,0.35);margin:0 10px;">·</span> FemTech <span style="color:rgba(106,63,160,0.35);margin:0 10px;">·</span> Product designer <span style="color:rgba(106,63,160,0.35);margin:0 10px;">·</span> Lovable + IA
+          </p>
         </div>
 
         <!-- Title -->
         <h1 class="case-hero__title hero-animate-2" style="color:#353334;">LUMA</h1>
 
-        <p class="case-hero__subtitle hero-animate-3" style="color:#6B4090;font-size:clamp(16px,2.2vw,22px);max-width:580px;">
-          Diseñando con cuerpos ciclicos<br />
-          para romper la linealidad del día a día. <br />
+        <p class="case-hero__subtitle hero-animate-3" style="color:#6B4090;font-size:clamp(16px,2.2vw,22px);max-width:640px;">
+          Infraestructura de inteligencia biográfica diseñada para devolverle la soberanía a la mujer sobre su propio ritmo.
         </p>
 
         <!-- Metadata -->
         <div class="hero-animate-4" style="display:flex;gap:var(--space-32);flex-wrap:wrap;margin-bottom:var(--space-48);">
           <div>
             <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-4);">Rol</p>
-            <p style="color:#353334;font-size:var(--text-small);"> Product Designer</p>
-          </div>
-          <div>
-            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-4);">Contexto</p>
-            <p style="color:#353334;font-size:var(--text-small);">TFM · Máster UX/UI · BAU Barcelona</p>
+            <p style="color:#353334;font-size:var(--text-small);">Lead Product Designer</p>
           </div>
           <div>
             <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-4);">Equipo</p>
-            <p style="color:#353334;font-size:var(--text-small);">Trabajo en equipo · Rol de liderazgo</p>
+            <p style="color:#353334;font-size:var(--text-small);">4 personas</p>
           </div>
           <div>
             <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-4);">Herramientas</p>
-            <p style="color:#353334;font-size:var(--text-small);">Figma ·  Lovable · Claude Code</p>
+            <p style="color:#353334;font-size:var(--text-small);">Figma · Lovable · React · TypeScript</p>
           </div>
-        </div>
-
-        <!-- Hero visual: Lumi + ecosistemas -->
-        <div class="case-hero__image hero-animate-5"
-          style="background:rgba(255,255,255,0.35);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.55);padding:var(--space-48) var(--space-32);display:flex;gap:var(--space-48);justify-content:center;align-items:center;min-height:400px;border-radius:var(--radius-lg);flex-wrap:wrap;">
-
-          <!-- Lumi SVG character -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-16);">
-            <svg viewBox="0 0 180 200" width="160" height="178" xmlns="http://www.w3.org/2000/svg" aria-label="Lumi, la mentora de LUMA" role="img">
-              <!-- Orejas (detrás del cuerpo) -->
-              <ellipse cx="32" cy="92" rx="30" ry="40" fill="#FEC0F9" transform="rotate(-12 32 92)"/>
-              <ellipse cx="32" cy="92" rx="19" ry="26" fill="#f5aaf2" transform="rotate(-12 32 92)"/>
-              <ellipse cx="148" cy="92" rx="30" ry="40" fill="#FEC0F9" transform="rotate(12 148 92)"/>
-              <ellipse cx="148" cy="92" rx="19" ry="26" fill="#f5aaf2" transform="rotate(12 148 92)"/>
-              <!-- Cuerpo -->
-              <ellipse cx="90" cy="140" rx="52" ry="46" fill="#D4BAE8"/>
-              <!-- Cabeza -->
-              <circle cx="90" cy="80" r="46" fill="#D4BAE8"/>
-              <!-- Ojo izquierdo -->
-              <circle cx="72" cy="74" r="11" fill="#2a1a2e"/>
-              <circle cx="75" cy="71" r="4" fill="white"/>
-              <circle cx="75.5" cy="70.5" r="1.5" fill="#2a1a2e"/>
-              <!-- Ojo derecho -->
-              <circle cx="108" cy="74" r="11" fill="#2a1a2e"/>
-              <circle cx="111" cy="71" r="4" fill="white"/>
-              <circle cx="111.5" cy="70.5" r="1.5" fill="#2a1a2e"/>
-              <!-- Trompa -->
-              <path d="M90 110 Q84 122 86 134 Q88 140 92 134" fill="none" stroke="#2a1a2e" stroke-width="4" stroke-linecap="round"/>
-              <!-- Sonrisa -->
-              <path d="M76 92 Q90 101 104 92" fill="none" stroke="#2a1a2e" stroke-width="2.5" stroke-linecap="round"/>
-              <!-- Rubor -->
-              <ellipse cx="58" cy="84" rx="9" ry="6" fill="#FEC0F9" opacity="0.65"/>
-              <ellipse cx="122" cy="84" rx="9" ry="6" fill="#FEC0F9" opacity="0.65"/>
-              <!-- Patas -->
-              <ellipse cx="62" cy="180" rx="16" ry="11" fill="#C0A0D8"/>
-              <ellipse cx="90" cy="184" rx="16" ry="11" fill="#C0A0D8"/>
-              <ellipse cx="118" cy="180" rx="16" ry="11" fill="#C0A0D8"/>
-              <!-- Cola -->
-              <path d="M140 148 Q155 140 150 155" fill="none" stroke="#2a1a2e" stroke-width="3" stroke-linecap="round"/>
-              <!-- Pelito -->
-              <path d="M90 34 Q85 22 90 16 Q95 22 90 34" fill="#2a1a2e"/>
-            </svg>
-            <p style="font-size:11px;color:rgba(53,51,52,0.45);letter-spacing:0.06em;text-transform:uppercase;">Lumi · tu mentora</p>
+          <div>
+            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-4);">Contexto</p>
+            <p style="color:#353334;font-size:var(--text-small);">Trabajo de Final de Máster · BAU</p>
           </div>
-
-          <!-- Ecosistemas preview -->
-          <div style="display:flex;flex-direction:column;gap:10px;max-width:280px;">
-            <p style="font-size:10px;color:rgba(53,51,52,0.45);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:4px;">Las 4 fases como ecosistemas</p>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <div style="padding:8px 14px;background:rgba(255,220,120,0.18);border:1px solid rgba(255,200,80,0.28);border-radius:100px;display:flex;align-items:center;gap:6px;">
-                <span style="font-size:14px;">🌾</span>
-                <div>
-                  <p style="font-size:10px;font-weight:600;color:#7A5C00;">La Sabana</p>
-                  <p style="font-size:9px;color:#9A7A20;">Folicular</p>
-                </div>
-              </div>
-              <div style="padding:8px 14px;background:rgba(254,192,249,0.20);border:1px solid rgba(254,192,249,0.38);border-radius:100px;display:flex;align-items:center;gap:6px;">
-                <span style="font-size:14px;">🌴</span>
-                <div>
-                  <p style="font-size:10px;font-weight:600;color:#8A2A8A;">El Oasis</p>
-                  <p style="font-size:9px;color:#AA4AAA;">Ovulatoria</p>
-                </div>
-              </div>
-              <div style="padding:8px 14px;background:rgba(155,124,191,0.12);border:1px solid rgba(155,124,191,0.22);border-radius:100px;display:flex;align-items:center;gap:6px;">
-                <span style="font-size:14px;">⛰️</span>
-                <div>
-                  <p style="font-size:10px;font-weight:600;color:#5A3A90;">La Meseta</p>
-                  <p style="font-size:9px;color:#7A5AAA;">Lútea</p>
-                </div>
-              </div>
-              <div style="padding:8px 14px;background:rgba(53,51,52,0.06);border:1px solid rgba(53,51,52,0.12);border-radius:100px;display:flex;align-items:center;gap:6px;">
-                <span style="font-size:14px;">🌙</span>
-                <div>
-                  <p style="font-size:10px;font-weight:600;color:#353334;">La Cueva</p>
-                  <p style="font-size:9px;color:#555;">Menstrual</p>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:8px;padding:14px 16px;background:rgba(255,255,255,0.7);border-radius:12px;border:1px solid rgba(155,124,191,0.14);">
-              <p style="font-size:12px;color:#353334;line-height:1.55;font-style:italic;">"La tecnología debe adaptarse a tu biología, no al revés."</p>
-            </div>
-          </div>
-
         </div>
       </div>
-      <div class="case-hero__transition" aria-hidden="true"></div>
     </section>
 
+    <script>
+    (function(){
+      try{
+        var iframe = document.querySelector('iframe[data-slot="loveable-proto"]');
+        var fallbackLink = document.querySelector('[data-slot-link="loveable-proto"]');
+        if(!iframe) return;
+        var figure = iframe.closest('figure');
+        var overlay = figure && figure.querySelector('.proto-overlay');
+        var loader = overlay && overlay.querySelector('.proto-loader');
+        var msg = overlay && overlay.querySelector('.proto-message');
+        var loaded = false;
+
+        // create a prominent fallback button inside overlay if not present
+        var btn = overlay && overlay.querySelector('.proto-open-btn');
+        if(overlay && !btn){
+          btn = document.createElement('a');
+          btn.className = 'proto-open-btn';
+          btn.textContent = 'Abrir prototipo en nueva pestaña';
+          btn.setAttribute('target','_blank');
+          btn.setAttribute('rel','noopener');
+          btn.style.cssText = 'display:none;margin-top:12px;padding:10px 14px;border-radius:10px;background:#6A3FA0;color:#fff;text-decoration:none;font-size:13px;font-weight:600;';
+          if(fallbackLink && fallbackLink.getAttribute('href')) btn.setAttribute('href', fallbackLink.getAttribute('href'));
+          overlay.appendChild(btn);
+        }
+
+        function showFallback(){
+          if(loader) loader.style.display = 'none';
+          if(msg){ msg.style.display = 'block'; }
+          if(btn){ btn.style.display = 'inline-block'; }
+          if(overlay){ overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto'; }
+          if(fallbackLink){ fallbackLink.style.fontWeight = '700'; fallbackLink.style.color = '#6A3FA0'; }
+        }
+
+        iframe.addEventListener('load', function(){
+          loaded = true;
+          if(overlay){ overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; setTimeout(function(){ overlay.style.display = 'none'; }, 300); }
+        }, {once:true});
+
+        // If load doesn't fire within 1s, show fallback message (quicker feedback for blocked embeds)
+        setTimeout(function(){ if(!loaded) showFallback(); }, 1000);
+
+        // keep fallback button href in sync (in case token changed)
+        if(btn && iframe){
+          btn.addEventListener('click', function(){
+            var url = iframe.getAttribute('src') || (fallbackLink && fallbackLink.getAttribute('href'));
+            if(url) btn.setAttribute('href', url);
+          });
+        }
+
+      }catch(e){ console.warn('Loveable embed helper error', e); }
+    })();
+    </script>
 
     <!-- ══════════════════════════════════════════════════
-         01 · EL DESAFÍO
+         01 · EL PROBLEMA
     ══════════════════════════════════════════════════ -->
-    <section class="case-section" style="background:#F2F2F2;" id="desafio" aria-labelledby="desafio-title">
+    <section class="case-section" style="background:#F2F2F2;" id="desafio" aria-labelledby="desafio-title"><!-- offwhite -->
       <div class="container" style="max-width:860px;">
 
-        <p class="case-section__number anim-ready">01 — El desafío</p>
+        <p class="case-section__number anim-ready">01 — El problema</p>
         <h2 id="desafio-title" class="case-section__title anim-ready">
-          El estándar que el 40% de<br />las mujeres no puede cumplir
+          Diseñar para el promedio es <br />diseñar para nadie.
         </h2>
 
         <div class="anim-ready">
-          <p style="font-size:var(--text-body-lg);color:var(--color-text-secondary);margin-bottom:var(--space-24);">
-            La industria fem-tech lleva décadas operando bajo el mismo supuesto: el ciclo menstrual dura 28 días. Ese número no es biología —es un promedio estadístico que se convirtió en estándar de diseño. El resultado: apps que funcionan bien para el 60% y generan ansiedad en el resto.
+          <p style="font-size:var(--text-body-lg);color:var(--color-text-secondary);margin-bottom:var(--space-40);">
+            Durante décadas, la industria FemTech ha operado bajo el sesgo de la regularidad. Se impuso un estándar universal de 28 días que no representa la realidad biológica, sino un promedio estadístico. El resultado: un sistema que excluye a quienes no encajan en la norma.
           </p>
 
-          <!-- Stats row -->
-          <div style="display:flex;gap:var(--space-24);flex-wrap:wrap;margin-bottom:var(--space-32);">
-            <div style="padding:20px 28px;background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.14);text-align:center;flex:1;min-width:140px;">
-              <p style="font-family:var(--font-heading);font-size:clamp(36px,4vw,52px);color:#9B7CBF;line-height:1;margin-bottom:6px;">40%</p>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.5;">de mujeres tiene ciclos irregulares por SOP, estrés o tratamientos hormonales</p>
+          <!-- Three pillars: Brecha / Impacto / Hipótesis -->
+          <div style="display:flex;flex-direction:column;gap:0;margin-bottom:var(--space-40);">
+
+            <div style="display:flex;gap:var(--space-24);padding:var(--space-24) 0;border-top:1px solid rgba(155,124,191,0.18);align-items:baseline;">
+              <div style="flex:0 0 180px;">
+                <p style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:500;">El sesgo</p>
+              </div>
+              <p style="flex:1;color:#353334;font-size:var(--text-body);line-height:1.6;">Apenas hace <strong>33 años</strong> se volvió obligatorio incluir a las mujeres en estudios clínicos.</p>
             </div>
-            <div style="padding:20px 28px;background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.14);text-align:center;flex:1;min-width:140px;">
-              <p style="font-family:var(--font-heading);font-size:clamp(36px,4vw,52px);color:#FEC0F9;line-height:1;margin-bottom:6px;">28</p>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.5;">días de ciclo asume la mayoría de apps actuales como base de su arquitectura</p>
+
+            <div style="display:flex;gap:var(--space-24);padding:var(--space-24) 0;border-top:1px solid rgba(155,124,191,0.18);align-items:baseline;">
+              <div style="flex:0 0 180px;">
+                <p style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:500;">El conflicto</p>
+              </div>
+              <p style="flex:1;color:#353334;font-size:var(--text-body);line-height:1.6;">El <strong>40% de las usuarias</strong> (SOP, estrés, perimenopausia) viven en conflicto con apps que etiquetan su ritmo natural como un <em>"error de sistema"</em>.</p>
             </div>
-            <div style="padding:20px 28px;background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.14);text-align:center;flex:1;min-width:140px;">
-              <p style="font-family:var(--font-heading);font-size:clamp(36px,4vw,52px);color:#9B7CBF;line-height:1;margin-bottom:6px;">4</p>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.5;">personas en el equipo, lideradas por Fernanda desde el inicio del proyecto</p>
+
+            <div style="display:flex;gap:var(--space-24);padding:var(--space-24) 0;border-top:1px solid rgba(155,124,191,0.18);border-bottom:1px solid rgba(155,124,191,0.18);align-items:baseline;">
+              <div style="flex:0 0 180px;">
+                <p style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:500;">El reto</p>
+              </div>
+              <p style="flex:1;color:#353334;font-size:var(--text-body);line-height:1.6;font-style:italic;">¿Cómo transformar una métrica clínica en una infraestructura de soberanía biográfica?</p>
             </div>
+
           </div>
 
-          <div class="highlight-block-luma">
-            <p style="font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);">El problema real no es la biología. Es el juicio.</p>
-            <p class="serif" style="font-size:clamp(17px,2vw,23px);color:#6A3FA0;line-height:1.45;">
-              "Las apps actuales no fallan técnicamente —fallan emocionalmente. Etiquetan lo 'irregular' como un error del sistema, y eso rompe la confianza de la usuaria en su propio cuerpo."
+          <!-- Pullquote editorial -->
+          <div class="anim-ready" style="padding:var(--space-32) var(--space-40);background:#353334;border-radius:var(--radius-lg);position:relative;margin-bottom:var(--space-40);overflow:hidden;">
+            <span aria-hidden="true" style="position:absolute;top:-30px;left:20px;font-family:var(--font-heading);font-size:180px;line-height:1;color:rgba(254,192,249,0.14);">"</span>
+            <p style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:rgba(254,192,249,0.55);margin-bottom:var(--space-12);position:relative;">Insight estratégico</p>
+            <p class="serif" style="font-size:clamp(18px,2.2vw,26px);color:white;line-height:1.5;position:relative;">
+              Estamos exigiendo a cuerpos cíclicos que funcionen en entornos lineales. <em style="color:#FEC0F9;">El conflicto no es biológico, es una falla de diseño.</em>
             </p>
           </div>
-
-          <p style="color:var(--color-text-secondary);margin-bottom:var(--space-32);">
-            La oportunidad de diseño era clara: crear un mentor digital que devuelva la soberanía a la mujer. Que la tecnología aprenda de la biología de cada usuaria, no al revés. Que la irregularidad sea una variante válida, no un fallo de sistema.
-          </p>
         </div>
 
         <!-- Mi contribución al equipo -->
         <div class="anim-ready" style="padding:var(--space-28, 28px);background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.14);">
           <div class="luma-accent-line"></div>
-          <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-16);">Mi contribución · Proyecto de equipo de 4</p>
-          <div style="display:flex;flex-wrap:wrap;gap:4px;">
-            <span class="role-badge role-badge--lead">🐘 Líder del equipo</span>
+          <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-16);">Mi contribución · Proyecto de equipo</p>
+          <div style="display:block;line-height:2;">
+            <span class="role-badge role-badge--lead">Líder del equipo</span>
             <span class="role-badge">Entrevistas en profundidad</span>
             <span class="role-badge">Investigación y benchmarking</span>
             <span class="role-badge">Encuestas cuantitativas</span>
             <span class="role-badge">User personas + Journey map</span>
             <span class="role-badge">Wireframes y prototipos BF</span>
-            <span class="role-badge">2 Design Sprints</span>
+            <span class="role-badge">2  Design Sprints</span>
             <span class="role-badge role-badge--lead">Prototipo Lovable — íntegro</span>
             <span class="role-badge">Pruebas de usabilidad con IA</span>
+            <span class="role-badge role-badge--lead">Prototipado funcional de alta fidelidad con arquitectura React e integración de IA</span>
           </div>
         </div>
 
@@ -658,442 +633,313 @@
 
 
     <!-- ══════════════════════════════════════════════════
-         HMW QUOTE BLOCK
+         02 ·  LAS PROTAGONISTAS
     ══════════════════════════════════════════════════ -->
-    <div class="luma-hmw" aria-labelledby="hmw-label">
-
-      <div aria-hidden="true">
-        <div class="blob" style="width:500px;height:500px;background:rgba(155,124,191,0.12);top:50%;left:50%;transform:translate(-50%,-50%);animation:blobFloat1 16s ease-in-out infinite;filter:blur(80px);"></div>
-      </div>
-      <div class="grainy-overlay" aria-hidden="true" style="opacity:0.12;"></div>
-
-      <div class="container" style="position:relative;z-index:3;">
-        <p id="hmw-label" class="anim-ready" style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:rgba(254,192,249,0.55);margin-bottom:var(--space-24);">How Might We</p>
-        <h2 class="anim-ready" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,3.5vw,48px);color:white;line-height:1.3;max-width:780px;margin-inline:auto;margin-bottom:var(--space-32);">
-          ¿Cómo podríamos crear un mentor digital que se adapte al ritmo biográfico de cada usuaria, sin juzgar su irregularidad como un error?
-        </h2>
-        <div style="display:flex;gap:var(--space-12);justify-content:center;flex-wrap:wrap;" class="anim-ready">
-          <span class="tag" style="background:rgba(155,124,191,0.18);color:#D4A8FF;border:1px solid rgba(155,124,191,0.30);">Soberanía biográfica</span>
-          <span class="tag" style="background:rgba(254,192,249,0.14);color:#FEC0F9;border:1px solid rgba(254,192,249,0.28);">Ciclo hormonal</span>
-          <span class="tag" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.14);">Autoridad compasiva</span>
-          <span class="tag" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.14);">Flexibilidad algorítmica</span>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ══════════════════════════════════════════════════
-         02 · INVESTIGACIÓN
-    ══════════════════════════════════════════════════ -->
-    <section class="case-section" style="background:#F1E8FB;" id="research" aria-labelledby="research-title">
+    <section class="case-section bg-white" id="estrategia" aria-labelledby="estrategia-title">
       <div class="container">
 
-        <p class="case-section__number anim-ready">02 — Investigación</p>
-        <h2 id="research-title" class="case-section__title anim-ready">
-          Lo que el research<br />contradijo desde el principio
+        <p class="case-section__number anim-ready">02 — Las protagonistas</p>
+        <h2 id="estrategia-title" class="case-section__title anim-ready">
+          Entender el conflicto para <br /> diseñar la solución.
         </h2>
 
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:600px;margin-bottom:var(--space-48);">
-          Llevé la investigación completa: entrevistas en profundidad, encuestas cuantitativas, benchmark de apps fem-tech actuales, user personas y journey maps del estado actual y futuro. Lo que encontramos redefinió el problema.
+        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:640px;margin-bottom:var(--space-48);font-size:var(--text-body-lg);">
+          Buscamos resolver dos tensiones fundamentales. No solo diseñamos una aplicación; diseñamos una nueva forma de
+          <strong style="color:#6A3FA0;">habitar la biología.</strong>
         </p>
 
-        <!-- Métodos de research -->
-        <div class="anim-ready" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:var(--space-48);">
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:white;border-radius:100px;border:1px solid rgba(155,124,191,0.15);">
-            <span style="font-size:15px;">🎙</span>
-            <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;">Entrevistas en profundidad</p>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:white;border-radius:100px;border:1px solid rgba(155,124,191,0.15);">
-            <span style="font-size:15px;">📊</span>
-            <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;">Encuestas cuantitativas</p>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:white;border-radius:100px;border:1px solid rgba(155,124,191,0.15);">
-            <span style="font-size:15px;">🗺</span>
-            <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;">Journey map actual + futuro</p>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:white;border-radius:100px;border:1px solid rgba(155,124,191,0.15);">
-            <span style="font-size:15px;">👤</span>
-            <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;">User personas</p>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:white;border-radius:100px;border:1px solid rgba(155,124,191,0.15);">
-            <span style="font-size:15px;">🔍</span>
-            <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;">Benchmark apps fem-tech</p>
-          </div>
-        </div>
+        <!-- Tabla editorial de las 4 fases (reducida a 2 columnas x 3 filas) -->
+        <div class="anim-ready" style="background:white;border-radius:var(--radius-lg);overflow:hidden;margin-bottom:var(--space-64);border:1px solid rgba(155,124,191,0.14);padding:var(--space-20);">
 
-        <!-- Insights -->
-        <div class="grid grid-3 anim-ready" style="gap:var(--space-24);margin-bottom:var(--space-64);" data-stagger="0.1">
+          <!-- Espacio superior: dos slots para imágenes -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);margin-bottom:var(--space-20);">
+            <figure style="margin:0;height:120px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;border:1px dashed rgba(155,124,191,0.35);overflow:hidden;">
+              <img src="./assets/images/luma/Andrea.jpeg" alt="usuaria-andrea" style="max-width:80%;max-height:80%;width:auto;height:auto;object-fit:cover;border-radius:6px;display:block;"/>
+            </figure>
+            <figure style="margin:0;height:120px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;border:1px dashed rgba(155,124,191,0.35);overflow:hidden;">
+              <img src="./assets/images/luma/Marta.jpeg" alt="usuaria-marta" style="max-width:80%;max-height:80%;width:auto;height:auto;object-fit:cover;border-radius:6px;display:block;"/>
+            </figure>
+          </div>
 
-          <div style="padding:var(--space-28, 28px);background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.12);position:relative;overflow:hidden;">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#9B7CBF,#FEC0F9);"></div>
-            <p style="font-size:56px;font-weight:300;color:rgba(155,124,191,0.12);line-height:1;margin-bottom:var(--space-16);font-family:var(--font-display);">01</p>
-            <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);">La app no es el problema. El tono sí.</h3>
-            <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.65;margin-bottom:var(--space-16);">Casi todas las entrevistadas usaban apps de ciclo. Las abandonaban no por falta de funciones, sino porque el lenguaje las hacía sentir "fuera de norma" cuando su ciclo se salía del estándar.</p>
-            <div style="padding-top:var(--space-16);border-top:1px solid rgba(155,124,191,0.10);">
-              <p style="font-size:var(--text-label);color:#9B7CBF;letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Impacto en el diseño</p>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">El tono de voz de Lumi no puede ser neutro. Debe ser activamente compasivo y nunca punitivo.</p>
+          <!-- Grid: 2 columnas × 3 filas. Rellenamos las cuatro fases y dejamos dos espacios reservados -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:0;border-top:1px solid rgba(155,124,191,0.10);">
+
+            <!-- Celda 1: El insight ANDREA-->
+            <div style="padding:var(--space-20) var(--space-24);border-right:1px solid rgba(155,124,191,0.10);border-bottom:1px solid rgba(155,124,191,0.10);">
+              <p style="font-size:var(--text-small);color:#353334;font-weight:500;margin:0 0 6px 0;">Andrea (Entrenamiento)</p>
+              <p style="font-family:var(--font-heading);font-size:18px;color:#9B7CBF;margin:0 0 8px 0;">EL INSIGHT (La Tensión)</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin:0;">Vive en una <strong>guerra constante contra su fisiología.</strong> Interpreta la caída natural de energía como una debilidad, convirtiendo su ritmo cíclico en un obstáculo para su autoexigencia.</p>
             </div>
-          </div>
 
-          <div style="padding:var(--space-28, 28px);background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.12);position:relative;overflow:hidden;">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FEC0F9,#9B7CBF);"></div>
-            <p style="font-size:56px;font-weight:300;color:rgba(254,192,249,0.20);line-height:1;margin-bottom:var(--space-16);font-family:var(--font-display);">02</p>
-            <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);">Las necesidades se bifurcan en dos ejes claros.</h3>
-            <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.65;margin-bottom:var(--space-16);">Un grupo quería gestionar su energía en el trabajo y la vida social. Otro quería optimizar su entrenamiento físico. Una sola arquitectura no podía servir bien a los dos sin diluir la propuesta de valor.</p>
-            <div style="padding-top:var(--space-16);border-top:1px solid rgba(155,124,191,0.10);">
-              <p style="font-size:var(--text-label);color:#9B7CBF;letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Impacto en el diseño</p>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">Arquitectura bifurcada: dos caminos personalizados desde el onboarding.</p>
+            <!-- Celda 2: El insight MARTA -->
+            <div style="padding:var(--space-20) var(--space-24);border-bottom:1px solid rgba(155,124,191,0.10);">
+              <p style="font-size:var(--text-small);color:#353334;font-weight:500;margin:0 0 6px 0;">Marta (Bienestar)</p>
+              <p style="font-family:var(--font-heading);font-size:18px;color:#FEC0F9;margin:0 0 8px 0;">EL INSIGHT (La Tensión)</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin:0;">Prefiere <strong>silenciar su cuerpo</strong> con fármacos antes que aceptar un cambio de ritmo. Su miedo real no es el dolor, sino la parálisis de su vida cotidiana y la pérdida de autonomía.</p>
             </div>
-          </div>
 
-          <div style="padding:var(--space-28, 28px);background:white;border-radius:var(--radius-lg);border:1px solid rgba(155,124,191,0.12);position:relative;overflow:hidden;">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D4BAE8,#FEC0F9);"></div>
-            <p style="font-size:56px;font-weight:300;color:rgba(155,124,191,0.10);line-height:1;margin-bottom:var(--space-16);font-family:var(--font-display);">03</p>
-            <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);">El onboarding es el primer momento de confianza.</h3>
-            <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.65;margin-bottom:var(--space-16);">Los formularios de registro reducían la intención de uso. Las usuarias sentían que los datos eran para la app, no para ellas. Un onboarding conversacional genera otro vínculo desde el primer segundo.</p>
-            <div style="padding-top:var(--space-16);border-top:1px solid rgba(155,124,191,0.10);">
-              <p style="font-size:var(--text-label);color:#9B7CBF;letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Impacto en el diseño</p>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">Onboarding como conversación con Lumi: datos recogidos sin que se sientan como formulario.</p>
+            <!-- Celda 3: EL RETO (Estrategia de Diseño) Andrea -->
+            <div style="padding:var(--space-20) var(--space-24);border-right:1px solid rgba(155,124,191,0.10);border-bottom:1px solid rgba(155,124,191,0.10);">
+              <p style="font-family:var(--font-heading);font-size:18px;color:#9B7CBF;margin:0 0 8px 0;">EL RETO (Estrategia de diseño)</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin:0;">¿Cómo podemos enseñarle a sincronizar sus picos de energía para que el ciclo sea su aliado estratégico y no su enemigo?</p>
             </div>
+
+            <!-- Celda 4: EL RETO (Estrategia de Diseño) Marta -->
+            <div style="padding:var(--space-20) var(--space-24);border-bottom:1px solid rgba(155,124,191,0.10);">
+              <p style="font-family:var(--font-heading);font-size:18px;color:#FEC0F9;margin:0 0 8px 0;">EL RETO (Estrategia de diseño)</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin:0;">¿Cómo podemos ofrecer alternativas preventivas para que la medicación de emergencia deje de ser su único recurso para no detener su día a día?</p>
+            </div>
+
           </div>
 
         </div>
 
-        <!-- Personas: Marta y Andrea -->
-        <div class="anim-ready">
-          <div class="luma-accent-line"></div>
-          <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);">Las dos personas que guiaron cada decisión</h3>
-          <p style="color:var(--color-text-secondary);max-width:560px;margin-bottom:var(--space-32);">El research cristalizó en dos arquetipos concretos. Cada decisión de arquitectura, copy y feature se validó contra estas dos realidades.</p>
+        <!-- Texto centrado debajo de la tabla -->
+        <div style="text-align:center;margin:var(--space-32) 0;" class="anim-ready">
+          <p style="max-width:760px;margin:0 auto;color:var(--color-text-secondary);font-size:var(--text-body);line-height:1.6;">
+            LUMA no ofrece una experiencia única; se adapta para que Marta encuentre paz y Andrea encuentre potencia.
+          </p>
+        </div>
 
-          <div class="grid grid-2" style="gap:var(--space-24);">
 
-            <div class="path-card">
-              <div class="path-card__header">
-                <div class="path-card__avatar" style="background:rgba(155,124,191,0.12);">🌿</div>
-                <div>
-                  <p style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;">Marta · Bienestar</p>
-                  <p style="font-size:12px;color:#9B7CBF;font-style:italic;">28 años · Profesional · Ciclo irregular</p>
-                </div>
-              </div>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.65;margin-bottom:var(--space-16);">Trabaja en un entorno de alta demanda social. Sus ciclos varían entre 32 y 45 días, y cada alerta de "retraso" de las apps actuales le genera ansiedad innecesaria. Necesita gestionar su energía y batería social según su fase, no según un calendario estándar.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                <span style="font-size:10px;padding:3px 10px;background:rgba(155,124,191,0.08);color:#6A3FA0;border-radius:100px;border:1px solid rgba(155,124,191,0.16);">Gestión de energía</span>
-                <span style="font-size:10px;padding:3px 10px;background:rgba(155,124,191,0.08);color:#6A3FA0;border-radius:100px;border:1px solid rgba(155,124,191,0.16);">Agenda profesional</span>
-                <span style="font-size:10px;padding:3px 10px;background:rgba(155,124,191,0.08);color:#6A3FA0;border-radius:100px;border:1px solid rgba(155,124,191,0.16);">Sin juicios</span>
-              </div>
-            </div>
 
-            <div class="path-card">
-              <div class="path-card__header">
-                <div class="path-card__avatar" style="background:rgba(254,192,249,0.18);">⚡</div>
-                <div>
-                  <p style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;">Andrea · Entrenamiento</p>
-                  <p style="font-size:12px;color:#9B7CBF;font-style:italic;">25 años · Atleta amateur · SOP diagnosticado</p>
-                </div>
+  <!-- 03 · LA IDENTIDAD: LUMA -->
+        <section class="case-section bg-white" id="identidad" aria-labelledby="identidad-title">
+          <div class="container">
+
+            <div style="display:flex;gap:var(--space-40);align-items:center;flex-wrap:wrap;">
+
+              <div style="flex:1 1 520px;min-width:260px;">
+                <p class="case-section__number anim-ready">03 — LA IDENTIDAD: LUMA</p>
+                <h2 id="identidad-title" class="case-section__title anim-ready">
+                  Diseñar para la claridad, no para la estadística.
+                </h2>
+
+                <p class="anim-ready" style="color:var(--color-text-secondary);max-width:560px;margin-bottom:var(--space-24);font-size:var(--text-body-lg);">
+                  La identidad de LUMA se aleja de la estética clínica tradicional para abrazar una narrativa de acompañamiento y sabiduría. Queríamos que cada elemento visual gritara: "Te entiendo, te escucho y estoy aquí para guiarte".
+                </p>
               </div>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.65;margin-bottom:var(--space-16);">Entrena 5 días a la semana y lleva tiempo intentando alinear su carga de entrenamiento con su ciclo. El SOP hace que sus fases sean impredecibles. Necesita prescripción de entrenamiento adaptada a su fase real, no a la teórica.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                <span style="font-size:10px;padding:3px 10px;background:rgba(254,192,249,0.18);color:#8A2A9A;border-radius:100px;border:1px solid rgba(254,192,249,0.30);">Rendimiento físico</span>
-                <span style="font-size:10px;padding:3px 10px;background:rgba(254,192,249,0.18);color:#8A2A9A;border-radius:100px;border:1px solid rgba(254,192,249,0.30);">Prescripción hormonal</span>
-                <span style="font-size:10px;padding:3px 10px;background:rgba(254,192,249,0.18);color:#8A2A9A;border-radius:100px;border:1px solid rgba(254,192,249,0.30);">Ciclo irregular</span>
+
+              <div style="flex:0 0 24%;min-width:140px;display:flex;justify-content:flex-end;align-items:center;">
+                <figure style="width:clamp(140px,18vw,260px);height:auto;margin:0;display:flex;align-items:center;justify-content:center;padding:6px;">
+                  <img data-slot="logo" src="./assets/images/luma/logo-luma.jpeg" alt="logo-luma" style="width:100%;height:auto;object-fit:contain;display:block;" />
+                </figure>
               </div>
+
             </div>
 
           </div>
-        </div>
+        </section>
 
-      </div>
-    </section>
+        <!-- PILARES: TONO Y VALORES -->
+            <h3 id="pilares-title" class="anim-ready" style="margin-top:8px;margin-bottom:12px;font-size:18px;color:#6A3FA0;">Nuestra voz se construye sobre tres pilares que equilibran la precisión médica con la calidez humana:</h3>
 
+            <div class="grid grid-3 anim-ready" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-20);margin-bottom:var(--space-48);">
 
-    <!-- ══════════════════════════════════════════════════
-         03 · EL CONCEPTO
-    ══════════════════════════════════════════════════ -->
-    <section class="case-section" style="background:#F2F2F2;" id="concepto" aria-labelledby="concepto-title">
-      <div class="container">
+              <div style="background:white;border-radius:var(--radius-sm);padding:var(--space-20);border:1px solid rgba(155,124,191,0.08);">
+                <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;color:#353334;margin:0 0 8px 0;">COMODIDAD</p>
+                <p style="font-size:14px;color:var(--color-text-secondary);margin:0;">Empática y sin juicios: Creamos un espacio seguro donde la vulnerabilidad es bienvenida.</p>
+              </div>
 
-        <p class="case-section__number anim-ready">03 — El concepto</p>
-        <h2 id="concepto-title" class="case-section__title anim-ready">
-          Cuatro ecosistemas.<br />Una mentora que recuerda todo.
-        </h2>
+              <div style="background:white;border-radius:var(--radius-sm);padding:var(--space-20);border:1px solid rgba(155,124,191,0.08);">
+                <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;color:#353334;margin:0 0 8px 0;">CONTROL</p>
+                <p style="font-size:14px;color:var(--color-text-secondary);margin:0;">Científica pero accesible: Traducimos datos complejos en información accionable y clara.</p>
+              </div>
 
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:600px;margin-bottom:var(--space-48);">
-          Para alejarnos del lenguaje clínico frío, transformamos las fases hormonales en ecosistemas metafóricos. Cada una tiene una energía, un paisaje y una lógica propia que la usuaria reconoce de manera intuitiva.
-        </p>
+              <div style="background:white;border-radius:var(--radius-sm);padding:var(--space-20);border:1px solid rgba(155,124,191,0.08);">
+                <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;color:#353334;margin:0 0 8px 0;">CONFIANZA</p>
+                <p style="font-size:14px;color:var(--color-text-secondary);margin:0;">Mentora experta: Nos posicionamos como esa guía que siempre sabe qué paso sigue.</p>
+              </div>
 
-        <!-- 4 Ecosystem cards -->
-        <div class="grid grid-2 anim-ready" style="gap:var(--space-20);margin-bottom:var(--space-64);" data-stagger="0.08">
+            </div>
 
-          <div class="ecosystem-card">
-            <div class="ecosystem-card__bar" style="background:linear-gradient(90deg,#FFD870,#FFB830);"></div>
-            <span class="ecosystem-card__icon">🌾</span>
-            <p class="ecosystem-card__phase" style="color:#A07800;">Fase folicular</p>
-            <p class="ecosystem-card__name">La Sabana</p>
-            <p class="ecosystem-card__desc">Apertura, crecimiento y posibilidades. La energía empieza a subir después del descanso menstrual. Momento ideal para iniciar proyectos, conectar con otros y explorar ideas nuevas. Lumi sugiere aprovechar esta amplitud.</p>
           </div>
+        </section>
 
-          <div class="ecosystem-card">
-            <div class="ecosystem-card__bar" style="background:linear-gradient(90deg,#FEC0F9,#E87AF0);"></div>
-            <span class="ecosystem-card__icon">🌴</span>
-            <p class="ecosystem-card__phase" style="color:#8A2A8A;">Fase ovulatoria</p>
-            <p class="ecosystem-card__name">El Oasis</p>
-            <p class="ecosystem-card__desc">Pico de energía, conexión y magnetismo social. El momento de mayor vitalidad del ciclo. Lumi orienta hacia las conversaciones importantes, las presentaciones de alto impacto y la colaboración intensa.</p>
-          </div>
+        
 
-          <div class="ecosystem-card">
-            <div class="ecosystem-card__bar" style="background:linear-gradient(90deg,#9B7CBF,#7B5CAF);"></div>
-            <span class="ecosystem-card__icon">⛰️</span>
-            <p class="ecosystem-card__phase" style="color:#5A3A90;">Fase lútea</p>
-            <p class="ecosystem-card__name">La Meseta</p>
-            <p class="ecosystem-card__desc">Gestión de recursos, foco y producción sostenida. Energía más internalizada pero muy potente para trabajo profundo. Lumi sugiere estructurar, revisar y finalizar. No es el momento de iniciar, es el de consolidar.</p>
-          </div>
-
-          <div class="ecosystem-card">
-            <div class="ecosystem-card__bar" style="background:linear-gradient(90deg,#9B9B9B,#555);"></div>
-            <span class="ecosystem-card__icon">🌙</span>
-            <p class="ecosystem-card__phase" style="color:#454545;">Fase menstrual</p>
-            <p class="ecosystem-card__name">La Cueva</p>
-            <p class="ecosystem-card__desc">Refugio, restauración e introspección. No es inactividad —es el período de mayor claridad interna. Lumi reduce la exigencia y activa el modo de cuidado: menos agenda, más escucha del cuerpo.</p>
-          </div>
-
-        </div>
-
-        <!-- Lumi + onboarding conversacional -->
+        <!-- Lumi como Autoridad Compasiva -->
         <div class="grid grid-2 anim-ready" style="gap:var(--space-64);align-items:center;">
 
           <!-- Phone: onboarding chat -->
           <div>
             <div class="luma-phone-frame">
-              <div class="luma-phone-notch" aria-hidden="true"></div>
-              <div class="luma-phone-screen" style="background:linear-gradient(160deg,#faf8fe 0%,#F1E8FB 60%,#f0d5f6 100%);">
-
-                <!-- Header -->
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-                  <div style="width:32px;height:32px;border-radius:50%;background:#F1E8FB;border:2px solid rgba(155,124,191,0.20);display:flex;align-items:center;justify-content:center;font-size:16px;">🐘</div>
-                  <div>
-                    <p style="font-size:13px;font-weight:600;color:#353334;font-family:'Plus Jakarta Sans',sans-serif;">Lumi</p>
-                    <p style="font-size:9px;color:#9B7CBF;">Tu mentora · Siempre aquí</p>
-                  </div>
-                </div>
-
-                <!-- Chat onboarding -->
-                <div class="lumi-chat-row">
-                  <div class="lumi-avatar-mini">🐘</div>
-                  <div class="lumi-bubble">Hola, soy Lumi. 🌸<br/>Antes de empezar, cuéntame: ¿cómo suele ser tu ciclo?</div>
-                </div>
-
-                <div class="lumi-chat-row lumi-chat-row--user">
-                  <div class="user-bubble">A veces dura 28 días, otras 40. Nunca sé cuándo llega.</div>
-                </div>
-
-                <div class="lumi-chat-row">
-                  <div class="lumi-avatar-mini">🐘</div>
-                  <div class="lumi-bubble">Perfecto, eso tiene mucho sentido. Tu ciclo tiene su propio ritmo biográfico, y LUMA aprendió a seguirlo. Nunca voy a decirte que estás "atrasada". 💜</div>
-                </div>
-
-                <div class="lumi-chat-row lumi-chat-row--user">
-                  <div class="user-bubble">¿Entonces la app se adapta a mí?</div>
-                </div>
-
-                <div class="lumi-chat-row">
-                  <div class="lumi-avatar-mini">🐘</div>
-                  <div class="lumi-bubble">Exacto. Tú defines el ritmo. Yo aprendo de él. ¿Quieres que empecemos?</div>
-                </div>
-
-                <!-- CTA button -->
-                <button style="width:100%;background:#9B7CBF;border:none;border-radius:14px;padding:13px;color:white;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;margin-top:14px;cursor:pointer;">Empezar con Lumi →</button>
-
-              </div>
+              <!-- Reemplazado: imagen con cross-fade hover -->
+              <figure data-fade style="margin:0;width:100%;max-width:340px;aspect-ratio:9/16;position:relative;overflow:hidden;border-radius:12px;">
+                <img class="fade-base" src="./assets/images/luma/lumi.jpeg" alt="Lumi mockup" tabindex="0" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .28s ease;opacity:1;display:block;" />
+                <img class="fade-hover" src="./assets/images/luma/lumi-dormida.jpeg" alt="Lumi mockup hover" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .28s ease;opacity:0;display:block;pointer-events:none;" />
+              </figure>
             </div>
-            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">Onboarding conversacional · sin formularios</p>
+            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">Lumi · espejo empático</p>
           </div>
 
           <!-- Text: Lumi description -->
-          <div>
+          <div style="padding-left:var(--space-16);padding-right:var(--space-8);max-width:820px;">
             <div class="luma-accent-line"></div>
+            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-12);">La mentora</p>
             <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-16);">Lumi: sabiduría, memoria y cero juicios</h3>
             <p style="color:var(--color-text-secondary);margin-bottom:var(--space-20);line-height:1.7;">
-              El elefante como símbolo no fue una decisión superficial. Los elefantes representan memoria y sabiduría colectiva —exactamente lo que LUMA necesitaba encarnar. Lumi recuerda el historial de la usuaria, aprende de sus patrones y nunca los olvida.
-            </p>
-            <p style="color:var(--color-text-secondary);margin-bottom:var(--space-28);line-height:1.7;">
-              Sustituimos los formularios de registro por una conversación empática que reduce la fatiga cognitiva desde el primer segundo. El resultado: la usuaria comparte más datos, con menos fricción, porque siente que los datos son <em>para ella</em>, no para la app.
+              Acompañando este viaje creamos a <strong>Lumi</strong>, una mentora digital (elefante) que encarna la sabiduría y la memoria. Lumi no es una <em>"asistente servicial"</em>, es una <strong style="color:#6A3FA0;">Autoridad Compasiva</strong> que actúa como espejo empático para la usuaria.
             </p>
             <div style="display:flex;flex-direction:column;gap:12px;">
-              <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);">
-                <span style="font-size:18px;">🧠</span>
-                <p style="font-size:var(--text-small);color:#353334;"><strong>Memoria acumulada:</strong> Lumi recuerda cada ciclo, síntoma y preferencia.</p>
+              <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);">
+                <span style="width:28px;height:28px;border-radius:50%;background:rgba(155,124,191,0.12);color:#6A3FA0;font-family:var(--font-heading);font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">01</span>
+                <p style="font-size:var(--text-small);color:#353334;"><strong>SABIDURÍA (Memoria acumulada):</strong> Como los elefantes, Lumi tiene una memoria infinita. Recuerda cada ciclo, síntoma y preferencia, permitiendo que la usuaria no tenga que empezar de cero cada mes.</p>
               </div>
-              <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);">
-                <span style="font-size:18px;">💬</span>
-                <p style="font-size:var(--text-small);color:#353334;"><strong>Tono compasivo:</strong> Nunca usa lenguaje de "error", "retraso" o "irregularidad negativa".</p>
+              <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);">
+                <span style="width:28px;height:28px;border-radius:50%;background:rgba(155,124,191,0.12);color:#6A3FA0;font-family:var(--font-heading);font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">02</span>
+                <p style="font-size:var(--text-small);color:#353334;"><strong>CICLOS (Animal migratorio):</strong> Representa el movimiento constante y el retorno. Lumi entiende que el cuerpo no es estático, sino un camino que se recorre una y otra vez.</p>
               </div>
-              <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);">
-                <span style="font-size:18px;">🎯</span>
-                <p style="font-size:var(--text-small);color:#353334;"><strong>Personalización real:</strong> Las recomendaciones cambian según la fase actual, no la teórica.</p>
+              <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);">
+                <span style="width:28px;height:28px;border-radius:50%;background:rgba(155,124,191,0.12);color:#6A3FA0;font-family:var(--font-heading);font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">03</span>
+                <p style="font-size:var(--text-small);color:#353334;"><strong>COMUNIDAD (Protección):</strong> Simboliza el cuidado mutuo. Su tono nunca usa lenguaje de "error", "retraso" o "irregularidad negativa", eliminando el estigma clínico.</p>
               </div>
             </div>
           </div>
 
         </div>
-      </div>
-    </section>
 
+        <!-- Small script: cross-fade images inside <figure data-fade> on hover/focus/touch -->
+        <script>
+          (function(){
+            if (typeof document === 'undefined') return;
+            const figures = document.querySelectorAll('figure[data-fade]');
+            figures.forEach(fig => {
+              const base = fig.querySelector('.fade-base');
+              const hover = fig.querySelector('.fade-hover');
+              if(!base || !hover) return;
+              // handlers
+              const showHover = () => { hover.style.opacity = '1'; };
+              const hideHover = () => { hover.style.opacity = '0'; };
+              fig.addEventListener('mouseenter', showHover);
+              fig.addEventListener('mouseleave', hideHover);
+              fig.addEventListener('focusin', showHover);
+              fig.addEventListener('focusout', hideHover);
+              // touch support: toggle briefly on touchstart
+              fig.addEventListener('touchstart', (e) => { showHover(); }, {passive:true});
+              fig.addEventListener('touchend', (e) => { hideHover(); }, {passive:true});
+            });
+          })();
+        </script>
 
     <!-- ══════════════════════════════════════════════════
-         04 · EL PRODUCTO
+         03 · INNOVACIÓN LÓGICA
     ══════════════════════════════════════════════════ -->
-    <section class="case-section" aria-labelledby="producto-title"
+    <section class="case-section" aria-labelledby="innovacion-title"
       style="background:linear-gradient(160deg,#faf8fe 0%,#F1E8FB 40%,#ead4f7 68%,#d8b4e8 100%);"
-      id="producto">
+      id="innovacion">
 
-      <div aria-hidden="true">
+  <div aria-hidden="true">
         <div class="blob" style="width:460px;height:460px;background:#FEC0F9;opacity:0.16;top:-18%;left:-12%;animation:blobFloat1 16s ease-in-out infinite;filter:blur(75px);"></div>
         <div class="blob" style="width:400px;height:400px;background:#9B7CBF;opacity:0.12;bottom:-10%;right:-8%;animation:blobFloat3 14s ease-in-out infinite;filter:blur(80px);"></div>
       </div>
 
       <div class="container" style="position:relative;z-index:3;">
 
-        <p class="case-section__number anim-ready" style="color:rgba(53,51,52,0.45);">04 — El producto</p>
-        <h2 id="producto-title" class="case-section__title anim-ready" style="color:#353334;">
-          Una arquitectura que se bifurca<br />en vez de estandarizar.
+        <p class="case-section__number anim-ready" style="color:rgba(53,51,52,0.45);">03 — Innovación lógica</p>
+        <h2 id="innovacion-title" class="case-section__title anim-ready" style="color:#353334;">
+          Infraestructura<br />para la soberanía.
         </h2>
 
-        <p class="anim-ready" style="color:#6B4090;max-width:580px;margin-bottom:var(--space-64);">
-          LUMA no es una app "talla única". El research mostró que las necesidades se dividían en dos ejes claros. La respuesta fue una arquitectura de dos caminos estratégicos, ambos activos simultáneamente si la usuaria lo prefiere.
+        <p class="anim-ready" style="color:#6B4090;max-width:640px;margin-bottom:var(--space-64);font-size:var(--text-body-lg);">
+          Mi mayor aporte estratégico fue el desarrollo de funcionalidades que priorizan la <strong>salud mental</strong> sobre la recolección de datos crudos.
         </p>
 
-        <!-- Dos caminos: Marta y Andrea -->
-        <div class="grid grid-2 anim-ready" style="gap:var(--space-32);margin-bottom:var(--space-64);">
-
-          <!-- Camino A: Marta (Bienestar) -->
+        <!-- Innovación 01: Ventana Flexible de Probabilidad -->
+        <div class="anim-ready" style="display:grid;grid-template-columns:auto 1fr;gap:var(--space-32);padding:var(--space-40) var(--space-32);background:rgba(255,255,255,0.65);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.75);border-radius:var(--radius-lg);margin-bottom:var(--space-32);">
+          <div style="flex-shrink:0;">
+            <p style="font-family:var(--font-heading);font-size:72px;line-height:1;color:#9B7CBF;opacity:0.25;margin:0;">01</p>
+          </div>
           <div>
-            <div class="luma-phone-frame">
-              <div class="luma-phone-notch" aria-hidden="true"></div>
-              <div class="luma-phone-screen" style="background:linear-gradient(160deg,#faf8fe,#F1E8FB);">
-
-                <!-- Nav app -->
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                  <p style="font-size:14px;font-weight:600;color:#353334;font-family:'Plus Jakarta Sans',sans-serif;">Hola, Marta 🌾</p>
-                  <div style="width:28px;height:28px;border-radius:50%;background:#F1E8FB;display:flex;align-items:center;justify-content:center;font-size:14px;">🐘</div>
-                </div>
-
-                <!-- Fase activa -->
-                <div style="background:white;border-radius:16px;padding:14px;margin-bottom:12px;border:1px solid rgba(155,124,191,0.14);">
-                  <p style="font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:#9B7CBF;margin-bottom:4px;">Fase actual</p>
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <div>
-                      <p style="font-size:15px;font-weight:600;color:#353334;font-family:'Plus Jakarta Sans',sans-serif;">🌾 La Sabana</p>
-                      <p style="font-size:10px;color:#9B7CBF;">Día 8 · Energía en ascenso</p>
-                    </div>
-                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FFD870,#9B7CBF);opacity:0.7;"></div>
-                  </div>
-                </div>
-
-                <!-- Recomendación Lumi -->
-                <div style="background:#9B7CBF;border-radius:14px;padding:12px;margin-bottom:12px;">
-                  <p style="font-size:9px;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;">Lumi recomienda</p>
-                  <p style="font-size:11px;color:white;line-height:1.5;">Semana ideal para la reunión importante que has estado posponiendo. Tu energía social está en su punto más alto. 💪</p>
-                </div>
-
-                <!-- Batería social -->
-                <div style="background:white;border-radius:14px;padding:12px;border:1px solid rgba(155,124,191,0.14);">
-                  <p style="font-size:10px;font-weight:500;color:#353334;margin-bottom:8px;">Batería social hoy</p>
-                  <div style="height:6px;background:rgba(155,124,191,0.12);border-radius:100px;margin-bottom:6px;">
-                    <div style="width:82%;height:100%;background:linear-gradient(90deg,#9B7CBF,#FEC0F9);border-radius:100px;"></div>
-                  </div>
-                  <p style="font-size:9px;color:#9B7CBF;">82% · Alta capacidad de conexión</p>
-                </div>
-
+            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:#9B7CBF;margin-bottom:var(--space-8);font-weight:500;">Innovación 01</p>
+            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-16);">Ventana Flexible de Probabilidad</h3>
+            <p style="color:#353334;max-width:720px;margin-bottom:var(--space-20);line-height:1.7;">
+              Sustituimos las alertas de <em>"retraso"</em> por un <strong>ajuste de ritmo dinámico</strong> basado en el promedio real de la usuaria, no en el estándar de la industria.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.14);">
+                <span style="width:6px;height:6px;border-radius:50%;background:#9B7CBF;flex-shrink:0;" aria-hidden="true"></span>
+                <p style="font-size:var(--text-small);color:#353334;"><strong>Sin alertas de retraso</strong> cuando la fase se extiende</p>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.14);">
+                <span style="width:6px;height:6px;border-radius:50%;background:#9B7CBF;flex-shrink:0;" aria-hidden="true"></span>
+                <p style="font-size:var(--text-small);color:#353334;"><strong>Ciclos hasta 90 días</strong> sin marcar como irregulares</p>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.14);">
+                <span style="width:6px;height:6px;border-radius:50%;background:#9B7CBF;flex-shrink:0;" aria-hidden="true"></span>
+                <p style="font-size:var(--text-small);color:#353334;"><strong>Ajuste manual del ritmo</strong> por la usuaria en cualquier momento</p>
               </div>
             </div>
-            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">Camino A · Marta — Bienestar</p>
           </div>
-
-          <!-- Camino B: Andrea (Entrenamiento) -->
-          <div>
-            <div class="luma-phone-frame">
-              <div class="luma-phone-notch" aria-hidden="true"></div>
-              <div class="luma-phone-screen" style="background:linear-gradient(160deg,#fdf5ff,#f0d8f8);">
-
-                <!-- Nav app -->
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                  <p style="font-size:14px;font-weight:600;color:#353334;font-family:'Plus Jakarta Sans',sans-serif;">Hola, Andrea ⚡</p>
-                  <div style="width:28px;height:28px;border-radius:50%;background:#F1E8FB;display:flex;align-items:center;justify-content:center;font-size:14px;">🐘</div>
-                </div>
-
-                <!-- Fase + prescripción -->
-                <div style="background:white;border-radius:16px;padding:14px;margin-bottom:12px;border:1px solid rgba(254,192,249,0.22);">
-                  <p style="font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:#9B7CBF;margin-bottom:4px;">Fase actual</p>
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <div>
-                      <p style="font-size:15px;font-weight:600;color:#353334;font-family:'Plus Jakarta Sans',sans-serif;">🌴 El Oasis</p>
-                      <p style="font-size:10px;color:#9B7CBF;">Día 14 · Pico hormonal</p>
-                    </div>
-                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FEC0F9,#9B7CBF);opacity:0.75;"></div>
-                  </div>
-                </div>
-
-                <!-- Prescripción entrenamiento -->
-                <div style="background:#353334;border-radius:14px;padding:12px;margin-bottom:12px;">
-                  <p style="font-size:9px;color:rgba(254,192,249,0.70);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;">Prescripción de hoy</p>
-                  <p style="font-size:11px;color:white;line-height:1.5;margin-bottom:8px;">Fase ovulatoria: incrementa carga +12%. Tu cuerpo tolera mayor intensidad. Ideal para HIIT o levantamiento.</p>
-                  <div style="display:flex;gap:6px;">
-                    <div style="padding:4px 10px;background:rgba(254,192,249,0.18);border-radius:100px;">
-                      <p style="font-size:9px;color:#FEC0F9;font-weight:500;">+12% carga</p>
-                    </div>
-                    <div style="padding:4px 10px;background:rgba(155,124,191,0.25);border-radius:100px;">
-                      <p style="font-size:9px;color:#D4A8FF;font-weight:500;">Alta intensidad</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Métricas semana -->
-                <div style="display:flex;gap:8px;">
-                  <div style="flex:1;background:white;border-radius:12px;padding:10px;text-align:center;border:1px solid rgba(254,192,249,0.20);">
-                    <p style="font-size:15px;font-weight:600;color:#9B7CBF;font-family:'Plus Jakarta Sans',sans-serif;">5</p>
-                    <p style="font-size:9px;color:#999;">sesiones</p>
-                  </div>
-                  <div style="flex:1;background:white;border-radius:12px;padding:10px;text-align:center;border:1px solid rgba(254,192,249,0.20);">
-                    <p style="font-size:15px;font-weight:600;color:#9B7CBF;font-family:'Plus Jakarta Sans',sans-serif;">82%</p>
-                    <p style="font-size:9px;color:#999;">adherencia</p>
-                  </div>
-                  <div style="flex:1;background:white;border-radius:12px;padding:10px;text-align:center;border:1px solid rgba(254,192,249,0.20);">
-                    <p style="font-size:15px;font-weight:600;color:#FEC0F9;font-family:'Plus Jakarta Sans',sans-serif;">↑12%</p>
-                    <p style="font-size:9px;color:#999;">carga esta semana</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">Camino B · Andrea — Entrenamiento</p>
-          </div>
-
         </div>
 
-        <!-- La Ventana Flexible -->
-        <div class="anim-ready" style="padding:var(--space-40) var(--space-32);background:rgba(255,255,255,0.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.65);border-radius:var(--radius-lg);">
-          <div class="luma-accent-line"></div>
-          <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-8);">Innovación de lógica</p>
-          <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-16);">La Ventana Flexible: el ritmo es tuyo</h3>
-          <p style="color:#6B4090;max-width:640px;margin-bottom:var(--space-16);line-height:1.7;">
-            Si la usuaria tiene ciclos irregulares o está bajo tratamiento hormonal, LUMA activa la lógica de <strong>"Ritmo en Evolución"</strong>: suspende automáticamente las alertas de "retraso" y permite un ajuste manual del ritmo sin penalización.
-          </p>
-          <p style="color:#6B4090;max-width:640px;margin-bottom:var(--space-24);line-height:1.7;">
-            La usuaria puede extender su fase activa hasta 90 días. LUMA aprende de ese patrón en vez de ignorarlo. Esto elimina la predisposición negativa que generan las demás apps y empodera a la usuaria para definir su propio patrón biográfico.
-          </p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <div style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.14);">
-              <span style="font-size:15px;">🔕</span>
-              <p style="font-size:var(--text-small);color:#353334;"><strong>Sin alertas de retraso</strong> cuando la fase se extiende</p>
+        <!-- Innovación 02: Botón de Tregua -->
+        <div class="anim-ready" style="display:grid;grid-template-columns:auto 1fr;gap:var(--space-32);padding:var(--space-40) var(--space-32);background:rgba(53,51,52,0.92);border-radius:var(--radius-lg);margin-bottom:var(--space-32);position:relative;overflow:hidden;">
+          <div style="flex-shrink:0;">
+            <p style="font-family:var(--font-heading);font-size:72px;line-height:1;color:#FEC0F9;opacity:0.35;margin:0;">02</p>
+          </div>
+          <div>
+            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(254,192,249,0.60);margin-bottom:var(--space-8);font-weight:500;">Innovación 02 · UX Emocional</p>
+            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:white;margin-bottom:var(--space-16);">Botón de Tregua</h3>
+            <p style="color:rgba(255,255,255,0.82);max-width:720px;margin-bottom:var(--space-20);line-height:1.7;">
+              Una funcionalidad que permite <strong style="color:#FEC0F9;">pausar notificaciones y métricas en días de colapso</strong>, validando el descanso como una acción productiva.
+            </p>
+            <div style="display:inline-flex;align-items:center;gap:12px;padding:14px 22px;background:linear-gradient(135deg,#9B7CBF,#FEC0F9);border-radius:100px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:white;flex-shrink:0;" aria-hidden="true"></span>
+              <p style="font-size:var(--text-small);color:white;font-weight:500;">Hoy elijo descansar — 24 h sin métricas</p>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.14);">
-              <span style="font-size:15px;">📅</span>
-              <p style="font-size:var(--text-small);color:#353334;"><strong>Ciclos hasta 90 días</strong> sin marcar como irregulares</p>
+          </div>
+        </div>
+
+        <!-- Innovación 03: Bifurcación de Valor -->
+        <div class="anim-ready" style="padding:var(--space-40) var(--space-32);background:rgba(255,255,255,0.65);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.75);border-radius:var(--radius-lg);">
+
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:var(--space-32);margin-bottom:var(--space-40);">
+            <div style="flex-shrink:0;">
+              <p style="font-family:var(--font-heading);font-size:72px;line-height:1;color:#9B7CBF;opacity:0.25;margin:0;">03</p>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.14);">
-              <span style="font-size:15px;">🔄</span>
-              <p style="font-size:var(--text-small);color:#353334;"><strong>Ajuste manual del ritmo</strong> por la usuaria en cualquier momento</p>
+            <div>
+              <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:#9B7CBF;margin-bottom:var(--space-8);font-weight:500;">Innovación 03</p>
+              <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-16);">Bifurcación de Valor</h3>
+              <p style="color:#353334;max-width:720px;line-height:1.7;">
+                LUMA no es una app <em>"talla única"</em>. Se bifurca en dos caminos estratégicos que responden a dos ejes de necesidad reales, activables de forma independiente o simultánea.
+              </p>
             </div>
+          </div>
+
+          <!-- Dos caminos: phone mockups -->
+          <div class="grid grid-2" style="gap:var(--space-32);">
+
+            <!-- Camino A: Bienestar -->
+            <div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-16);">
+                <span style="color:#6A3FA0;font-size:var(--text-label);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;border-bottom:1px solid currentColor;padding-bottom:2px;">Camino A</span>
+                <p style="font-size:var(--text-body);color:#353334;font-weight:500;">Bienestar</p>
+              </div>
+              <p style="font-size:var(--text-small);color:#6B4090;margin-bottom:var(--space-20);line-height:1.65;">Optimización de la <strong>"Batería Social"</strong>.</p>
+
+              <figure class="luma-phone-frame" style="overflow:hidden;border-radius:22px;">
+                <!-- Camino A: original phone mockup preserved below in case you want to restore it. -->
+
+                <img data-slot="camino-a-mockup" src="./assets/images/luma/Bienestar-luma.png" alt="Camino A mockup" style="width:100%;height:100%;object-fit:cover;display:block;background:#fff;">
+              </figure>
+            </div>
+
+            <!-- Camino B: Entrenamiento -->
+            <div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-16);">
+                <span style="color:#8A2A9A;font-size:var(--text-label);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;border-bottom:1px solid currentColor;padding-bottom:2px;">Camino B</span>
+                <p style="font-size:var(--text-body);color:#353334;font-weight:500;">Entrenamiento</p>
+              </div>
+              <p style="font-size:var(--text-small);color:#6B4090;margin-bottom:var(--space-20);line-height:1.65;">Rendimiento físico de precisión <strong>(fuerza vs. recuperación)</strong>.</p>
+
+              <figure class="luma-phone-frame" style="overflow:hidden;border-radius:22px;">
+                
+                <!-- Simplified mockup slot: replace the src with your image. -->
+                <img data-slot="camino-b-mockup" src="./assets/images/luma/entrenamiento-luma.png" alt="Camino B mockup" style="width:100%;height:100%;object-fit:cover;display:block;background:#fff;">
+              </figure>
+            </div>
+
           </div>
         </div>
 
@@ -1102,217 +948,123 @@
 
 
     <!-- ══════════════════════════════════════════════════
-         05 · VALIDACIÓN
+         04 · VIAJE TÉCNICO
     ══════════════════════════════════════════════════ -->
-    <section class="case-section" style="background:#F1E8FB;" id="validacion" aria-labelledby="validacion-title">
+    <section class="case-section" style="background:#F2F2F2;" id="viaje" aria-labelledby="viaje-title"><!-- offwhite -->
       <div class="container">
 
-        <p class="case-section__number anim-ready">05 — Validación</p>
-        <h2 id="validacion-title" class="case-section__title anim-ready">
-          Dos rounds de validación.<br />El hallazgo que lo cambió todo.
-        </h2>
+        <!-- Layout: left = number/title/intro + etapas, right = phone mockup (prepared for Loveable embed) -->
+        <div class="grid grid-2 anim-ready" style="gap:var(--space-48);align-items:center;">
 
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:600px;margin-bottom:var(--space-64);">
-          Sometimos a LUMA a un proceso de validación en dos etapas deliberadamente distintas: primero estresar la lógica con IA, después escuchar a personas reales.
-        </p>
+          <!-- Left column: section number, title, intro and stages -->
+          <div style="display:flex;flex-direction:column;gap:var(--space-24);">
+            <div>
+              <p class="case-section__number anim-ready">04 — DE LA IDEA AL MVP FUNCIONAL</p>
+              <h2 id="viaje-title" class="case-section__title anim-ready">Validación real: <br />Construyendo con Lovable</h2>
+              <p class="anim-ready" style="color:var(--color-text-secondary);max-width:640px;margin-bottom:var(--space-24);">
+                Para LUMA, decidí saltar la barrera de lo estático. En lugar de limitarme a prototipos de clics, construí un MVP (Mínimo Producto Viable) funcional para validar si la lógica conversacional de Lumi y la transición entre ecosistemas realmente funcionaban en manos de usuarias.
+              </p>
+            </div>
 
-        <!-- Dos etapas de validación -->
-        <div style="display:flex;flex-direction:column;gap:var(--space-48);margin-bottom:var(--space-64);" class="anim-ready">
+            <div style="display:flex;flex-direction:column;gap:var(--space-24);">
+              <!-- Etapa 1: Figma -->
+              <div class="luma-stage">
+                <div class="luma-stage__dot" style="background:linear-gradient(135deg,#9B7CBF,#FEC0F9);">1</div>
+                <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-12);">Sincronía biológica</h3>
+                <p style="color:var(--color-text-secondary);max-width:680px;line-height:1.7;">dentificar con precisión en qué fase se encuentran a través del lenguaje de los ecosistemas.</p>
+              </div>
 
-          <!-- Etapa 1: IA -->
-          <div class="luma-stage">
-            <div class="luma-stage__dot" style="background:linear-gradient(135deg,#9B7CBF,#FEC0F9);">1</div>
-            <div class="stage-pill stage-pill--research">High-Fidelity Persona Testing</div>
-            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-12);">Testing con perfiles de IA antes de las personas reales</h3>
-            <p style="color:var(--color-text-secondary);max-width:640px;margin-bottom:var(--space-16);line-height:1.7;">
-              Antes de llevar el prototipo a usuarias reales, usé modelos de IA con <strong>perfiles psicométricos extremos basados en el modelo OCEAN</strong> para estresar la lógica del copy y detectar posibles rupturas de confianza. Simulamos usuarias con alta neuroticismo, baja agradabilidad y apertura elevada.
-            </p>
-            <p style="color:var(--color-text-secondary);max-width:640px;line-height:1.7;">
-              Esta técnica —AI User Proxying— permitió iterar la voz de Lumi de forma rápida antes de invertir tiempo en sesiones de testing con personas. Detectamos 4 puntos del copy que generaban ansiedad en perfiles vulnerables y los reescribimos antes del primer test real.
-            </p>
+              <!-- Etapa 2: Loveable -->
+              <div class="luma-stage">
+                <div class="luma-stage__dot" style="background:linear-gradient(135deg,#FEC0F9,#9B7CBF);">2</div>
+                <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-12);">Optimización del rendimiento</h3>
+                <p style="color:var(--color-text-secondary);max-width:680px;line-height:1.7;">Ajustar sus entrenamientos y niveles de carga física según su realidad fisiológica.</p>
+              </div>
+
+              <!-- Etapa 3: AI User Proxying -->
+              <div class="luma-stage">
+                <div class="luma-stage__dot" style="background:linear-gradient(135deg,#9B7CBF,#6A3FA0);">3</div>
+                <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-12);">Gestión Inteligente</h3>
+                <p style="color:var(--color-text-secondary);max-width:680px;line-height:1.7;">Llevar una agenda coherente con su biología, reduciendo la carga cognitiva y el estrés.</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Etapa 2: Personas reales -->
-          <div class="luma-stage">
-            <div class="luma-stage__dot" style="background:linear-gradient(135deg,#FEC0F9,#9B7CBF);">2</div>
-            <div class="stage-pill stage-pill--testing">User Testing Real · 2 Design Sprints</div>
-            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-12);">Dos design sprints con usuarias reales</h3>
-            <p style="color:var(--color-text-secondary);max-width:640px;margin-bottom:var(--space-16);line-height:1.7;">
-              Lideré dos rondas de design sprint para validar funcionalidades clave: el flujo de onboarding conversacional, la lógica de la Ventana Flexible y el sistema de recomendaciones de Lumi. Las sesiones fueron moderadas por mí y documentadas para iterar entre sprints.
-            </p>
-            <p style="color:var(--color-text-secondary);max-width:640px;line-height:1.7;">
-              Resultado de usabilidad: calificación de <strong>1/5 (Muy fácil)</strong> en la escala de dificultad percibida. Las usuarias completaron todos los flujos principales sin fricción relevante.
-            </p>
+          <!-- Right column: phone mockup prepared for Loveable prototype -->
+          <div style="display:flex;justify-content:center;align-items:center;">
+            <div class="luma-phone-frame" style="max-width:320px;">
+              <div class="luma-phone-notch" aria-hidden="true"></div>
+              <div class="luma-phone-screen" style="background:#fff;padding:0;">
+                <figure style="margin:0;width:100%;height:100%;position:relative;">
+                  <!-- Clickable screenshot fallback: opens the Loveable preview in a new tab -->
+                  <a href="https://preview--bio-sync-whisper.lovable.app/?__lovable_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoieVA0R256c25ta01iWFBHN2pFTzFsOUxtZk5vMSIsInByb2plY3RfaWQiOiIwMzEzNzUwMy02ZmM1LTQwZjEtOTI1Ny1lMjQ0ZDJjN2MyY2UiLCJhY2Nlc3NfdHlwZSI6InByb2plY3QiLCJpc3MiOiJsb3ZhYmxlLWFwaSIsInN1YiI6IjAzMTM3NTAzLTZmYzUtNDBmMS05MjU3LWUyNDRkMmM3YzJjZSIsImF1ZCI6WyJsb3ZhYmxlLWFwcCJdLCJleHAiOjE3Nzc0Njg1MzgsIm5iZiI6MTc3Njg2MzczOCwiaWF0IjoxNzc2ODYzNzM4fQ.e9R_EZggFuQZhKMrCbiHtc2DYWPUSjIdVtM_y8J1EZVz_bKzj7kCR1FP1tWJUfCNwMOPrQxR-f7tWou3qJhmLSxuMy-0ZNtViuUahXL73AStjyqzUc93MnBY42jAbbALJs87z_u9c2XggFxJep3MOaEGQpmEE82t0rn585PBxe-_bZe3fLrFd3TCjxBMuLQ6aZ7sz7gKu6CJQK4KR_1tjxBY9NrwfveEWEJmbnI63l2P5rLEApRhJ2AEf63fxPwVupc4wMRWEMEEbqhCffTbzv3uasFf_3RV9T-csxe9y0UcNOqMUfmY_6ijYE-v9UxmbU0h2KymGjyh5Kmg_sfdMCVP4Us4gy7-F7i2TcOpSH0_iwkedN8_C50ByTUmrmG956DNRb6pHoNuT858lR4vuqpBEUSjQc4xV3cAznowlYZ2OKP13DEMvu-2BHkVeDkJw4JemAGqCV5rGRpGgXgX1dOCzIpekW1nUTijmI0rZOsRNpH1OxfNv4_AsJvQK5ArSF8csgIHs9UaK5Gn7-NDFr5JTqxLDY0yIktm3DXYExJJAXoqcWFNqHp75kgpvXLtJSSOpgDc-WAiPCMDRFU_zXRr7VQQvWhSmcqA0wl2Qk49h5c5eL04U_haOltZysCJBUDziKDUZ0H7OnJq0Tm9fMxN5Etf4411FglDTkCyYVQ" data-slot-link="loveable-proto" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;">
+                    <img data-slot="loveable-screenshot" src="./assets/images/luma/lutea-prototipo.png" alt="Vista previa Loveable" style="width:100%;height:100%;object-fit:cover;display:block;background:#fff;border-radius:inherit;">
+                    <div class="proto-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                      <div style="width:64px;height:64px;border-radius:50%;background:rgba(106,63,160,0.9);display:flex;align-items:center;justify-content:center;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7L8 5z" fill="#fff"/></svg>
+                      </div>
+                    </div>
+                  </a>
+                </figure>
+              </div>
+            </div>
+            <figcaption style="font-size:12px;color:var(--color-text-muted);margin-left:12px;">Protótipo Loveable — <a href="https://preview--bio-sync-whisper.lovable.app/?__lovable_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoieVA0R256c25ta01iWFBHN2pFTzFsOUxtZk5vMSIsInByb2plY3RfaWQiOiIwMzEzNzUwMy02ZmM1LTQwZjEtOTI1Ny1lMjQ0ZDJjN2MyY2UiLCJhY2Nlc3NfdHlwZSI6InByb2plY3QiLCJpc3MiOiJsb3ZhYmxlLWFwaSIsInN1YiI6IjAzMTM3NTAzLTZmYzUtNDBmMS05MjU3LWUyNDRkMmM3YzJjZSIsImF1ZCI6WyJsb3ZhYmxlLWFwcCJdLCJleHAiOjE3Nzc0Njc4ODQsIm5iZiI6MTc3Njg2MzA4NCwiaWF0IjoxNzc2ODYzMDg0fQ.DVH2V7k8O6WcZeaLXe4yzG0JoyqMlVVzkZcfmuw-1_xxKw09WvAfpTHmzJalywyGjcknWrvpmtjAI7qHNMIEG6afBASEAYupTlsgl2KQacvGWg6gnYjwwcDu4bwaAXcF3LcgDjCI6oe4q0X49A-UxkKlyeiXo-3AlaOnx4_EOa5TGJF9KU-igqo5-A7kfrSykjoBVtD6dVgI2Zzsp0_NeLWL8G1t5R0LGWC34NSZVsqRprQHg-MQekteyxi1L9M2ch8Z5nqyurb-csXxkT8gJ1Q8TC9wilS4LxivU-e4zrEAVFizW83yuz1Sm8PCA3BQB25NzTVI1XHw8uk-kHE38sMTRaLRVy0kzJ0ISI3hunlKo5z2eAXrttZCiwWOBzPFmIuvfNgfU3IKiEfDx8tnBv_OYb48MXQxoA-6A6W1QejGhzaBUBuOGY5eBIPqTt7DYO6nl-OtQRyAyvHt_nVpTJa7aBvs_nKxYYyI6Fbc3ae8213LJhej-l_J3WFkXgp96tvLQINVWdqbXUz_Tyl9RHtjhlu-Iljw6cqo4qrNW8vhq-I-_kwggPS3VtIqvmLXnqjZ0obE2XyPhi8e2JuZc1yT3SCnK-6y3-DX6mLyyN2mR1lzg6yqwTY0BSolx6zKIXepROOnbAEr3WDVFMLfguVKqX7cXG4z1EXzjeC3DUc" data-slot-link="loveable-proto" target="_blank" rel="noopener">abrir en nueva pestaña</a></figcaption>
           </div>
 
         </div>
 
-        <!-- Stats -->
-        <div class="grid grid-3 anim-ready" style="gap:var(--space-20);margin-bottom:var(--space-48);" data-stagger="0.1">
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         05 · EL VIAJE CONTINÚA
+    ══════════════════════════════════════════════════ -->
+    <section class="case-section bg-white" id="resultados" aria-labelledby="resultados-title">
+      <div class="container">
+
+        <p class="case-section__number anim-ready">05 — EL VIAJE CONTINÚA</p>
+        <h2 id="resultados-title" class="case-section__title anim-ready">
+          Próximos pasos: Implementación y mejora continua.
+        </h2>
+
+        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:620px;margin-bottom:var(--space-48);">
+          LUMA es un ecosistema vivo. Actualmente, me encuentro trabajando en la implementación directa a código y el refinamiento de la arquitectura técnica para asegurar que la experiencia sea fluida y escalable.
+        </p>
+
+        <!-- Tres pilares de resultado -->
+        <div class="grid grid-3 anim-ready" style="gap:var(--space-20);margin-bottom:var(--space-64);" data-stagger="0.1">
           <div class="val-stat">
-            <p class="val-stat__number">1/5</p>
-            <p class="val-stat__label">Calificación de usabilidad<br /><strong>Muy fácil</strong> — escala de dificultad</p>
+            <p class="val-stat__number">5/5</p>
+            <p class="val-stat__label"><strong>Validación</strong><br />Calificación de usabilidad "Muy fácil" en 4 pruebas de usabilidad con usuarias reales.</p>
           </div>
           <div class="val-stat">
-            <p class="val-stat__number">2</p>
-            <p class="val-stat__label">Design sprints completos<br />con usuarias reales</p>
+            <p class="val-stat__number">100%</p>
+            <p class="val-stat__label"><strong>Aceptación</strong><br />De las usuarias prefirieron el lenguaje metafórico sobre el clínico.</p>
           </div>
           <div class="val-stat">
-            <p class="val-stat__number">4</p>
-            <p class="val-stat__label">Puntos críticos de copy corregidos<br />mediante AI proxying</p>
+            <p class="val-stat__number">5º</p>
+            <p class="val-stat__label"><strong>Conclusión</strong><br />El ciclo menstrual reivindicado como Quinto Signo Vital —no una anomalía a corregir.</p>
           </div>
         </div>
 
         <!-- Hallazgo crítico: Botón de Tregua -->
-        <div class="highlight-block-luma anim-ready">
+        <div class="highlight-block-luma anim-ready" style="margin-bottom:var(--space-64);">
           <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-8);">Hallazgo crítico</p>
-          <p style="font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);font-size:var(--text-body);">El éxito no estaba en las funciones. Estaba en el tono.</p>
+          <p style="font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-8);font-size:var(--text-body);">El valor no estaba en los datos. Estaba en el tono.</p>
           <p class="serif" style="font-size:clamp(17px,2vw,24px);color:#6A3FA0;line-height:1.45;margin-bottom:var(--space-16);">
-            "Las usuarias valoraron el <strong>Botón de Tregua</strong> —la posibilidad de pausar cualquier alerta sin explicación— más que ninguna funcionalidad de análisis. Lo que querían no era más datos: era sentirse vistas sin ser juzgadas."
-          </p>
-          <p style="color:var(--color-text-secondary);font-size:var(--text-small);line-height:1.6;">
-            Este hallazgo validó la hipótesis central del proyecto: el éxito de LUMA reside en su flexibilidad algorítmica y en su tono de voz, no en su capacidad analítica. La tecnología invisible —la que se nota cuando no está— es el verdadero producto.
+            Durante las pruebas, descubrimos que lo que las usuarias valoran por encima de cualquier métrica de análisis es  <strong>sentirse vistas sin ser juzgadas.</strong> La validación de los Ecosistemas (Sabana, Oasis, Meseta, Refugio) confirmó que el éxito de LUMA reside en su capacidad de empatizar con el estado físico y emocional, no solo en contar días.
           </p>
         </div>
-
-      </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════
-         06 · ESTADO ACTUAL
-    ══════════════════════════════════════════════════ -->
-    <section class="case-section" style="background:#F2F2F2;" id="estado" aria-labelledby="estado-title">
-      <div class="container">
-
-        <p class="case-section__number anim-ready">06 — Estado actual</p>
-        <h2 id="estado-title" class="case-section__title anim-ready">
-          Prototipo funcional.<br />Proyecto vivo.
-        </h2>
-
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:580px;margin-bottom:var(--space-48);">
-          LUMA es hoy un prototipo de alta fidelidad completamente funcional, construido íntegramente por mí en Lovable. Integra lógica real, flujos completos y la arquitectura bifurcada validada en los sprints.
-        </p>
 
         <div class="grid grid-2 anim-ready" style="gap:var(--space-64);align-items:start;">
 
-          <!-- Features actuales -->
-          <div>
-            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-24);">Lo que funciona hoy</p>
+         
 
-            <div class="feature-chip">
-              <div class="feature-chip__check">
-                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6l3 3 5-5" stroke="#9B7CBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;margin-bottom:3px;">Registro de síntomas sin restricciones de fase</p>
-                <p style="font-size:12px;color:var(--color-text-muted);">La usuaria puede registrar síntomas en cualquier día, independientemente de la fase asignada.</p>
-              </div>
-            </div>
-
-            <div class="feature-chip">
-              <div class="feature-chip__check">
-                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6l3 3 5-5" stroke="#9B7CBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;margin-bottom:3px;">Lógica de extensión de fase para ciclos de hasta 90 días</p>
-                <p style="font-size:12px;color:var(--color-text-muted);">La Ventana Flexible completamente funcional, sin alertas negativas para ciclos extendidos.</p>
-              </div>
-            </div>
-
-            <div class="feature-chip">
-              <div class="feature-chip__check">
-                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6l3 3 5-5" stroke="#9B7CBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;margin-bottom:3px;">Modo dual activo simultáneamente</p>
-                <p style="font-size:12px;color:var(--color-text-muted);">Entrenamiento y Bienestar pueden estar activos a la vez, combinando recomendaciones.</p>
-              </div>
-            </div>
-
-            <div class="feature-chip">
-              <div class="feature-chip__check">
-                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6l3 3 5-5" stroke="#9B7CBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <p style="font-size:var(--text-small);font-weight:var(--weight-medium);color:#353334;margin-bottom:3px;">Botón de Tregua operativo</p>
-                <p style="font-size:12px;color:var(--color-text-muted);">La usuaria puede pausar todas las alertas con un toque, sin necesidad de explicación.</p>
-              </div>
-            </div>
-
-            <!-- WIP progress visual -->
-            <div style="margin-top:var(--space-28, 28px);padding:var(--space-24);background:white;border-radius:var(--radius-md);border:1px solid rgba(155,124,191,0.12);">
-              <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-8);">
-                <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.40);">Progreso del TFM</p>
-                <p style="font-size:var(--text-label);color:#9B7CBF;font-weight:var(--weight-medium);">78%</p>
-              </div>
-              <div class="luma-progress-bar" style="width:100%;height:6px;">
-                <div class="luma-progress-fill" style="width:78%;height:6px;"></div>
-              </div>
-              <div style="display:flex;gap:var(--space-16);margin-top:var(--space-16);flex-wrap:wrap;">
-                <div style="display:flex;gap:5px;align-items:center;">
-                  <div style="width:7px;height:7px;border-radius:50%;background:#22C55E;"></div>
-                  <p style="font-size:11px;color:var(--color-text-muted);">Research completado</p>
-                </div>
-                <div style="display:flex;gap:5px;align-items:center;">
-                  <div style="width:7px;height:7px;border-radius:50%;background:#22C55E;"></div>
-                  <p style="font-size:11px;color:var(--color-text-muted);">Prototipo Lovable funcional</p>
-                </div>
-                <div style="display:flex;gap:5px;align-items:center;">
-                  <div style="width:7px;height:7px;border-radius:50%;background:#22C55E;"></div>
-                  <p style="font-size:11px;color:var(--color-text-muted);">Validación completada</p>
-                </div>
-                <div style="display:flex;gap:5px;align-items:center;">
-                  <div style="width:7px;height:7px;border-radius:50%;background:#9B7CBF;animation:pulse 2s ease-in-out infinite;"></div>
-                  <p style="font-size:11px;color:var(--color-text-muted);">Documentación en proceso</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Próximos pasos -->
-          <div>
-            <p style="font-size:var(--text-label);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:rgba(53,51,52,0.45);margin-bottom:var(--space-24);">Próximos pasos</p>
-
-            <div>
-              <div class="luma-next-step">
-                <div class="luma-next-step__num">1</div>
-                <div>
-                  <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-4);">Integración con wearables</h3>
-                  <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.6;">Conectar con Garmin y Oura Ring para automatizar la recolección de datos (variabilidad del ritmo cardíaco, temperatura corporal, sueño) y reducir la carga de registro manual.</p>
-                </div>
-              </div>
-
-              <div class="luma-next-step">
-                <div class="luma-next-step__num">2</div>
-                <div>
-                  <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-4);">Círculos Íntimos</h3>
-                  <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.6;">Funcionalidad para compartir el ciclo de forma segura y controlada con parejas o amigas de confianza. La usuaria decide qué datos comparte y con quién, sin perder soberanía.</p>
-                </div>
-              </div>
-
-              <div class="luma-next-step">
-                <div class="luma-next-step__num">3</div>
-                <div>
-                  <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:#353334;margin-bottom:var(--space-4);">Testing de accesibilidad ampliado</h3>
-                  <p style="font-size:var(--text-small);color:var(--color-text-secondary);line-height:1.6;">Extender las pruebas de usabilidad a usuarias con condiciones como endometriosis y ciclos postparto, para validar que la Ventana Flexible cubre escenarios más complejos.</p>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
     </section>
-
 
     <!-- ══════════════════════════════════════════════════
          CLOSING STATEMENT
@@ -1320,35 +1072,19 @@
     <section class="case-section bg-white" id="cierre" aria-labelledby="cierre-title">
       <div class="container" style="max-width:780px;text-align:center;">
 
-        <div class="anim-ready" style="margin-inline:auto;margin-bottom:var(--space-24);">
-          <!-- Lumi pequeño centrado -->
-          <svg viewBox="0 0 120 130" width="80" height="87" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="margin:0 auto var(--space-16);display:block;opacity:0.75;">
-            <ellipse cx="22" cy="60" rx="20" ry="28" fill="#FEC0F9" transform="rotate(-12 22 60)"/>
-            <ellipse cx="98" cy="60" rx="20" ry="28" fill="#FEC0F9" transform="rotate(12 98 60)"/>
-            <ellipse cx="60" cy="90" rx="36" ry="32" fill="#D4BAE8"/>
-            <circle cx="60" cy="54" r="32" fill="#D4BAE8"/>
-            <circle cx="48" cy="50" r="8" fill="#2a1a2e"/>
-            <circle cx="51" cy="47" r="2.8" fill="white"/>
-            <circle cx="72" cy="50" r="8" fill="#2a1a2e"/>
-            <circle cx="75" cy="47" r="2.8" fill="white"/>
-            <path d="M60 74 Q55 82 57 89 Q59 93 62 89" fill="none" stroke="#2a1a2e" stroke-width="2.8" stroke-linecap="round"/>
-            <path d="M50 62 Q60 70 70 62" fill="none" stroke="#2a1a2e" stroke-width="2" stroke-linecap="round"/>
-            <ellipse cx="38" cy="58" rx="6" ry="4" fill="#FEC0F9" opacity="0.65"/>
-            <ellipse cx="82" cy="58" rx="6" ry="4" fill="#FEC0F9" opacity="0.65"/>
-          </svg>
-        </div>
+        <!-- Slot imagen Lumi (nota final) -->
+        <figure class="anim-ready luma-image-slot" style="margin:0 auto var(--space-32);width:180px;height:180px;background:linear-gradient(135deg,#F1E8FB 0%,#FEC0F9 100%);border-radius:50%;border:1px dashed rgba(155,124,191,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;position:relative;padding:var(--space-16);">
+         <img src="./assets/images/luma/lumi-bienestar.jpeg" alt="lumi tierna">
+        </figure>
 
         <p class="case-section__number anim-ready" style="text-align:center;">Una nota final</p>
         <h2 id="cierre-title" class="case-section__title anim-ready" style="text-align:center;">
-          El mayor aprendizaje de diseño<br />no siempre viene de los datos
+          Diseñar desde la Autoridad Compasiva<br />es diseñar para devolver soberanía.
         </h2>
 
         <div class="anim-ready">
           <p style="font-size:var(--text-body-lg);color:var(--color-text-secondary);margin-bottom:var(--space-24);">
-            LUMA me enseñó que la innovación en fem-tech no está en el algoritmo más sofisticado. Está en el acto radical de diseñar sin juzgar. La usuaria ya sabe lo que su cuerpo hace. Lo que necesita es una tecnología que finalmente le crea.
-          </p>
-          <p class="serif" style="font-size:clamp(20px,2.5vw,32px);color:#9B7CBF;line-height:1.4;margin-bottom:0;">
-            "No te presento una app terminada. Te presento cómo pienso cuando el problema aún no tiene respuesta —y la confianza de saber que ese proceso <em>es</em> el producto."
+            LUMA me enseñó que la innovación en fem-tech no vive en el algoritmo más sofisticado, sino en la decisión ética de tratar el ciclo menstrual como <strong>Quinto Signo Vital</strong> —una constante biográfica— y no como una desviación a corregir. La usuaria ya sabe lo que su cuerpo hace; lo que necesita es una tecnología que finalmente le crea.
           </p>
         </div>
 

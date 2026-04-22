@@ -116,10 +116,10 @@
     /* Proceso timeline */
     .process-stage {
       position: relative;
-      padding-left: var(--space-32);
     }
 
-    .process-stage::before {
+    /* La línea decorativa sólo aplica en layout de una columna (legacy) */
+    .process-stage.is-vertical::before {
       content: '';
       position: absolute;
       left: 11px;
@@ -129,7 +129,7 @@
       background: linear-gradient(180deg, hsla(16,100%,73%,0.30), hsla(225,64%,67%,0.15));
     }
 
-    .process-stage:last-child::before { display: none; }
+    .process-stage.is-vertical:last-child::before { display: none; }
 
     .process-stage__dot {
       position: absolute;
@@ -256,66 +256,7 @@
       font-style: italic;
     }
 
-    /* Grid de 5 orbes numerológicos (estilo KYROS real) */
-    .ky-numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: var(--space-20);
-      margin-top: var(--space-40);
-      padding: var(--space-32);
-      background: linear-gradient(180deg, hsl(225,45%,96%), hsl(16,40%,96%));
-      border-radius: 24px;
-      border: 1px solid hsl(225,40%,92%);
-    }
-    .ky-number-cell {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 10px;
-      padding: var(--space-16) var(--space-12);
-    }
-    .ky-orb {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      filter: drop-shadow(0 6px 12px rgba(30,20,60,0.18));
-    }
-    .ky-orb::after {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.25);
-      pointer-events: none;
-    }
-    .ky-orb--blue   { background: radial-gradient(circle at 35% 30%, hsl(225,65%,85%), hsl(225,55%,68%) 75%); }
-    .ky-orb--purple { background: radial-gradient(circle at 35% 30%, hsl(248,60%,82%), hsl(248,50%,62%) 75%); }
-    .ky-orb__num {
-      font-family: 'Marcellus', Georgia, serif;
-      font-size: 30px;
-      font-weight: 400;
-      color: white;
-      text-shadow: 0 1px 2px rgba(30,20,60,0.2);
-      line-height: 1;
-    }
-    .ky-number-cell__name {
-      font-family: 'Marcellus', Georgia, serif;
-      font-size: 15px;
-      color: hsl(225,40%,20%);
-      letter-spacing: 0.01em;
-    }
-    .ky-number-cell__desc {
-      font-size: 11px;
-      color: hsl(225,20%,45%);
-      letter-spacing: 0.03em;
-    }
-
-    /* ============ JOURNEY COMPARATIVO (curvas) ============ */
+    /* ============ JOURNEY COMPARATIVO (minimal) ============ */
     .ky-journey {
       margin: var(--space-40) 0;
       position: relative;
@@ -342,11 +283,10 @@
       border-radius: 2px;
     }
     .ky-journey__dot-legend--solid {
-      background: hsl(225,64%,55%);
+      background: hsl(225,64%,62%);
     }
-    .ky-journey__dot-legend--dashed {
-      background: repeating-linear-gradient(90deg, hsl(2,70%,58%) 0 5px, transparent 5px 9px);
-      height: 2px;
+    .ky-journey__dot-legend--coral {
+      background: hsl(12,80%,70%);
     }
     .ky-journey__chart {
       position: relative;
@@ -354,14 +294,8 @@
       aspect-ratio: 16/6;
       min-height: 280px;
       max-height: 340px;
-      background:
-        linear-gradient(180deg,
-          hsl(225,55%,97%) 0%,
-          hsl(225,45%,97%) 50%,
-          hsl(16,50%,97%) 50%,
-          hsl(16,45%,97%) 100%);
+      background: hsl(0,0%,97.5%);
       border-radius: 16px;
-      border: 1px solid hsl(225,30%,92%);
       overflow: hidden;
       margin: var(--space-16) 0;
     }
@@ -372,89 +306,11 @@
       height: 100%;
       z-index: 1;
     }
-    .ky-journey__labels-top,
-    .ky-journey__labels-bot {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: var(--space-12);
-      padding: 0 3.5%;
-    }
-    .ky-journey__card {
-      padding: 12px 14px 13px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .ky-journey__card--top {
-      border-top: 3px solid hsl(225,64%,55%);
-      box-shadow: 0 6px 18px rgba(116,141,234,0.18);
-    }
-    .ky-journey__card--bot {
-      border-bottom: 3px solid hsl(2,70%,58%);
-      box-shadow: 0 6px 18px rgba(220,80,75,0.14);
-    }
-    .ky-journey__card-head {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-    .ky-journey__card-step {
-      font-family: 'Lora', serif;
-      font-size: 11px;
-      font-weight: 600;
-      font-style: italic;
-      letter-spacing: 0.04em;
-      opacity: 0.55;
-    }
-    .ky-journey__card--top .ky-journey__card-step { color: hsl(225,64%,45%); }
-    .ky-journey__card--bot .ky-journey__card-step { color: hsl(2,60%,45%); }
-    .ky-journey__card-title {
-      font-family: 'Lora', serif;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-    .ky-journey__card--top .ky-journey__card-title { color: hsl(225,50%,22%); }
-    .ky-journey__card--bot .ky-journey__card-title { color: hsl(2,40%,26%); }
-    .ky-journey__card-desc {
-      font-size: 12px;
-      line-height: 1.45;
-      margin: 0;
-      color: hsl(225,15%,38%);
-      font-weight: 400;
-    }
-    .ky-journey__card--bot .ky-journey__card-desc { color: hsl(2,15%,40%); }
-    .ky-journey__side-label {
-      position: absolute;
-      top: 50%;
-      left: 12px;
-      transform: translateY(-50%) rotate(-90deg);
-      transform-origin: left center;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: hsl(225,25%,45%);
-      font-weight: 500;
-      pointer-events: none;
-    }
     @media (max-width: 760px) {
       .ky-journey__chart {
         aspect-ratio: 4/3;
         min-height: 220px;
         max-height: none;
-      }
-      .ky-journey__labels-top,
-      .ky-journey__labels-bot {
-        grid-template-columns: 1fr;
-        gap: var(--space-10);
-        padding: 0;
       }
     }
 
@@ -514,14 +370,24 @@
   <main id="main">
 
     <!-- ── HERO ──────────────────────────────────────────────── -->
-    <section class="case-hero" aria-label="Introducción al caso KYROS" style="background:linear-gradient(180deg,hsl(16,70%,82%) 0%,hsl(16,50%,80%) 15%,hsl(225,45%,84%) 45%,hsl(225,55%,80%) 70%,hsl(248,35%,78%) 100%);">
+    <section class="case-hero" aria-label="Introducción al caso KYROS" style="background:
+      linear-gradient(to bottom,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0) 55%,
+        rgba(255,255,255,0.35) 78%,
+        rgba(255,255,255,0.85) 93%,
+        #ffffff 100%),
+      linear-gradient(135deg,#FBBBA2 0%,#738DE1 100%);">
 
       <div aria-hidden="true">
-        <div class="blob" style="width:560px;height:560px;background:hsl(16,100%,73%);opacity:0.20;top:-20%;left:-12%;animation:blobFloat1 16s ease-in-out infinite;filter:blur(70px);"></div>
-        <div class="blob" style="width:420px;height:420px;background:hsl(225,64%,67%);opacity:0.18;bottom:0%;right:-8%;animation:blobFloat3 13s ease-in-out infinite;filter:blur(80px);"></div>
-        <div class="blob" style="width:260px;height:260px;background:hsl(248,54%,58%);opacity:0.14;top:40%;right:20%;animation:blobFloat2 15s ease-in-out infinite;filter:blur(60px);"></div>
+        <div class="blob" style="width:560px;height:560px;background:#FBBBA2;opacity:0.30;top:-20%;left:-12%;animation:blobFloat1 16s ease-in-out infinite;filter:blur(80px);"></div>
+        <div class="blob" style="width:420px;height:420px;background:#738DE1;opacity:0.28;bottom:0%;right:-8%;animation:blobFloat3 13s ease-in-out infinite;filter:blur(90px);"></div>
+        <div class="blob" style="width:300px;height:300px;background:#FBBBA2;opacity:0.18;top:45%;right:22%;animation:blobFloat2 15s ease-in-out infinite;filter:blur(70px);"></div>
       </div>
       <div class="grainy-overlay" aria-hidden="true"></div>
+
+      <!-- Fade final sobre blobs → blanco puro para empalmar con la siguiente sección -->
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 55%, rgba(255,255,255,0.95) 88%, #ffffff 100%);pointer-events:none;z-index:4;"></div>
 
       <div class="container" style="position:relative;z-index:3;">
 
@@ -565,51 +431,7 @@
           </div>
         </div>
 
-        <!-- Hero: iframe con la app real de KYROS -->
-        <div class="case-hero__image hero-animate-5" style="background:rgba(255,255,255,0.30);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.50);padding:var(--space-64) var(--space-32);display:flex;justify-content:center;align-items:center;min-height:560px;border-radius:var(--radius-lg);">
-          <div class="ky-phone-live" style="position:relative;width:100%;max-width:320px;aspect-ratio:9/19.5;border-radius:44px;border:8px solid rgba(20,15,35,0.85);overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.10);background:#000;">
-            <div class="ky-phone-live__notch" aria-hidden="true" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:28px;background:#000;border-radius:0 0 18px 18px;z-index:5;"></div>
-            <div class="ky-phone-live__screen" style="position:absolute;inset:0;overflow:hidden;">
-              <iframe
-                src="kyros-live/index.html"
-                title="KYROS — App en vivo"
-                loading="lazy"
-                style="width:390px;height:845px;border:0;transform-origin:top left;display:block;background:#fff;"
-                allow="clipboard-read; clipboard-write"></iframe>
-            </div>
-          </div>
-        </div>
-
-        <script>
-          (function(){
-            function scaleKyrosHero(){
-              document.querySelectorAll('.ky-phone-live').forEach(function(frame){
-                var screen = frame.querySelector('.ky-phone-live__screen');
-                var iframe = frame.querySelector('iframe');
-                if(!screen || !iframe) return;
-                var w = screen.clientWidth;
-                var h = screen.clientHeight;
-                if(w <= 0 || h <= 0) return;
-                var baseW = 390;
-                var scale = w / baseW;
-                iframe.style.width = baseW + 'px';
-                iframe.style.height = (h / scale) + 'px';
-                iframe.style.transform = 'scale(' + scale + ')';
-              });
-            }
-            if(document.readyState === 'loading'){
-              document.addEventListener('DOMContentLoaded', scaleKyrosHero);
-            } else {
-              scaleKyrosHero();
-            }
-            window.addEventListener('load', scaleKyrosHero);
-            window.addEventListener('resize', scaleKyrosHero);
-          })();
-        </script>
-
       </div>
-      <!-- Fade hero → fondo portafolio -->
-      <div class="case-hero__transition" aria-hidden="true"></div>
     </section>
 
     <!-- ── 01: CONTEXTO ───────────────────────────────────────── -->
@@ -623,55 +445,31 @@
 
         <div class="anim-ready">
           <p style="font-size:var(--text-body-lg);color:var(--color-text-secondary);margin-bottom:var(--space-24);">
-            KYROS es la culminación de más de una década de inmersión en la filosofía pitagórica. Tras años de formación y de impartir mis propios cursos, identifiqué un problema recurrente: la desconexión entre la sabiduría profunda y la toma de decisiones cotidiana. El reto fue claro: ¿cómo transformar un sistema milenario en una herramienta de claridad inmediata?
+            KYROS nace de más de una década estudiando y enseñando filosofía pitagórica. Detecté un problema recurrente: la sabiduría profunda rara vez se traduce en decisiones cotidianas. El reto fue claro: convertir un sistema milenario en una herramienta de claridad inmediata.
           </p>
 
           <figure class="ky-pullquote">
             <span class="ky-pullquote__mark" aria-hidden="true">"</span>
             <span class="ky-pullquote__label">La visión estratégica</span>
             <p class="ky-pullquote__text">
-              KYROS no solo decodifica tus números; actúa como un <em>filtro contra el ruido externo</em>. Utiliza el patrón matemático de tu esencia para acompañarte en decisiones clave, evitando que te dejes sesgar por las tendencias o las redes sociales y devolviéndote el control de tu propio camino.
+              KYROS no solo decodifica tus números: actúa como un <em>filtro contra el ruido externo</em>. Usa el patrón matemático de tu esencia para acompañarte en decisiones clave, sin que las tendencias o las redes decidan por ti.
             </p>
           </figure>
 
-          <p style="color:var(--color-text-secondary);margin-bottom:var(--space-16);">
-            La numerología pitagórica calcula 5 números a partir de tu fecha de nacimiento: tu <strong>alma</strong>, <strong>personalidad</strong>, <strong>vida pasada</strong>, <strong>don</strong> y <strong>camino</strong>. Cada número describe una faceta de quién eres. KYROS los convierte en insights concretos para momentos de decisión real.
+          <p style="color:var(--color-text-secondary);margin-bottom:var(--space-32);">
+            A partir de tu fecha de nacimiento, la numerología pitagórica calcula cinco números esenciales —<strong>alma</strong>, <strong>personalidad</strong>, <strong>vida pasada</strong>, <strong>don</strong> y <strong>camino</strong>—. Cada uno describe una faceta de quién eres. KYROS los traduce en insights concretos para momentos de decisión real.
           </p>
 
-          <!-- Los 5 números (estilo KYROS real: orbes esféricos con gradiente radial) -->
-          <div class="ky-numbers-grid">
-            <div class="ky-number-cell">
-              <div class="ky-orb ky-orb--blue"><span class="ky-orb__num">5</span></div>
-              <p class="ky-number-cell__name">Alma</p>
-              <p class="ky-number-cell__desc">Esencia</p>
-            </div>
-            <div class="ky-number-cell">
-              <div class="ky-orb ky-orb--purple"><span class="ky-orb__num">3</span></div>
-              <p class="ky-number-cell__name">Personalidad</p>
-              <p class="ky-number-cell__desc">Las máscaras</p>
-            </div>
-            <div class="ky-number-cell">
-              <div class="ky-orb ky-orb--blue"><span class="ky-orb__num">9</span></div>
-              <p class="ky-number-cell__name">Don</p>
-              <p class="ky-number-cell__desc">Energía genética</p>
-            </div>
-            <div class="ky-number-cell">
-              <div class="ky-orb ky-orb--blue"><span class="ky-orb__num">1</span></div>
-              <p class="ky-number-cell__name">Vida pasada</p>
-              <p class="ky-number-cell__desc">Energía presente</p>
-            </div>
-            <div class="ky-number-cell">
-              <div class="ky-orb ky-orb--purple"><span class="ky-orb__num">7</span></div>
-              <p class="ky-number-cell__name">Camino</p>
-              <p class="ky-number-cell__desc">Propósito de vida</p>
-            </div>
-          </div>
+          <!-- Imagen: los 5 números (solo la imagen) -->
+          <figure class="ky-image-placeholder" style="position:relative;width:100%;aspect-ratio:16/9;margin:var(--space-16) 0 0;border-radius:var(--radius-lg);overflow:hidden;">
+            <img src="./assets/images/kyros/5.home.png" alt="Imagen: los 5 números" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </figure>
         </div>
       </div>
     </section>
 
     <!-- ── 02: EL PROBLEMA ────────────────────────────────────── -->
-    <section class="case-section bg-lavender" id="problema" aria-labelledby="problema-title">
+    <section class="case-section bg-white" id="problema" aria-labelledby="problema-title">
       <div class="container" style="max-width:800px;">
 
         <p class="case-section__number anim-ready">02 — El problema que resuelve</p>
@@ -681,10 +479,10 @@
 
         <div class="anim-ready">
           <p style="font-size:var(--text-body-lg);color:var(--color-text-secondary);margin-bottom:var(--space-32);">
-           Se estima que tomamos unas 35,000 decisiones cada día, pero cuando surge una duda profunda, las respuestas vitales no se encuentran en un buscador. Ante un conflicto o una duda importante, el proceso de decisión suele volverse reactivo y fragmentado. Al ignorar nuestra frecuencia individual, terminamos dependiendo del ruido externo —redes sociales, horóscopos genéricos o validación de terceros— lo que nos aleja de nuestra esencia y nos empuja a decidir desde el miedo o la presión del entorno.
+            Tomamos cerca de 35,000 decisiones al día, pero las respuestas que importan no están en un buscador. Ante una duda profunda, el proceso se vuelve reactivo: recurrimos a redes, horóscopos genéricos o la opinión ajena, y terminamos decidiendo desde el miedo o la presión del entorno en vez de desde nuestra propia esencia.
           </p>
 
-          <!-- Journey Map comparativo (curvas contrapuestas Con KYROS / Sin KYROS) -->
+          <!-- Journey Map comparativo (minimal: eje + curvas) -->
           <div class="ky-journey" role="figure" aria-label="Comparativa de journey con y sin KYROS">
             <div class="ky-journey__legend">
               <span class="ky-journey__legend-item">
@@ -692,141 +490,162 @@
                 Con KYROS
               </span>
               <span class="ky-journey__legend-item">
-                <span class="ky-journey__dot-legend ky-journey__dot-legend--dashed" aria-hidden="true"></span>
+                <span class="ky-journey__dot-legend ky-journey__dot-legend--coral" aria-hidden="true"></span>
                 Sin KYROS
               </span>
             </div>
-            <!-- Cards CON KYROS (arriba del chart) -->
-            <div class="ky-journey__labels-top">
-              <div class="ky-journey__card ky-journey__card--top">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">01</span>
-                  <h4 class="ky-journey__card-title">Disparador</h4>
-                </div>
-                <p class="ky-journey__card-desc">Surge una duda o conflicto importante.</p>
-              </div>
-              <div class="ky-journey__card ky-journey__card--top">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">02</span>
-                  <h4 class="ky-journey__card-title">Acción</h4>
-                </div>
-                <p class="ky-journey__card-desc">Abre KYROS y toca el botón del mentor.</p>
-              </div>
-              <div class="ky-journey__card ky-journey__card--top">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">03</span>
-                  <h4 class="ky-journey__card-title">Diálogo</h4>
-                </div>
-                <p class="ky-journey__card-desc">Describe su situación o duda al mentor.</p>
-              </div>
-              <div class="ky-journey__card ky-journey__card--top">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">04</span>
-                  <h4 class="ky-journey__card-title">Insight</h4>
-                </div>
-                <p class="ky-journey__card-desc">Recibe guía basada en su frecuencia numérica.</p>
-              </div>
-              <div class="ky-journey__card ky-journey__card--top">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">05</span>
-                  <h4 class="ky-journey__card-title">Resolución</h4>
-                </div>
-                <p class="ky-journey__card-desc">Decide con claridad. Guarda el consejo.</p>
-              </div>
-            </div>
 
-            <!-- Chart (solo curvas, sin tarjetas encima) -->
+            <!-- Gráfico minimalista: eje horizontal con + y -, dos curvas -->
             <div class="ky-journey__chart">
-              <svg class="ky-journey__svg" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
-                <!-- banda de separación -->
-                <line x1="0" y1="200" x2="800" y2="200" stroke="hsl(225,20%,80%)" stroke-width="1" stroke-dasharray="2 4" opacity="0.5"/>
+              <svg class="ky-journey__svg" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;">
+                <!-- Signos + y - -->
+                <text x="110" y="115" font-family="'Plus Jakarta Sans', sans-serif" font-size="36" font-weight="300" fill="hsl(225,20%,30%)">+</text>
+                <text x="110" y="320" font-family="'Plus Jakarta Sans', sans-serif" font-size="36" font-weight="300" fill="hsl(225,20%,30%)">−</text>
 
-                <!-- marcas verticales guía en cada paso -->
-                <g stroke="hsl(225,15%,85%)" stroke-width="1" stroke-dasharray="2 5" opacity="0.5">
-                  <line x1="80"  y1="10"  x2="80"  y2="390"/>
-                  <line x1="240" y1="10"  x2="240" y2="390"/>
-                  <line x1="400" y1="10"  x2="400" y2="390"/>
-                  <line x1="560" y1="10"  x2="560" y2="390"/>
-                  <line x1="720" y1="10"  x2="720" y2="390"/>
+                <!-- Eje horizontal con flecha -->
+                <line x1="170" y1="215" x2="930" y2="215" stroke="hsl(225,20%,25%)" stroke-width="1.6" stroke-linecap="round"/>
+                <polyline points="920,207 935,215 920,223" fill="none" stroke="hsl(225,20%,25%)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Curva CON KYROS (azul): desde origen sube progresivamente -->
+                <polyline points="230,215 340,170 470,130 620,100 780,100"
+                          fill="none"
+                          stroke="hsl(225,64%,62%)"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                <g fill="hsl(225,64%,62%)">
+                  <circle cx="230" cy="215" r="7"/>
+                  <circle cx="340" cy="170" r="7"/>
+                  <circle cx="470" cy="130" r="7"/>
+                  <circle cx="620" cy="100" r="7"/>
+                  <circle cx="780" cy="100" r="7"/>
                 </g>
 
-                <!-- Curva CON KYROS: parte del centro (80,200), sube con varios picos altos -->
-                <path d="M 80 200
-                         C 130 170, 180 130, 240 140
-                         S 320 90,  400 110
-                         S 490 55,  560 75
-                         S 660 25,  720 40
-                         S 760 30,  770 35"
-                      fill="none" stroke="hsl(225,64%,55%)" stroke-width="2.6" stroke-linecap="round"/>
-                <!-- Dots CON KYROS -->
-                <g fill="hsl(225,64%,55%)" stroke="#fff" stroke-width="2">
-                  <circle cx="240" cy="140" r="6"/>
-                  <circle cx="400" cy="110" r="6"/>
-                  <circle cx="560" cy="75"  r="6"/>
-                  <circle cx="720" cy="40"  r="6"/>
+                <!-- Curva SIN KYROS (coral): baja, sigue bajando y luego sube ligero -->
+                <polyline points="230,215 340,270 470,310 620,225 780,225"
+                          fill="none"
+                          stroke="hsl(12,80%,70%)"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                <g fill="hsl(12,80%,70%)">
+                  <circle cx="230" cy="215" r="7"/>
+                  <circle cx="340" cy="270" r="7"/>
+                  <circle cx="470" cy="310" r="7"/>
+                  <circle cx="620" cy="225" r="7"/>
+                  <circle cx="780" cy="225" r="7"/>
                 </g>
-
-                <!-- Curva SIN KYROS: parte del MISMO punto (80,200), desciende -->
-                <path d="M 80 200
-                         C 140 225, 190 265, 240 270
-                         S 340 310, 400 315
-                         S 500 345, 560 350
-                         S 680 378, 720 378
-                         S 760 382, 770 383"
-                      fill="none" stroke="hsl(2,70%,58%)" stroke-width="2.4" stroke-linecap="round"
-                      stroke-dasharray="7 6"/>
-                <!-- Dots SIN KYROS -->
-                <g fill="hsl(2,70%,58%)" stroke="#fff" stroke-width="2">
-                  <circle cx="240" cy="270" r="6"/>
-                  <circle cx="400" cy="315" r="6"/>
-                  <circle cx="560" cy="350" r="6"/>
-                  <circle cx="720" cy="378" r="6"/>
-                </g>
-
-                <!-- Punto de origen compartido -->
-                <circle cx="80" cy="200" r="8" fill="#fff" stroke="hsl(225,40%,40%)" stroke-width="2.5"/>
-                <circle cx="80" cy="200" r="3.5" fill="hsl(225,40%,40%)"/>
               </svg>
             </div>
 
-            <!-- Cards SIN KYROS (debajo del chart) -->
-            <div class="ky-journey__labels-bot">
-              <div class="ky-journey__card ky-journey__card--bot">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">01</span>
-                  <h4 class="ky-journey__card-title">Disparador</h4>
+            <!-- Pasos detallados: dos columnas comparativas -->
+            <div class="ky-journey__compare" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-32);margin-top:var(--space-32);">
+
+              <!-- Columna CON KYROS -->
+              <div class="ky-journey__col ky-journey__col--with" style="padding:var(--space-24);border-radius:var(--radius-lg);background:rgba(116,141,234,0.05);border:1px solid rgba(116,141,234,0.18);">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-20);">
+                  <span style="width:10px;height:10px;border-radius:50%;background:hsl(225,64%,62%);"></span>
+                  <h4 style="font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:hsl(225,55%,30%);margin:0;">Con KYROS</h4>
                 </div>
-                <p class="ky-journey__card-desc">Surge una duda o conflicto importante.</p>
+                <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--space-16);">
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(225,64%,55%);line-height:1;">01</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(225,40%,18%);margin-bottom:2px;">Disparador</strong>
+                      <span style="font-size:12px;color:hsl(225,20%,40%);line-height:1.5;">Surge una duda o conflicto importante.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(225,64%,55%);line-height:1;">02</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(225,40%,18%);margin-bottom:2px;">Acción consciente</strong>
+                      <span style="font-size:12px;color:hsl(225,20%,40%);line-height:1.5;">Abre KYROS y activa al mentor.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(225,64%,55%);line-height:1;">03</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(225,40%,18%);margin-bottom:2px;">Diálogo íntimo</strong>
+                      <span style="font-size:12px;color:hsl(225,20%,40%);line-height:1.5;">Describe la situación a un mentor que ya conoce su frecuencia.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(225,64%,55%);line-height:1;">04</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(225,40%,18%);margin-bottom:2px;">Insight calibrado</strong>
+                      <span style="font-size:12px;color:hsl(225,20%,40%);line-height:1.5;">Recibe una guía basada en sus 5 números esenciales.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(225,64%,55%);line-height:1;">05</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(225,40%,18%);margin-bottom:2px;">Resolución con claridad</strong>
+                      <span style="font-size:12px;color:hsl(225,20%,40%);line-height:1.5;">Decide desde su esencia y guarda la respuesta en su Códex.</span>
+                    </div>
+                  </li>
+                </ol>
+                <p style="margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px dashed rgba(116,141,234,0.25);font-size:12px;color:hsl(225,55%,35%);font-style:italic;">
+                  Resultado: decisión alineada con su esencia, sin dependencia externa.
+                </p>
               </div>
-              <div class="ky-journey__card ky-journey__card--bot">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">02</span>
-                  <h4 class="ky-journey__card-title">Búsqueda</h4>
+
+              <!-- Columna SIN KYROS -->
+              <div class="ky-journey__col ky-journey__col--without" style="padding:var(--space-24);border-radius:var(--radius-lg);background:rgba(255,154,117,0.05);border:1px solid rgba(255,154,117,0.22);">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-20);">
+                  <span style="width:10px;height:10px;border-radius:50%;background:hsl(12,80%,70%);"></span>
+                  <h4 style="font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:hsl(12,45%,40%);margin:0;">Sin KYROS</h4>
                 </div>
-                <p class="ky-journey__card-desc">Google, Instagram, horóscopo genérico.</p>
+                <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--space-16);">
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(12,70%,55%);line-height:1;">01</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(12,40%,25%);margin-bottom:2px;">Disparador</strong>
+                      <span style="font-size:12px;color:hsl(12,20%,40%);line-height:1.5;">Surge la misma duda o conflicto importante.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(12,70%,55%);line-height:1;">02</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(12,40%,25%);margin-bottom:2px;">Búsqueda reactiva</strong>
+                      <span style="font-size:12px;color:hsl(12,20%,40%);line-height:1.5;">Google, Instagram, horóscopo genérico.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(12,70%,55%);line-height:1;">03</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(12,40%,25%);margin-bottom:2px;">Opiniones externas</strong>
+                      <span style="font-size:12px;color:hsl(12,20%,40%);line-height:1.5;">Amigos, familia o espera semanal a la terapia.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(12,70%,55%);line-height:1;">04</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(12,40%,25%);margin-bottom:2px;">Sesgo y ruido</strong>
+                      <span style="font-size:12px;color:hsl(12,20%,40%);line-height:1.5;">Decide desde el miedo o la presión social.</span>
+                    </div>
+                  </li>
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:12px;">
+                    <span style="font-family:'Marcellus',Georgia,serif;font-size:18px;color:hsl(12,70%,55%);line-height:1;">05</span>
+                    <div>
+                      <strong style="display:block;font-size:13px;color:hsl(12,40%,25%);margin-bottom:2px;">Decisión al azar</strong>
+                      <span style="font-size:12px;color:hsl(12,20%,40%);line-height:1.5;">Confía en que el resultado sea favorable.</span>
+                    </div>
+                  </li>
+                </ol>
+                <p style="margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px dashed rgba(255,154,117,0.30);font-size:12px;color:hsl(12,45%,40%);font-style:italic;">
+                  Resultado: decisión condicionada por el ruido externo.
+                </p>
               </div>
-              <div class="ky-journey__card ky-journey__card--bot">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">03</span>
-                  <h4 class="ky-journey__card-title">Opiniones</h4>
-                </div>
-                <p class="ky-journey__card-desc">Amigos, familia o espera la terapia semanal.</p>
-              </div>
-              <div class="ky-journey__card ky-journey__card--bot">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">04</span>
-                  <h4 class="ky-journey__card-title">Sesgo</h4>
-                </div>
-                <p class="ky-journey__card-desc">Decisión desde el miedo o la presión social.</p>
-              </div>
-              <div class="ky-journey__card ky-journey__card--bot">
-                <div class="ky-journey__card-head">
-                  <span class="ky-journey__card-step">05</span>
-                  <h4 class="ky-journey__card-title">Azar</h4>
-                </div>
-                <p class="ky-journey__card-desc">Espera que el resultado sea favorable.</p>
-              </div>
+
             </div>
+
+            <style>
+              @media (max-width: 760px) {
+                .ky-journey__compare {
+                  grid-template-columns: 1fr !important;
+                }
+              }
+            </style>
           </div>
 
           <figure class="ky-pullquote">
@@ -840,7 +659,7 @@
       </div>
     </section>
 
-    <!-- ── 03: ARQUETIPOS Y LAS 3 ÁREAS ──────────────────────── -->
+    <!-- ── 03: ARQUETIPOS + ÁREAS (layout integrado) ─────────── -->
     <section class="case-section bg-white" id="usuarios" aria-labelledby="usuarios-title">
       <div class="container">
 
@@ -849,78 +668,112 @@
           Tres perfiles en transición.<br />Tres áreas donde todo cambia.
         </h2>
 
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:600px;margin-bottom:var(--space-48);">
-          La investigación identificó un patrón claro: los usuarios de KYROS son personas en medio de un cambio importante —de ciudad, de trabajo, de pareja— que buscan claridad desde su propia esencia, no desde la opinión ajena.
+        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:640px;margin-bottom:var(--space-48);">
+          Los usuarios de KYROS están en medio de un cambio importante —de ciudad, trabajo o pareja— y buscan claridad desde su propia esencia, no desde la opinión ajena. Cada perfil tiene un área donde las decisiones pesan más y donde el mentor calibra su respuesta.
         </p>
 
-        <!-- Arquetipos -->
-        <div class="grid grid-3 anim-ready" style="gap:var(--space-24);margin-bottom:var(--space-64);" data-stagger="0.1">
+        <!-- Filas integradas: cada una combina arquetipo (izq) + área de consulta (der) -->
+        <div class="ky-profiles anim-ready" style="display:flex;flex-direction:column;gap:var(--space-24);" data-stagger="0.1">
 
-          <div class="archetype-card">
-            <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Exploradora de países</h3>
-            <p style="font-size:12px;color:#A03A14;font-style:italic;margin-bottom:var(--space-12);">"Mudarse no es solo cambiar de código postal, es conocer una nueva versión de mi."</p>
-            <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin-bottom:var(--space-16);">Arquitecta, 27 años, expatriada. Busca un ancla filosófica que le dé seguridad en momentos de duda extrema, sin predicciones genéricas.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <span style="font-size:10px;padding:3px 10px;background:rgba(255,154,117,0.08);color:#A03A14;border-radius:100px;">Valida decisiones</span>
-              <span style="font-size:10px;padding:3px 10px;background:rgba(255,154,117,0.08);color:#A03A14;border-radius:100px;">Supera síndrome del impostor</span>
+          <!-- Fila 1: Profesionista reubicado → Trabajo (azul) -->
+          <article class="ky-profile" style="display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-24);align-items:stretch;padding:var(--space-28);border-radius:var(--radius-lg);background:rgba(116,141,234,0.04);border:1px solid rgba(116,141,234,0.18);">
+            <!-- Arquetipo -->
+            <div style="display:flex;flex-direction:column;justify-content:center;">
+              <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#3A4FAF;font-weight:500;margin-bottom:var(--space-8);">Arquetipo</span>
+              <h3 style="font-size:var(--text-h4);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Profesionista reubicado</h3>
+              <p style="font-size:12px;color:#3A4FAF;font-style:italic;margin-bottom:var(--space-12);">"El éxito depende de qué tan alineado estás con tu potencial."</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">30–35 años, reubicado. Pragmático; busca autoconocimiento como ventaja estratégica entre reuniones.</p>
             </div>
-          </div>
+            <!-- Conector -->
+            <div aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:#748DEA;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </div>
+            <!-- Área -->
+            <div style="display:flex;flex-direction:column;justify-content:center;padding-left:var(--space-24);border-left:1px solid rgba(116,141,234,0.25);">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-8);">
+                <div style="width:40px;height:40px;border-radius:12px;background:#748DEA;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                <div>
+                  <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#3A4FAF;font-weight:500;">Área · Trabajo</span>
+                  <h4 style="font-weight:var(--weight-medium);color:var(--color-text-primary);margin:0;">Trayectoria y liderazgo</h4>
+                </div>
+              </div>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">El mentor parte de tu <strong>número de camino</strong> para alinear tu ejecución con tu propósito de vida.</p>
+            </div>
+          </article>
 
-          <div class="archetype-card">
-            <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Profesionista reubicado</h3>
-            <p style="font-size:12px;color:#3A4FAF;font-style:italic;margin-bottom:var(--space-12);">"El éxito en una nueva oficina depende de qué tan alineado estás con tu propio potencial."</p>
-            <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin-bottom:var(--space-16);">Profesional, 30–35 años, reubicado. Pragmático. Ve el autoconocimiento como ventaja estratégica; necesita claridad rápida entre reuniones.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <span style="font-size:10px;padding:3px 10px;background:rgba(116,141,234,0.08);color:#3A4FAF;border-radius:100px;">Estrategia de comunicación</span>
-              <span style="font-size:10px;padding:3px 10px;background:rgba(116,141,234,0.08);color:#3A4FAF;border-radius:100px;">Claridad en crisis</span>
+          <!-- Fila 2: Exploradora de países → Mudanza (lavanda) -->
+          <article class="ky-profile" style="display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-24);align-items:stretch;padding:var(--space-28);border-radius:var(--radius-lg);background:rgba(157,161,213,0.05);border:1px solid rgba(157,161,213,0.22);">
+            <div style="display:flex;flex-direction:column;justify-content:center;">
+              <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#4A529A;font-weight:500;margin-bottom:var(--space-8);">Arquetipo</span>
+              <h3 style="font-size:var(--text-h4);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Exploradora de países</h3>
+              <p style="font-size:12px;color:#4A529A;font-style:italic;margin-bottom:var(--space-12);">"Mudarse no es cambiar de código postal: es conocer una nueva versión de mí."</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">Arquitecta, 27 años, expatriada. Busca un ancla filosófica en momentos de duda extrema, sin predicciones genéricas.</p>
             </div>
-          </div>
+            <div aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:#9DA1D5;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:center;padding-left:var(--space-24);border-left:1px solid rgba(157,161,213,0.30);">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-8);">
+                <div style="width:40px;height:40px;border-radius:12px;background:#9DA1D5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <div>
+                  <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#4A529A;font-weight:500;">Área · Mudanza</span>
+                  <h4 style="font-weight:var(--weight-medium);color:var(--color-text-primary);margin:0;">Transiciones geográficas</h4>
+                </div>
+              </div>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">El mentor se apoya en tu <strong>número de vida pasada</strong> para identificar patrones de adaptación y evitar sesgos previos.</p>
+            </div>
+          </article>
 
-          <div class="archetype-card">
-            <h3 style="font-size:var(--text-body);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Constructor de hogar</h3>
-            <p style="font-size:12px;color:#7A3A62;font-style:italic;margin-bottom:var(--space-12);">"Construir un 'nosotros' requiere entender primero la vibración de mi 'yo'."</p>
-            <p style="font-size:var(--text-small);color:var(--color-text-secondary);margin-bottom:var(--space-16);">28–32 años, formalizando una vida en pareja. Busca equilibrio entre su identidad y las metas compartidas sin diluirse en el otro.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <span style="font-size:10px;padding:3px 10px;background:rgba(201,127,174,0.08);color:#7A3A62;border-radius:100px;">Resolución de conflictos</span>
-              <span style="font-size:10px;padding:3px 10px;background:rgba(201,127,174,0.08);color:#7A3A62;border-radius:100px;">Mantener identidad</span>
+          <!-- Fila 3: Constructor de hogar → Relación (rosado) -->
+          <article class="ky-profile" style="display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-24);align-items:stretch;padding:var(--space-28);border-radius:var(--radius-lg);background:rgba(201,127,174,0.05);border:1px solid rgba(201,127,174,0.22);">
+            <div style="display:flex;flex-direction:column;justify-content:center;">
+              <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#7A3A62;font-weight:500;margin-bottom:var(--space-8);">Arquetipo</span>
+              <h3 style="font-size:var(--text-h4);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Constructor de hogar</h3>
+              <p style="font-size:12px;color:#7A3A62;font-style:italic;margin-bottom:var(--space-12);">"Construir un 'nosotros' requiere entender primero mi 'yo'."</p>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">28–32 años, formalizando una vida en pareja. Busca equilibrio entre identidad y metas compartidas.</p>
             </div>
-          </div>
+            <div aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:#C9A0AE;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:center;padding-left:var(--space-24);border-left:1px solid rgba(201,127,174,0.30);">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-8);">
+                <div style="width:40px;height:40px;border-radius:12px;background:#C9A0AE;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div>
+                  <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#7A3A62;font-weight:500;">Área · Relación</span>
+                  <h4 style="font-weight:var(--weight-medium);color:var(--color-text-primary);margin:0;">Pareja e interpersonal</h4>
+                </div>
+              </div>
+              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">El mentor cruza tu <strong>número de alma</strong> con la frecuencia de la otra persona y analiza la compatibilidad.</p>
+            </div>
+          </article>
 
         </div>
 
-        <!-- Las 3 áreas -->
-        <div class="anim-ready">
-          <div class="kyros-accent-line"></div>
-          <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Las 3 áreas de consulta</h3>
-          <p style="color:var(--color-text-secondary);max-width:560px;margin-bottom:var(--space-32);">
-            Cada arquetipo puede consultar al mentor en las tres áreas donde las decisiones pesan más. El mentor adapta su respuesta al número más relevante según el área.
-          </p>
-
-          <div class="grid grid-3" style="gap:var(--space-20);" data-stagger="0.1">
-
-            <div style="padding:var(--space-24);border-radius:var(--radius-lg);background:rgba(116,141,234,0.05);border:1px solid rgba(116,141,234,0.15);text-align:center;">
-              <div style="width:48px;height:48px;border-radius:14px;background:#748DEA;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-16);"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-              <h4 style="font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Trabajo</h4>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">Se enfoca en decisiones de trayectoria y liderazgo profesional. El mentor basa su análisis en tu número de camino, alineando tu ejecución con tu propósito de vida original.</p>
-            </div>
-
-            <div style="padding:var(--space-24);border-radius:var(--radius-lg);background:rgba(157,161,213,0.05);border:1px solid rgba(157,161,213,0.15);text-align:center;">
-              <div style="width:48px;height:48px;border-radius:14px;background:#9DA1D5;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-16);"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
-              <h4 style="font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Mudanza</h4>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">Diseñado para cambios de entorno y transiciones geográficas. Aquí, la lógica se centra en tu número de vida pasada para identificar patrones de adaptación y evitar sesgos de experiencias previas.</p>
-            </div>
-
-            <div style="padding:var(--space-24);border-radius:var(--radius-lg);background:rgba(201,127,174,0.05);border:1px solid rgba(201,127,174,0.15);text-align:center;">
-              <div style="width:48px;height:48px;border-radius:14px;background:#C9A0AE;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-16);"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-              <h4 style="font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:var(--space-8);">Relación</h4>
-              <p style="font-size:var(--text-small);color:var(--color-text-secondary);">Analiza decisiones de pareja y dinámicas interpersonales. El mentor cruza tu número de alma con la frecuencia de la otra persona, buscando una resolución basada en la compatibilidad de esencias.</p>
-            </div>
-
-          </div>
-        </div>
+        <p class="anim-ready" style="color:var(--color-text-muted);font-size:var(--text-small);text-align:center;margin-top:var(--space-32);font-style:italic;">
+          Cada arquetipo puede consultar las tres áreas; la tabla muestra su motivación principal.
+        </p>
 
       </div>
     </section>
+
+    <!-- Responsive: apila columnas del bloque arquetipo+área -->
+    <style>
+      @media (max-width: 760px) {
+        .ky-profile {
+          grid-template-columns: 1fr !important;
+        }
+        .ky-profile > div[aria-hidden="true"] {
+          transform: rotate(90deg);
+        }
+        .ky-profile > div:last-child {
+          padding-left: 0 !important;
+          padding-top: var(--space-20) !important;
+          border-left: 0 !important;
+          border-top: 1px solid currentColor;
+          opacity: 1;
+        }
+      }
+    </style>
 
     <!-- ── 04: DE FIGMA A CÓDIGO ──────────────────────────────── -->
     <section class="case-section" style="background:linear-gradient(180deg,hsl(16,70%,82%) 0%,hsl(16,50%,80%) 15%,hsl(225,45%,84%) 45%,hsl(225,55%,80%) 70%,hsl(248,35%,78%) 100%);" id="proceso" aria-labelledby="proceso-title">
@@ -938,54 +791,125 @@
         </h2>
 
         <p class="anim-ready" style="color:hsl(225,30%,38%);max-width:560px;margin-bottom:var(--space-64);">
-          En Kyros, el diseño fue la herramienta para validar una hipótesis central: la capacidad de automatizar la introspección profunda mediante tecnología.
+          En KYROS, el diseño sirvió para validar una hipótesis: que la tecnología podía automatizar la introspección profunda sin perder su valor humano.
         </p>
 
-        <div style="display:flex;flex-direction:column;gap:var(--space-48);" class="anim-ready">
+        <div style="display:flex;flex-direction:column;gap:var(--space-64);" class="anim-ready">
 
           <!-- Stage 1: Figma -->
-          <div class="process-stage">
-            <div class="process-stage__dot" style="background:linear-gradient(135deg,hsl(16,100%,73%),hsl(340,27%,71%));">1</div>
-            <p class="ky-stage-caption">
-              Etapa 01
-              <span class="ky-stage-caption__sep">—</span>
-              <span class="ky-stage-caption__tool">Figma</span>
-            </p>
-            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:hsl(225,40%,18%);margin-bottom:var(--space-12);">Investigación y sistema visual</h3>
-            <p style="color:hsl(225,25%,38%);max-width:620px;margin-bottom:var(--space-16);">
-               Inicié con una fase de investigación estratégica que incluyó Lean Product Canvas, journey maps y un benchmark. Definí la identidad de KYROS como "El Sabio con toque de El Mago", materializándola en un sistema visual elegante y wireframes de baja fidelidad que definieron el flujo completo del usuario. Este prototipo clicable permitió validar la navegación desde el onboarding y la revelación de los 5 números esenciales hasta la interfaz de consulta con el mentor. —<strong style="color:hsl(225,40%,18%);">El Sabio con toque de El Mago</strong>— y los valores visuales: Confiable, Enfocado y Cercano.
-            </p>
+          <div class="process-stage" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-40);align-items:center;padding-left:0;">
+            <div style="position:relative;padding-left:var(--space-32);">
+              <div class="process-stage__dot" style="background:linear-gradient(135deg,hsl(16,100%,73%),hsl(340,27%,71%));">1</div>
+              <p class="ky-stage-caption">
+                Etapa 01
+                <span class="ky-stage-caption__sep">—</span>
+                <span class="ky-stage-caption__tool">Figma</span>
+              </p>
+              <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:hsl(225,40%,18%);margin-bottom:var(--space-12);">Investigación y sistema visual</h3>
+              <p style="color:hsl(225,25%,38%);margin-bottom:var(--space-16);">
+                Lean Product Canvas, journey maps y benchmark. Definí la identidad de KYROS como <strong style="color:hsl(225,40%,18%);">"El Sabio con toque de El Mago"</strong> —confiable, enfocado y cercano— y la traduje en un sistema visual y wireframes clicables para validar el flujo end-to-end.
+              </p>
+            </div>
+            <figure class="ky-stage-image" data-label="Imagen etapa 01" style="position:relative;width:100%;aspect-ratio:4/3;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;">
+              <!-- Carrusel móvil: reemplaza las rutas de las imágenes en los atributos src de los <img> -->
+              <div class="ky-carousel" style="width:100%;max-width:280px;">
+                <div class="ky-carousel__viewport" style="position:relative;width:100%;aspect-ratio:9/19.5;overflow:hidden;border-radius:24px;border:1px dashed rgba(0,0,0,0.06);background:rgba(255,255,255,0.92);">
+                  <div class="ky-carousel__track" style="display:flex;width:300%;height:100%;transition:transform 0.36s ease;">
+                    <!-- Imagen 1: sustituye el src por tu archivo -->
+                    <img data-slot="1" src="./assets/images/kyros/warframe.jpeg" alt="Imagen etapa 01 — foto 1 (coloca ruta aquí)" style="flex:0 0 33.3333%;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+                    <!-- Imagen 2: sustituye el src por tu archivo -->
+                    <img data-slot="2" src="./assets/images/kyros/prototipo-figma-3.jpeg" alt="Imagen etapa 01 — foto 2 (coloca ruta aquí)" style="flex:0 0 33.3333%;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+                    <!-- Imagen 3: sustituye el src por tu archivo -->
+                    <img data-slot="3" src="./assets/images/kyros/prototipo-figma-2.jpeg" alt="Imagen etapa 01 — foto 3 (coloca ruta aquí)" style="flex:0 0 33.3333%;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+                  </div>
+
+                  <!-- Controles simples: prev / next -->
+                  <button class="ky-carousel__prev" aria-label="Anterior" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.50);color:#fff;border:0;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;">‹</button>
+                  <button class="ky-carousel__next" aria-label="Siguiente" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.50);color:#fff;border:0;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;">›</button>
+
+                </div>
+
+              </div>
+
+              <script>
+                (function(){
+                  // Carousel mínimo: funciona con 3 imágenes, deja espacios en src para que las reemplaces
+                  var root = document.currentScript && document.currentScript.parentNode;
+                  if(!root) root = document.querySelector('.ky-stage-image');
+                  var track = root.querySelector('.ky-carousel__track');
+                  var prev = root.querySelector('.ky-carousel__prev');
+                  var next = root.querySelector('.ky-carousel__next');
+                  var index = 0;
+                  function update(){
+                    track.style.transform = 'translateX(' + (-index * 33.3333) + '%)';
+                  }
+                  prev && prev.addEventListener('click', function(){ index = (index - 1 + 3) % 3; update(); });
+                  next && next.addEventListener('click', function(){ index = (index + 1) % 3; update(); });
+                  // keyboard accessibility (left/right)
+                  root.addEventListener('keydown', function(e){ if(e.key === 'ArrowLeft'){ prev.click(); } if(e.key === 'ArrowRight'){ next.click(); } });
+                  // allow focus
+                  prev.tabIndex = 0; next.tabIndex = 0;
+                })();
+              </script>
+            </figure>
           </div>
 
           <!-- Stage 2: Loveable -->
-          <div class="process-stage">
-            <div class="process-stage__dot" style="background:linear-gradient(135deg,hsl(340,27%,71%),hsl(225,64%,67%));">2</div>
-            <p class="ky-stage-caption">
-              Etapa 02
-              <span class="ky-stage-caption__sep">—</span>
-              <span class="ky-stage-caption__tool">Loveable</span>
-            </p>
-            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:hsl(225,40%,18%);margin-bottom:var(--space-12);">Prototipo funcional para validar el cálculo</h3>
-            <p style="color:hsl(225,25%,38%);max-width:620px;margin-bottom:var(--space-16);">
-              Antes de la implementación final, construí un prototipo funcional en React mediante Loveable para validar la lógica del producto en tiempo real. Esta etapa fue crucial para confirmar que el algoritmo realizara el cálculo exacto de los 5 números pitagóricos utilizando fechas de nacimiento reales en lugar de datos ficticios. Además, sirvió para iterar la visualización del pentágono de orbes y perfeccionar la interactividad del chat interactivo antes de integrar la capa definitiva de inteligencia artificial.
-            </p>
+          <div class="process-stage" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-40);align-items:center;padding-left:0;">
+            <figure class="ky-stage-image" data-label="Imagen etapa 02" style="position:relative;width:100%;aspect-ratio:4/3;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;order:-1;">
+              <!-- Contenedor tamaño celular para 1 imagen: sustituye el src del <img data-slot="loveable"> -->
+              <div style="width:100%;max-width:280px;aspect-ratio:9/19.5;border-radius:24px;overflow:hidden;border:1px dashed rgba(0,0,0,0.06);background:rgba(255,255,255,0.92);">
+                <img data-slot="loveable" src="./assets/images/kyros/loveable-kyros.png" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+              </div>
+            </figure>
+            <div style="position:relative;padding-left:var(--space-32);">
+              <div class="process-stage__dot" style="background:linear-gradient(135deg,hsl(340,27%,71%),hsl(225,64%,67%));">2</div>
+              <p class="ky-stage-caption">
+                Etapa 02
+                <span class="ky-stage-caption__sep">—</span>
+                <span class="ky-stage-caption__tool">Loveable</span>
+              </p>
+              <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:hsl(225,40%,18%);margin-bottom:var(--space-12);">Prototipo funcional para validar el cálculo</h3>
+              <p style="color:hsl(225,25%,38%);margin-bottom:var(--space-16);">
+                Construí un prototipo en React con Loveable para validar la lógica en tiempo real: cálculo exacto de los 5 números pitagóricos con fechas reales, pentágono de orbes y chat interactivo antes de integrar la IA.
+              </p>
+            </div>
           </div>
 
           <!-- Stage 3: Código -->
-          <div class="process-stage">
-            <div class="process-stage__dot" style="background:linear-gradient(135deg,hsl(225,64%,67%),hsl(248,54%,58%));">3</div>
-            <p class="ky-stage-caption">
-              Etapa 03
-              <span class="ky-stage-caption__sep">—</span>
-              <span class="ky-stage-caption__tool">React · Supabase · IA</span>
-            </p>
-            <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:hsl(225,40%,18%);margin-bottom:var(--space-12);">Integración de IA y mejoras de experiencia</h3>
-            <p style="color:hsl(225,25%,38%);max-width:620px;margin-bottom:var(--space-16);">
-             Transmuté el prototipo validado en una aplicación robusta utilizando TypeScript, React, Tailwind y Supabase. Implementé mejoras de experiencia basadas en pruebas directas con usuarios, optimizando la respuesta del producto ante interacciones y datos reales. El resultado final integra una IA personalizada que actúa como mentora, transformando los números en consejos humanos y permitiendo al usuario guardar sus consultas en un "Códex Personal" con notificaciones contextuales.
-            </p>
+          <div class="process-stage" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-40);align-items:center;padding-left:0;">
+            <div style="position:relative;padding-left:var(--space-32);">
+              <div class="process-stage__dot" style="background:linear-gradient(135deg,hsl(225,64%,67%),hsl(248,54%,58%));">3</div>
+              <p class="ky-stage-caption">
+                Etapa 03
+                <span class="ky-stage-caption__sep">—</span>
+                <span class="ky-stage-caption__tool">React · Supabase · IA</span>
+              </p>
+              <h3 style="font-size:var(--text-h3);font-weight:var(--weight-medium);color:hsl(225,40%,18%);margin-bottom:var(--space-12);">Integración de IA y mejoras de experiencia</h3>
+              <p style="color:hsl(225,25%,38%);margin-bottom:var(--space-16);">
+                Llevé el prototipo a producción con TypeScript, React, Tailwind y Supabase. Integré una IA que traduce los números en consejos humanos y habilita el <strong style="color:hsl(225,40%,18%);">Códex Personal</strong> con notificaciones contextuales.
+              </p>
+            </div>
+            <figure class="ky-stage-image" data-label="Imagen etapa 03" style="position:relative;width:100%;aspect-ratio:4/3;background:rgba(255,255,255,0.45);backdrop-filter:blur(10px);border:1px dashed rgba(255,255,255,0.7);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:hsl(225,40%,28%);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:0.55;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+              <figcaption style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Imagen: app final / IA en acción</figcaption>
+            </figure>
           </div>
 
         </div>
+
+        <!-- Responsive: apilar texto + imagen en móvil -->
+        <style>
+          @media (max-width: 760px) {
+            #proceso .process-stage {
+              grid-template-columns: 1fr !important;
+              gap: var(--space-20) !important;
+            }
+            #proceso .ky-stage-image {
+              order: 2 !important;
+            }
+          }
+        </style>
 
       </div>
     </section>
@@ -996,174 +920,80 @@
 
         <p class="case-section__number anim-ready">05 — Resultado</p>
         <h2 id="resultado-title" class="case-section__title anim-ready">
-          Una app que te <br />ayuda a conocerte.
+          Una app que te<br />ayuda a conocerte.
         </h2>
 
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:580px;margin-bottom:var(--space-64);">
-          KYROS decodifica tu esencia mediante un mapa interactivo de 5 números fundamentales, transformando la teoría pitagórica en un diálogo real con un mentor digital. Esta IA calibra cada consejo según tu frecuencia única para ofrecerte claridad en decisiones de carrera o relaciones, alejándose de lo genérico.
+        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:580px;margin-bottom:var(--space-48);">
+          Un mapa interactivo de 5 números y un mentor con IA que traduce la teoría pitagórica en consejos calibrados a tu frecuencia única. Claridad real, sin respuestas genéricas.
         </p>
 
-        <!-- Tres pantallas -->
-        <div class="grid grid-3 anim-ready" style="gap:var(--space-32);align-items:start;" data-stagger="0.12">
-
-          <!-- Pantalla 1: Dashboard -->
-          <div>
-            <div class="kyros-phone-frame" style="max-width:240px;">
-              <div class="kyros-phone-notch" aria-hidden="true"></div>
-              <div class="kyros-phone-screen" style="background:linear-gradient(160deg,#f9f3ef 0%,#f0ecf8 50%,#e8eaf8 100%);min-height:500px;padding:48px 16px 24px;">
-                <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:600;color:#1a1a2e;margin-bottom:2px;">¡Hola, Fer!</p>
-                <p style="font-size:11px;color:#888;margin-bottom:20px;">Tu mapa numerológico te espera</p>
-                <!-- Pentagon chart simplified -->
-                <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);border-radius:20px;padding:16px;border:1px solid rgba(255,255,255,0.8);margin-bottom:14px;">
-                  <p style="font-family:'Plus Jakarta Sans',sans-serif;text-align:center;font-size:12px;font-weight:600;color:#1a1a2e;margin-bottom:2px;">Tus números</p>
-                  <p style="text-align:center;font-size:9px;color:#aaa;margin-bottom:12px;">Toca un número para ver su significado</p>
-                  <svg width="100%" viewBox="0 0 200 200" style="display:block;">
-                    <line x1="100" y1="100" x2="100" y2="20" stroke="hsl(225,64%,80%)" stroke-width="1" opacity="0.5"/>
-                    <line x1="100" y1="100" x2="176" y2="75" stroke="hsl(225,64%,80%)" stroke-width="1" opacity="0.5"/>
-                    <line x1="100" y1="100" x2="148" y2="164" stroke="hsl(225,64%,80%)" stroke-width="1" opacity="0.5"/>
-                    <line x1="100" y1="100" x2="52" y2="164" stroke="hsl(225,64%,80%)" stroke-width="1" opacity="0.5"/>
-                    <line x1="100" y1="100" x2="24" y2="75" stroke="hsl(225,64%,80%)" stroke-width="1" opacity="0.5"/>
-                    <polygon points="100,20 176,75 148,164 52,164 24,75" fill="none" stroke="hsl(225,64%,80%)" stroke-width="1" opacity="0.5"/>
-                    <circle cx="100" cy="100" r="8" fill="hsl(16,100%,72%)"/>
-                    <circle cx="100" cy="20" r="20" fill="url(#g1)"/>
-                    <text x="100" y="17" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="serif">5</text>
-                    <text x="100" y="29" text-anchor="middle" fill="white" font-size="6" font-family="sans-serif" opacity="0.9">alma</text>
-                    <circle cx="176" cy="75" r="20" fill="url(#g2)"/>
-                    <text x="176" y="72" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="serif">3</text>
-                    <text x="176" y="84" text-anchor="middle" fill="white" font-size="6" font-family="sans-serif" opacity="0.9">Pers.</text>
-                    <circle cx="148" cy="164" r="20" fill="url(#g1)"/>
-                    <text x="148" y="161" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="serif">9</text>
-                    <text x="148" y="173" text-anchor="middle" fill="white" font-size="6" font-family="sans-serif" opacity="0.9">V.P.</text>
-                    <circle cx="52" cy="164" r="20" fill="url(#g1)"/>
-                    <text x="52" y="161" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="serif">1</text>
-                    <text x="52" y="173" text-anchor="middle" fill="white" font-size="6" font-family="sans-serif" opacity="0.9">don</text>
-                    <circle cx="24" cy="75" r="20" fill="url(#g2)"/>
-                    <text x="24" y="72" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="serif">7</text>
-                    <text x="24" y="84" text-anchor="middle" fill="white" font-size="6" font-family="sans-serif" opacity="0.9">camino</text>
-                    <defs>
-                      <radialGradient id="g1" cx="40%" cy="35%" r="65%">
-                        <stop offset="0%" stop-color="hsl(225,60%,82%)"/>
-                        <stop offset="100%" stop-color="hsl(225,50%,68%)"/>
-                      </radialGradient>
-                      <radialGradient id="g2" cx="40%" cy="35%" r="65%">
-                        <stop offset="0%" stop-color="hsl(248,60%,78%)"/>
-                        <stop offset="100%" stop-color="hsl(248,50%,65%)"/>
-                      </radialGradient>
-                    </defs>
-                  </svg>
-                </div>
-                <!-- Scenarios -->
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(116,141,234,0.12);border-radius:12px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#748DEA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                    <p style="font-size:11px;font-weight:500;color:#2a2a4a;">Trabajo</p>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(157,161,213,0.10);border-radius:12px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA1D5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <p style="font-size:11px;font-weight:500;color:#2a2a4a;">Mudanza</p>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(201,127,174,0.10);border-radius:12px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A0AE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    <p style="font-size:11px;font-weight:500;color:#2a2a4a;">Relación</p>
-                  </div>
-                </div>
-              </div>
+        <!-- Prototipo en vivo: iframe con la app real desplegada en Vercel -->
+        <div class="anim-ready" style="display:flex;flex-direction:column;align-items:center;gap:var(--space-12);margin-bottom:var(--space-64);">
+          <div class="ky-phone-live" style="position:relative;width:100%;max-width:260px;aspect-ratio:9/19.5;border-radius:36px;border:7px solid rgba(20,15,35,0.90);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.10);background:#000;">
+            <div class="ky-phone-live__notch" aria-hidden="true" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:82px;height:22px;background:#000;border-radius:0 0 14px 14px;z-index:5;"></div>
+            <div class="ky-phone-live__screen" style="position:absolute;inset:0;overflow:hidden;">
+              <iframe
+                src="https://kyros-five.vercel.app/"
+                title="KYROS — App en vivo"
+                loading="lazy"
+                style="width:390px;height:845px;border:0;transform-origin:top left;display:block;background:#fff;"
+                allow="clipboard-read; clipboard-write"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">Dashboard · Tus 5 números</p>
           </div>
-
-          <!-- Pantalla 2: Mentor chat -->
-          <div>
-            <div class="kyros-phone-frame" style="max-width:240px;">
-              <div class="kyros-phone-notch" aria-hidden="true"></div>
-              <div class="kyros-phone-screen" style="background:#faf8fc;min-height:500px;padding:48px 14px 20px;">
-                <!-- Header mentor -->
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(0,0,0,0.06);">
-                  <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,hsl(16,100%,73%),hsl(225,64%,67%));display:flex;align-items:center;justify-content:center;font-size:16px;color:white;">✦</div>
-                  <div>
-                    <p style="font-size:13px;font-weight:600;color:#1a1a2e;font-family:'Plus Jakarta Sans',sans-serif;">KYROS mentor</p>
-                    <p style="font-size:9px;color:#22C55E;">● Disponible hoy</p>
-                  </div>
-                </div>
-                <!-- Chat -->
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div class="mentor-bubble mentor-bubble--mentor" style="font-size:11px;">
-                    Hola Fer, qué gusto saludarte.<br/><br/>Soy KYROS. Tu naturaleza analítica y profunda —número de camino 7— te abre puertas únicas.<br/><br/>¿Qué decisión profesional necesita claridad hoy?
-                  </div>
-                  <div class="mentor-bubble mentor-bubble--user" style="font-size:11px;">
-                    Estoy dudando si aceptar un nuevo proyecto o seguir enfocada en el actual.
-                  </div>
-                  <div class="mentor-bubble mentor-bubble--mentor" style="font-size:11px;">
-                    Tu 7 de camino valora la profundidad sobre la cantidad. Dispersarte puede costarte más de lo que suma. ¿Qué te genera más resonancia interna, no más miedo externo?
-                  </div>
-                  <!-- Typing indicator -->
-                  <div style="display:flex;gap:5px;padding:8px 12px;background:rgba(255,255,255,0.92);border-radius:14px;border-bottom-left-radius:4px;width:fit-content;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-                    <span style="width:5px;height:5px;border-radius:50%;background:hsl(16,100%,73%);opacity:0.7;animation:pulse 1s ease-in-out infinite;"></span>
-                    <span style="width:5px;height:5px;border-radius:50%;background:hsl(16,100%,73%);opacity:0.7;animation:pulse 1s ease-in-out 0.2s infinite;"></span>
-                    <span style="width:5px;height:5px;border-radius:50%;background:hsl(16,100%,73%);opacity:0.7;animation:pulse 1s ease-in-out 0.4s infinite;"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">mentor IA · chat personalizado</p>
-          </div>
-
-          <!-- Pantalla 3: Guardado / Códex -->
-          <div>
-            <div class="kyros-phone-frame" style="max-width:240px;">
-              <div class="kyros-phone-notch" aria-hidden="true"></div>
-              <div class="kyros-phone-screen" style="background:#faf8fc;min-height:500px;padding:48px 16px 20px;">
-                <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:#1a1a2e;margin-bottom:2px;">Guardado</p>
-                <p style="font-size:10px;color:#aaa;margin-bottom:20px;">Tu Códex personal</p>
-                <!-- Saved consultations -->
-                <div style="display:flex;flex-direction:column;gap:10px;">
-                  <div style="padding:14px;background:white;border-radius:14px;border-left:3px solid hsl(225,64%,67%);box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                      <span style="font-size:9px;color:#3A4FAF;text-transform:uppercase;letter-spacing:0.06em;">Trabajo · 14 abr</span>
-                    </div>
-                    <p style="font-size:11px;color:#2a2a4a;line-height:1.5;">Tu 7 de camino valora la profundidad sobre la cantidad. Dispersarte puede costarte más de lo que suma.</p>
-                  </div>
-                  <div style="padding:14px;background:white;border-radius:14px;border-left:3px solid hsl(340,27%,71%);box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                      <span style="font-size:9px;color:#7A3A62;text-transform:uppercase;letter-spacing:0.06em;">Relación · 10 abr</span>
-                    </div>
-                    <p style="font-size:11px;color:#2a2a4a;line-height:1.5;">Tu alma 5 desea libertad incluso dentro del amor. Es importante que la otra persona respete tu espacio de movimiento.</p>
-                  </div>
-                  <div style="padding:14px;background:white;border-radius:14px;border-left:3px solid #9DA1D5;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                      <span style="font-size:9px;color:#4A529A;text-transform:uppercase;letter-spacing:0.06em;">Mudanza · 3 abr</span>
-                    </div>
-                    <p style="font-size:11px;color:#2a2a4a;line-height:1.5;">Tus patrones de vida pasada buscan libertad de movimiento. El nuevo entorno que contemplas se alinea con esa energía.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p style="text-align:center;margin-top:var(--space-16);font-size:var(--text-small);color:var(--color-text-muted);">Guardado · Tu Códex personal</p>
-          </div>
-
+          <a href="https://kyros-five.vercel.app/" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-muted);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;">
+            Abrir prototipo en pestaña nueva ↗
+          </a>
         </div>
 
+        <script>
+          (function(){
+            function scaleKyrosLive(){
+              document.querySelectorAll('.ky-phone-live').forEach(function(frame){
+                var screen = frame.querySelector('.ky-phone-live__screen');
+                var iframe = frame.querySelector('iframe');
+                if(!screen || !iframe) return;
+                var w = screen.clientWidth;
+                var h = screen.clientHeight;
+                if(w <= 0 || h <= 0) return;
+                var baseW = 390;
+                var scale = w / baseW;
+                iframe.style.width = baseW + 'px';
+                iframe.style.height = (h / scale) + 'px';
+                iframe.style.transform = 'scale(' + scale + ')';
+              });
+            }
+            if(document.readyState === 'loading'){
+              document.addEventListener('DOMContentLoaded', scaleKyrosLive);
+            } else {
+              scaleKyrosLive();
+            }
+            window.addEventListener('load', scaleKyrosLive);
+            window.addEventListener('resize', scaleKyrosLive);
+          })();
+        </script>
+
         <!-- Key features -->
-        <div class="grid grid-3 anim-ready" style="gap:var(--space-20);margin-top:var(--space-64);" data-stagger="0.1">
+        <div class="grid grid-3 anim-ready" style="gap:var(--space-20);" data-stagger="0.1">
 
           <div class="ux-decision anim-ready">
             <h3 class="ux-decision__title">Una consulta por día</h3>
             <p class="ux-decision__text">
-              El mentor se bloquea hasta el día siguiente después de cada consulta. Genera escasez ética: la respuesta de hoy vale más porque es única, y el usuario tiene un motivo real para volver mañana.
+              El mentor se bloquea hasta el día siguiente. Es escasez ética: la respuesta de hoy vale más porque es única, y mañana hay un motivo real para volver.
             </p>
           </div>
 
           <div class="ux-decision anim-ready anim-delay-1">
             <h3 class="ux-decision__title">Respuestas que te conocen</h3>
             <p class="ux-decision__text">
-              El mentor no responde igual a todos. Cada saludo y cada consejo están condicionados por tus números específicos. Número 7 de camino recibe orientación diferente al número 3, incluso ante la misma pregunta.
+              Cada saludo y cada consejo se calibran según tus números. Un camino 7 recibe orientación distinta a un camino 3, aun ante la misma pregunta.
             </p>
           </div>
 
           <div class="ux-decision anim-ready anim-delay-2">
             <h3 class="ux-decision__title">El Códex personal</h3>
             <p class="ux-decision__text">
-              Las consultas guardadas construyen un diario de sabiduría acumulada. Dejar la app significaría perder ese historial. Cuanto más se usa, más valioso se vuelve.
+              Cada consulta guardada alimenta un diario de sabiduría acumulada. Cuanto más se usa, más valiosa se vuelve la app.
             </p>
           </div>
 

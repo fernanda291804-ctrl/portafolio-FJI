@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sobre Fernanda Jaimes — UX/UI Designer y Diseñadora Industrial con Maestría en Diseño de Experiencia Digital. Especializada en salud, educación y fintech." />
+  <meta name="description" content="Sobre Fernanda Jaimes — UX/UI Designer venida del diseño industrial. Máster en Experiencias Digitales, BAU Barcelona. Diseño desde la alquimia: investigación profunda que se transmuta en interfaces humanas." />
   <meta name="author" content="Fernanda Jaimes" />
   <title>Sobre mí · Fernanda Jaimes</title>
 
@@ -19,61 +19,66 @@
   <link rel="stylesheet" href="css/animations.css" />
 
   <style>
-    /* Page-specific styles */
+    /* ════════════════════════════════════════════════════════
+       SOBRE MÍ — page-specific styles
+       Hereda el lenguaje del inicio: blobs aurora, tipografía
+       Marcellus + Plus Jakarta, misma paleta de tokens.
+       Sin cápsulas fuera de botones. Sin emojis.
+       ════════════════════════════════════════════════════════ */
+
     .sobre-mi-page {
       min-height: 100vh;
       padding-top: clamp(120px, 14vh, 160px);
       padding-bottom: clamp(96px, 12vw, 160px);
-      background: var(--color-white);
+      background: #FAFAFC;
       position: relative;
       overflow: hidden;
     }
 
-    /* Ambient blobs */
+    /* ── Ambient blobs (mismo tratamiento que el inicio) ──── */
     .sobre-mi-page-blobs {
       position: absolute;
       inset: 0;
       pointer-events: none;
+      z-index: 0;
     }
-
     .sobre-mi-page-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(100px);
     }
-
     .sobre-mi-page-blob--1 {
       width: clamp(350px, 45vw, 680px);
       height: clamp(350px, 45vw, 680px);
-      background: rgba(123, 94, 167, 0.08);
+      background: rgba(123, 94, 167, 0.14);
       top: -80px;
       right: -60px;
+      animation: blobFloat1 18s ease-in-out infinite;
     }
-
     .sobre-mi-page-blob--2 {
       width: clamp(280px, 36vw, 540px);
       height: clamp(280px, 36vw, 540px);
-      background: rgba(74, 144, 217, 0.07);
-      bottom: 5%;
+      background: rgba(74, 144, 217, 0.10);
+      bottom: 8%;
       left: -40px;
+      animation: blobFloat2 20s ease-in-out infinite;
     }
-
     .sobre-mi-page-blob--3 {
-      width: clamp(200px, 26vw, 400px);
-      height: clamp(200px, 26vw, 400px);
-      background: rgba(232, 107, 160, 0.05);
-      top: 45%;
-      left: 30%;
+      width: clamp(200px, 26vw, 420px);
+      height: clamp(200px, 26vw, 420px);
+      background: rgba(232, 107, 160, 0.08);
+      top: 42%;
+      left: 38%;
+      animation: blobFloat3 22s ease-in-out infinite;
     }
 
-    /* Page header */
+    /* ── Page eyebrow header ──────────────────────────────── */
     .sobre-mi-page__header {
       display: flex;
       align-items: center;
       gap: var(--space-24);
-      margin-bottom: clamp(64px, 8vw, 96px);
+      margin-bottom: clamp(48px, 6vw, 72px);
     }
-
     .sobre-mi-page__eyebrow {
       font-size: var(--text-label);
       font-weight: var(--weight-medium);
@@ -81,12 +86,424 @@
       text-transform: uppercase;
       color: var(--color-violet-aurora);
     }
-
     .sobre-mi-page__divider {
       flex: 1;
       height: 1px;
       background: var(--gradient-aurora);
-      opacity: 0.2;
+      opacity: 0.22;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       HERO — Foto + bio (layout 2 columnas)
+       ════════════════════════════════════════════════════════ */
+    .sm-hero {
+      display: grid;
+      grid-template-columns: minmax(240px, 340px) 1fr;
+      gap: clamp(40px, 6vw, 88px);
+      align-items: start;
+      margin-bottom: clamp(96px, 13vw, 160px);
+    }
+
+    /* ── Foto placeholder ──────────────────────────────────── */
+    .sm-hero__photo-wrap {
+      position: relative;
+      padding-top: 8px;
+    }
+
+    .sm-hero__photo {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg,
+          rgba(123, 94, 167, 0.10) 0%,
+          rgba(74, 144, 217, 0.10) 40%,
+          rgba(232, 107, 160, 0.10) 100%);
+      border: 1px solid rgba(123, 94, 167, 0.14);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 20px 48px rgba(123, 94, 167, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* Si luego pegas <img>, que ocupe toda el área */
+    .sm-hero__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sm-hero__photo-placeholder {
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: var(--weight-medium);
+      padding: var(--space-20);
+      line-height: 1.7;
+    }
+    .sm-hero__photo-placeholder svg {
+      display: block;
+      margin: 0 auto var(--space-12);
+      opacity: 0.55;
+    }
+
+    /* Caption bajo la foto */
+    .sm-hero__photo-caption {
+      margin-top: var(--space-16);
+      font-size: 12px;
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    /* ── Bio column ────────────────────────────────────────── */
+    .sm-hero__bio {
+      padding-top: var(--space-8);
+    }
+
+    .sm-hero__name {
+      font-family: var(--font-heading);
+      font-size: clamp(44px, 6vw, 84px);
+      font-weight: var(--weight-regular);
+      letter-spacing: -0.025em;
+      line-height: 1;
+      margin-bottom: clamp(24px, 3vw, 40px);
+      background: var(--gradient-aurora);
+      background-size: 250% 250%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientDrift 8s ease infinite;
+    }
+
+    .sm-hero__text {
+      font-size: var(--text-body);
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-20);
+      max-width: 58ch;
+    }
+
+    .sm-hero__text--lead {
+      font-size: var(--text-body-lg);
+      color: var(--color-text-primary);
+      line-height: 1.7;
+    }
+
+    .sm-hero__mission {
+      font-family: var(--font-heading);
+      font-size: clamp(18px, 1.9vw, 24px);
+      color: var(--color-violet-aurora);
+      line-height: 1.5;
+      margin-top: var(--space-28);
+      margin-bottom: var(--space-40);
+      padding-left: var(--space-24);
+      border-left: 2px solid rgba(123, 94, 167, 0.28);
+    }
+
+    .sm-hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-12);
+    }
+
+    /* ════════════════════════════════════════════════════════
+       TRAYECTORIA PROFESIONAL — timeline editorial
+       Sin cápsulas. Líneas finas y tipografía Marcellus.
+       ════════════════════════════════════════════════════════ */
+    .sm-trayectoria {
+      margin-bottom: clamp(96px, 13vw, 160px);
+    }
+
+    .sm-section-head {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-20);
+      margin-bottom: clamp(40px, 5vw, 64px);
+      padding-bottom: var(--space-20);
+      border-bottom: 1px solid rgba(123, 94, 167, 0.14);
+    }
+    .sm-section-head__eyebrow {
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--color-violet-aurora);
+    }
+    .sm-section-head__title {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: var(--weight-regular);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--color-text-primary);
+    }
+    .sm-section-head__meta {
+      margin-left: auto;
+      font-size: var(--text-label);
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Timeline list ─────────────────────────────────────── */
+    .sm-timeline {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sm-timeline__item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: clamp(24px, 4vw, 56px);
+      padding: clamp(24px, 3vw, 36px) 0;
+      border-bottom: 1px solid rgba(123, 94, 167, 0.10);
+      position: relative;
+      transition: background 0.3s ease;
+    }
+    .sm-timeline__item:last-child {
+      border-bottom: none;
+    }
+
+    .sm-timeline__item::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: clamp(32px, 3.5vw, 44px);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-violet-aurora);
+      opacity: 0.55;
+    }
+
+    .sm-timeline__dates {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sm-timeline__range {
+      font-size: 12px;
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-violet-aurora);
+    }
+    .sm-timeline__status {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .sm-timeline__body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sm-timeline__role {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 2vw, 26px);
+      font-weight: var(--weight-regular);
+      color: var(--color-text-primary);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .sm-timeline__company {
+      font-size: var(--text-small);
+      font-weight: var(--weight-medium);
+      color: var(--color-violet-aurora);
+      letter-spacing: 0.02em;
+    }
+    .sm-timeline__desc {
+      margin-top: var(--space-8);
+      font-size: var(--text-small);
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+      max-width: 62ch;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       ALCHEMIST — "The Alchemist behind the screen"
+       Grid de 4 tarjetas suaves, sin cápsula, con línea sutil
+       de color aurora que las distingue entre sí.
+       ════════════════════════════════════════════════════════ */
+    .sm-alchemist {
+      margin-bottom: 0;
+    }
+
+    .sm-alchemist__intro {
+      margin-bottom: clamp(40px, 5vw, 56px);
+      max-width: 60ch;
+      font-size: var(--text-body);
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+    }
+
+    .sm-alchemist-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(16px, 2vw, 24px);
+    }
+
+    .sm-alchemist-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(123, 94, 167, 0.12);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 2.4vw, 32px);
+      position: relative;
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sm-alchemist-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--color-violet-aurora));
+      opacity: 0.85;
+    }
+
+    .sm-alchemist-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(123, 94, 167, 0.12);
+      border-color: rgba(123, 94, 167, 0.22);
+    }
+
+    .sm-alchemist-card__kicker {
+      font-size: 10px;
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--color-violet-aurora));
+      margin-bottom: var(--space-16);
+      opacity: 0.8;
+    }
+
+    .sm-alchemist-card__title {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 1.9vw, 24px);
+      font-weight: var(--weight-regular);
+      color: var(--color-text-primary);
+      line-height: 1.2;
+      margin-bottom: var(--space-12);
+      letter-spacing: -0.01em;
+    }
+
+    .sm-alchemist-card__desc {
+      font-size: var(--text-small);
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+      flex: 1;
+    }
+
+    /* Hover media overlay: la imagen cubre toda la tarjeta y el contenido se oculta
+       - .sm-alchemist-card__content contiene kicker/title/desc
+       - .sm-alchemist-card__media es un overlay absoluto que aparece al hover
+    */
+    .sm-alchemist-card {
+      /* asegurar contexto para el overlay */
+      position: relative;
+    }
+
+    .sm-alchemist-card__content {
+      position: relative;
+      z-index: 1;
+      transition: opacity 0.36s ease, transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .sm-alchemist-card__media {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      border-radius: inherit;
+      overflow: hidden;
+      background: rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none; /* permitir hover pasar al contenedor */
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 0.42s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sm-alchemist-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* Al hacer hover en la tarjeta, ocultamos el contenido y mostramos la imagen */
+    .sm-alchemist-card:hover .sm-alchemist-card__content {
+      opacity: 0;
+      transform: scale(0.995);
+    }
+
+    .sm-alchemist-card:hover .sm-alchemist-card__media {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    /* Accent per-card — aurora spectrum */
+    .sm-alchemist-card--1 { --card-accent: #7B5EA7; }
+    .sm-alchemist-card--2 { --card-accent: #E86BA0; }
+    .sm-alchemist-card--3 { --card-accent: #4A90D9; }
+    .sm-alchemist-card--4 { --card-accent: #2BBFCF; }
+
+    /* ════════════════════════════════════════════════════════
+       RESPONSIVE
+       ════════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .sm-hero {
+        grid-template-columns: 1fr;
+        gap: var(--space-40);
+      }
+      .sm-hero__photo-wrap {
+        max-width: 320px;
+        margin-inline: auto;
+      }
+      .sm-alchemist-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .sm-timeline__item {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+      .sm-timeline__item::before { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .sm-section-head {
+        flex-wrap: wrap;
+        gap: var(--space-8);
+      }
+      .sm-section-head__meta {
+        margin-left: 0;
+        width: 100%;
+      }
+      .sm-alchemist-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -137,37 +554,55 @@
 
       <div class="container" style="position:relative;z-index:2;">
 
-        <!-- Page header -->
+        <!-- Page header (eyebrow + divider + meta) -->
         <div class="sobre-mi-page__header anim-line">
           <span class="sobre-mi-page__eyebrow">Sobre mí</span>
           <div class="sobre-mi-page__divider" aria-hidden="true"></div>
-          <span class="label" style="color:var(--color-text-muted);">UX/UI Designer · Máster BAU Barcelona</span>
+          <span class="label" style="color:var(--color-text-muted);">
+            Product Designer · Máster BAU Barcelona
+          </span>
         </div>
 
-        <!-- Grid: bio + skills -->
-        <div class="sobre-mi-grid">
+        <!-- ═══════════════════════════════════════════════════
+             HERO — Foto + bio
+             ═══════════════════════════════════════════════════ -->
+        <div class="sm-hero">
+
+          <!-- Foto placeholder -->
+          <div class="sm-hero__photo-wrap">
+            <div class="sm-hero__photo" role="img" aria-label="Retrato de Fernanda Jaimes, UX/UI Designer">
+              <!-- Foto de perfil: usa archivo existente en assets/images/sobre-mi/ -->
+              <img
+                src="./assets/images/sobre-mi/Portafolio_fer_foto.png"
+                alt="Fernanda Jaimes, UX/UI Designer"
+                class="sm-hero__img"
+                loading="lazy"
+              />
+            </div>
+            <p class="sm-hero__photo-caption">Barcelona · 2026</p>
+          </div>
 
           <!-- Bio column -->
-          <div class="sobre-mi-bio">
-            <h1 id="sobre-mi-title" class="sobre-mi-name anim-rise">
+          <div class="sm-hero__bio">
+            <h1 id="sobre-mi-title" class="sm-hero__name anim-rise">
               Hola, soy Fer
             </h1>
 
             <div class="anim-ready anim-delay-2">
-              <p class="sobre-mi-text sobre-mi-text--lead">
-                Como diseñadora industrial, entendí pronto que aunque hoy habitamos un mundo digital, las personas seguimos buscando lo mismo: soluciones que nos devuelvan el bienestar y la simplicidad.
+              <p class="sm-hero__text sm-hero__text--lead">
+                Como diseñadora industrial especializada en producto, entiendo que sin importar el soporte —físico o digital— la prioridad humana se mantiene intacta: bienestar y simplicidad.
               </p>
-              <p class="sobre-mi-text">
-                Creo en la alquimia del diseño: ese punto exacto donde la investigación profunda se materializa en algo que simplifica la vida. Traduzco mi mentalidad de creadora al ecosistema digital, construyendo interfaces más humanas y coherentes.
+              <p class="sm-hero__text">
+                Creo en la <em>alquimia</em> del diseño: ese punto exacto donde la investigación profunda se transmuta en interfaces coherentes.
               </p>
-              <p class="sobre-mi-text sobre-mi-text--mission">
+              <p class="sm-hero__mission">
                 Mi misión es descifrar lo complejo para diseñar una vida diaria más fácil.
               </p>
             </div>
 
-            <div class="anim-ready anim-delay-3">
-              <a href="assets/cv-fernanda-jaimes.pdf"
-                 class="contact-pill sobre-mi-cv"
+            <div class="sm-hero__actions anim-ready anim-delay-3">
+              <a href="./assets/Documents/Fernanda Jaimes:diseñadora ux:ui.pdf"
+                 class="contact-pill"
                  download
                  aria-label="Descargar CV completo de Fernanda Jaimes">
                 Descargar CV
@@ -175,57 +610,184 @@
                   <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
+              <a href="mailto:fernanda291804@gmail.com"
+                 class="contact-pill"
+                 aria-label="Enviar email a Fernanda Jaimes">
+                Escríbeme
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M2 4l6 5 6-5M2 4h12v9H2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
           </div>
+        </div><!-- /.sm-hero -->
 
-          <!-- Skills column -->
-          <div class="sobre-mi-skills anim-ready anim-delay-2">
 
-            <div class="skill-cat">
-              <p class="skill-cat__title">Research</p>
-              <div class="skill-pills">
-                <span class="skill-pill">Entrevistas</span>
-                <span class="skill-pill">User Testing</span>
-                <span class="skill-pill">Journey Maps</span>
-                <span class="skill-pill">Desk Research</span>
-                <span class="skill-pill">Personas</span>
+        <!-- ═══════════════════════════════════════════════════
+             TRAYECTORIA PROFESIONAL — timeline
+             ═══════════════════════════════════════════════════ -->
+        <section class="sm-trayectoria anim-ready anim-delay-2" aria-labelledby="trayectoria-title">
+
+          <div class="sm-section-head">
+            <span class="sm-section-head__eyebrow">01</span>
+            <h2 id="trayectoria-title" class="sm-section-head__title">
+              Trayectoria profesional
+            </h2>
+            <span class="sm-section-head__meta">4 etapas · 2022 — hoy</span>
+          </div>
+
+          <div class="sm-timeline" role="list">
+
+            <!-- 1 · Máster BAU -->
+            <article class="sm-timeline__item" role="listitem">
+              <div class="sm-timeline__dates">
+                <span class="sm-timeline__range">Oct 2024 — actual</span>
+                <span class="sm-timeline__status">En curso</span>
               </div>
-            </div>
-
-            <div class="skill-cat">
-              <p class="skill-cat__title">Diseño Visual</p>
-              <div class="skill-pills">
-                <span class="skill-pill">Figma</span>
-                <span class="skill-pill">Design Systems</span>
-                <span class="skill-pill">Prototipado</span>
-                <span class="skill-pill">Motion</span>
-                <span class="skill-pill">Accesibilidad</span>
+              <div class="sm-timeline__body">
+                <h3 class="sm-timeline__role">
+                  Máster en Experiencias Digitales (UX/UI)
+                </h3>
+                <p class="sm-timeline__company">BAU Centro Universitario de Diseño · Barcelona</p>
+                <p class="sm-timeline__desc">
+                  Especialización en diseño estratégico y metodologías avanzadas de experiencia de usuario. Investigación, sistemas de diseño y producto digital aplicado.
+                </p>
               </div>
-            </div>
+            </article>
 
-            <div class="skill-cat">
-              <p class="skill-cat__title">Herramientas</p>
-              <div class="skill-pills">
-                <span class="skill-pill">FigJam</span>
-                <span class="skill-pill">Notion</span>
-                <span class="skill-pill">Maze</span>
-                <span class="skill-pill">Hotjar</span>
-                <span class="skill-pill">Miro</span>
+            <!-- 2 · Metrics -->
+            <article class="sm-timeline__item" role="listitem">
+              <div class="sm-timeline__dates">
+                <span class="sm-timeline__range">Feb 2024 — Sep 2025</span>
+                <span class="sm-timeline__status">1 año 8 meses</span>
               </div>
-            </div>
+              <div class="sm-timeline__body">
+                <h3 class="sm-timeline__role">
+                  Project Manager &amp; Digital Experience Designer
+                </h3>
+                <p class="sm-timeline__company">Metrics</p>
+                <p class="sm-timeline__desc">
+                  Gestión integral de proyectos de marketing digital para 8 clientes simultáneos. Responsable de la estrategia de contenido, coordinación de equipos creativos y aseguramiento de la coherencia visual y narrativa. Mi enfoque fue optimizar la comunicación digital para maximizar el impacto y la conexión con la audiencia.
+                </p>
+              </div>
+            </article>
 
-            <div class="skill-cat">
-              <p class="skill-cat__title">Código</p>
-              <div class="skill-pills">
-                <span class="skill-pill">HTML5</span>
-                <span class="skill-pill">CSS Vanilla</span>
-                <span class="skill-pill">JavaScript</span>
-                <span class="skill-pill">API IA</span>
+            <!-- 3 · Wiwi UX Designer -->
+            <article class="sm-timeline__item" role="listitem">
+              <div class="sm-timeline__dates">
+                <span class="sm-timeline__range">Ene 2023 — Jun 2023</span>
+                <span class="sm-timeline__status">6 meses</span>
               </div>
-            </div>
+              <div class="sm-timeline__body">
+                <h3 class="sm-timeline__role">
+                  UX Designer
+                </h3>
+                <p class="sm-timeline__company">Wiwi</p>
+                <p class="sm-timeline__desc">
+                 Responsable del diseño end-to-end de una Super App de movilidad para la ciudad de León, México. Ejecuté un rol híbrido como UX Researcher y UX Writer, asegurando que tanto la lógica del flujo como la narrativa de la interfaz resolvieran problemas reales de transporte urbano mediante pruebas constantes con usuarios.
+                </p>
+              </div>
+            </article>
+
+            <!-- 4 · Wiwi Practicante -->
+            <article class="sm-timeline__item" role="listitem">
+              <div class="sm-timeline__dates">
+                <span class="sm-timeline__range">Ago 2022 — Dic 2022</span>
+                <span class="sm-timeline__status">5 meses</span>
+              </div>
+              <div class="sm-timeline__body">
+                <h3 class="sm-timeline__role">
+                  UX Designer — Prácticas
+                </h3>
+                <p class="sm-timeline__company">Wiwi</p>
+                <p class="sm-timeline__desc">
+                Senté las bases del ecosistema de movilidad mediante investigación profunda: entrevistas, encuestas y creación de arquetipos de usuario. Traduje estos hallazgos en arquitecturas de información, flujos de navegación y wireframes de baja a alta fidelidad.
+                </p>
+              </div>
+            </article>
 
           </div>
-        </div><!-- /sobre-mi-grid -->
+        </section>
+
+
+        <!-- ═══════════════════════════════════════════════════
+             La persona detrás de la diseñadora
+             ═══════════════════════════════════════════════════ -->
+        <section class="sm-alchemist anim-ready anim-delay-2" aria-labelledby="alchemist-title">
+
+          <div class="sm-section-head">
+            <span class="sm-section-head__eyebrow">02</span>
+            <h2 id="alchemist-title" class="sm-section-head__title">
+              La persona detrás de la diseñadora
+            </h2>
+            <span class="sm-section-head__meta">Más sobre mí</span>
+          </div>
+
+          <p class="sm-alchemist__intro">
+            Si quieres conocerme un poquito más...
+          </p>
+
+          <div class="sm-alchemist-grid">
+
+            <article class="sm-alchemist-card sm-alchemist-card--1">
+              <!-- Hover media overlay: la imagen cubrirá toda la tarjeta al pasar el cursor -->
+              <div class="sm-alchemist-card__media" aria-hidden="true">
+                <img src="./assets/images/sobre-mi/Portafolio_fer_foto.png" alt="Foto relacionada" loading="lazy" />
+              </div>
+
+              <div class="sm-alchemist-card__content">
+                <span class="sm-alchemist-card__kicker">Raíces</span>
+                <h3 class="sm-alchemist-card__title">Soy mexicana</h3>
+                <p class="sm-alchemist-card__desc">
+                  Nunca olvido de dónde vengo. La calidez, la alegría y la perseverancia me acompañan a donde quiera que vaya; son el motor que me permite conectar de verdad con las personas a través de mi trabajo como diseñadora.
+                </p>
+              </div>
+            </article>
+
+            <article class="sm-alchemist-card sm-alchemist-card--2">
+              <div class="sm-alchemist-card__media" aria-hidden="true">
+                <img src="./assets/images/sobre-mi/snow.JPG" alt="Foto relacionada" loading="lazy" />
+              </div>
+
+              <div class="sm-alchemist-card__content">
+                <span class="sm-alchemist-card__kicker">Casa</span>
+                <h3 class="sm-alchemist-card__title">Cat mom ×3</h3>
+                <p class="sm-alchemist-card__desc">
+                 Mis tres gatos son mis amores más grandes. Observarlos me recuerda que hasta el detalle más pequeño tiene el poder de transformar nuestra experiencia diaria.
+                </p>
+              </div>
+            </article>
+
+            <article class="sm-alchemist-card sm-alchemist-card--3">
+              <div class="sm-alchemist-card__media" aria-hidden="true">
+                <img src="./assets/images/sobre-mi/gym.png" alt="Foto relacionada" loading="lazy" />
+              </div>
+
+              <div class="sm-alchemist-card__content">
+                <span class="sm-alchemist-card__kicker">Cuerpo</span>
+                <h3 class="sm-alchemist-card__title">Atleta en movimiento</h3>
+                <p class="sm-alchemist-card__desc">
+                  Amo los deportes. La disciplina del gimnasio es lo que mantiene mi mente enfocada y con energía para crear.
+                </p>
+              </div>
+            </article>
+
+            <article class="sm-alchemist-card sm-alchemist-card--4">
+              <div class="sm-alchemist-card__media" aria-hidden="true">
+                <img src="./assets/images/sobre-mi/rituals.jpeg" alt="Foto relacionada" loading="lazy" />
+              </div>
+
+              <div class="sm-alchemist-card__content">
+                <span class="sm-alchemist-card__kicker">Mente</span>
+                <h3 class="sm-alchemist-card__title">Exploradora de lo invisible</h3>
+                <p class="sm-alchemist-card__desc">
+                  Llevo años estudiando numerología y temas esotéricos. Creo firmemente que todo es energía y que nos relacionamos desde patrones previamente construidos.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </section>
 
       </div>
     </section>
