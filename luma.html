@@ -441,23 +441,11 @@
 
   <main id="main">
 
-    <!-- ── WIP Band (dentro de main, bajo el nav fijo) ── -->
-    <div class="luma-wip-band" role="note" aria-label="Estado del proyecto" style="padding-top:68px;">
-      <div class="luma-wip-inner">
-        <span class="luma-wip-pulse" aria-hidden="true"></span>
-        <p class="luma-wip-text">TFM en proceso · Máster UX/UI BAU Barcelona</p>
-        <div class="luma-progress-bar" aria-label="Progreso del TFM" style="width:100px;flex-shrink:0;">
-          <div class="luma-progress-fill" style="width:78%;"></div>
-        </div>
-        <p style="font-size:var(--text-label);color:#9B7CBF;letter-spacing:0.05em;white-space:nowrap;">78% completado</p>
-      </div>
-    </div>
-
     <!-- ══════════════════════════════════════════════════
          HERO
     ══════════════════════════════════════════════════ -->
     <section class="case-hero" aria-label="Introducción al caso LUMA"
-      style="background:linear-gradient(160deg, #faf8fe 0%, #F1E8FB 40%, #edd4f7 68%, #d8b8ea 100%);">
+      style="background:linear-gradient(180deg, #9B7CBF 0%, #FEC0F9 40%, #F1E8FB 80%, #faf8fe 100%);">
 
       <!-- Blobs decorativos -->
       <div aria-hidden="true">
@@ -561,7 +549,7 @@
     <!-- ══════════════════════════════════════════════════
          01 · EL PROBLEMA
     ══════════════════════════════════════════════════ -->
-    <section class="case-section" style="background:#F2F2F2;" id="desafio" aria-labelledby="desafio-title"><!-- offwhite -->
+    <section class="case-section" style="background:#faf8fe;" id="desafio" aria-labelledby="desafio-title"><!-- offwhite -->
       <div class="container" style="max-width:860px;">
 
         <p class="case-section__number anim-ready">01 — El problema</p>
@@ -762,6 +750,7 @@
         <div class="grid grid-2 anim-ready" style="gap:var(--space-64);align-items:center;">
 
           <!-- Phone: onboarding chat -->
+           
           <div>
             <div class="luma-phone-frame">
               <!-- Reemplazado: imagen con cross-fade hover -->
@@ -796,7 +785,13 @@
               </div>
             </div>
           </div>
-
+<section class="case-section" style="padding-bottom: var(--space-120);">
+  <div class="container">
+      ...
+      <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:white;border-radius:10px;border:1px solid rgba(155,124,191,0.12);margin-top:var(--space-24);">
+         </div>
+  </div>
+</section>
         </div>
 
         <!-- Small script: cross-fade images inside <figure data-fade> on hover/focus/touch -->
@@ -1073,7 +1068,7 @@
       <div class="container" style="max-width:780px;text-align:center;">
 
         <!-- Slot imagen Lumi (nota final) -->
-        <figure class="anim-ready luma-image-slot" style="margin:0 auto var(--space-32);width:180px;height:180px;background:linear-gradient(135deg,#F1E8FB 0%,#FEC0F9 100%);border-radius:50%;border:1px dashed rgba(155,124,191,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;position:relative;padding:var(--space-16);">
+        <figure class="anim-ready luma-image-slot" style="margin:var(--space-40) auto;max-width:480px;">
          <img src="./assets/images/luma/lumi-bienestar.jpeg" alt="lumi tierna">
         </figure>
 

@@ -393,3 +393,15 @@
     filter: none !important;
   }
 }
+
+[data-fade]:hover .fade-base {
+    opacity: 0 !important; /* Desvanece la imagen de Lumi despierta */
+}
+[data-fade]:hover .fade-hover {
+    opacity: 1 !important; /* Muestra a Lumi dormida */
+}
+
+/* Opcional: Mejora el alineamiento para evitar que se muevan las patitas */
+.fade-base, .fade-hover {
+    object-position: bottom center; /* Alinea ambas imágenes a la base */
+}

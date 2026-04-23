@@ -331,15 +331,18 @@
         var sw = screen.offsetWidth;
         var sh = screen.offsetHeight;
         var scale = sw / NATIVE_W;
-        iframe.style.position        = 'absolute';
-        iframe.style.top             = '0';
-        iframe.style.left            = '0';
-        iframe.style.width           = NATIVE_W + 'px';
-        iframe.style.height          = Math.round(sh / scale) + 'px';
-        iframe.style.border          = 'none';
-        iframe.style.display         = 'block';
-        iframe.style.transformOrigin = 'top left';
-        iframe.style.transform       = 'scale(' + scale + ')';
+      iframe.style.position        = 'absolute';
+      iframe.style.top             = '0';
+      iframe.style.left            = '0';
+      iframe.style.width           = NATIVE_W + 'px';
+      /* Usar la altura nativa del diseño (NATIVE_H) y escalarla con transform.
+        Esto evita cálculos dependientes del contenedor que pueden provocar
+        recortes o una altura inesperada al escalar. */
+      iframe.style.height          = NATIVE_H + 'px';
+      iframe.style.border          = 'none';
+      iframe.style.display         = 'block';
+      iframe.style.transformOrigin = 'top left';
+      iframe.style.transform       = 'scale(' + scale + ')';
       });
 
       // ── Comparison slider: set explicit pixel height ────────────
