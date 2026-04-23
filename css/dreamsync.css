@@ -358,9 +358,10 @@ body {
   justify-content: flex-end;
   padding-block: clamp(130px, 18vh, 200px) clamp(64px, 8vh, 100px);
   position: relative;
-  /* Nuevo fondo: degradado lineal (top → bottom) solicitado */
+  /* Fondo: degradado lineal (top → bottom) que iguala la animación
+     de transición desde el home (variables --enter-edge/mid/core de la puerta). */
   background-color: #0F172A; /* fallback */
-  background-image: linear-gradient(180deg, #0F172A 0%, #2A0F40 45%, #581C88 100%);
+  background-image: linear-gradient(180deg, #0F172A 0%, #1E1B4B 45%, #4C319A 100%);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;

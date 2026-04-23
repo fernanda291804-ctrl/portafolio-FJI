@@ -1067,13 +1067,15 @@
 .case-progress--blue   { background: var(--color-blue-mid); }
 .case-progress--teal   { background: var(--color-turquoise); }
 
-/* Case hero */
+/* Case hero — tamaño + layout alineado con .ds-hero (dreamsync) */
 .case-hero {
   position: relative;
-  padding-top: 160px;
-  padding-bottom: var(--space-96);
-  background: var(--color-deep-space);
-  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-block: clamp(130px, 18vh, 200px) clamp(64px, 8vh, 100px);
+  background: var(--color-deep-space); /* fallback; cada proyecto sobreescribe inline */
   overflow: hidden;
 }
 
@@ -1115,7 +1117,7 @@
     #ffffff 100%
   );
   pointer-events: none;
-  z-index: 4;
+  z-index: 1; /* detrás del contenido (que vive en z-index:3) */
 }
 
 .case-hero__image {

@@ -370,14 +370,11 @@
   <main id="main">
 
     <!-- ── HERO ──────────────────────────────────────────────── -->
-    <section class="case-hero" aria-label="Introducción al caso KYROS" style="background:
-      linear-gradient(to bottom,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0) 55%,
-        rgba(255,255,255,0.35) 78%,
-        rgba(255,255,255,0.85) 93%,
-        #ffffff 100%),
-      linear-gradient(135deg,#FBBBA2 0%,#738DE1 100%);">
+    <!-- Gradiente vertical que iguala la transición desde el home
+         (variables --enter-edge → --enter-mid → --enter-core de la puerta):
+         azul periwinkle → lavanda medio → salmón -->
+    <section class="case-hero" aria-label="Introducción al caso KYROS"
+      style="background:linear-gradient(180deg, #738DE1 0%, #A9B3E8 45%, #FBBBA2 100%);">
 
       <div aria-hidden="true">
         <div class="blob" style="width:560px;height:560px;background:#FBBBA2;opacity:0.30;top:-20%;left:-12%;animation:blobFloat1 16s ease-in-out infinite;filter:blur(80px);"></div>
@@ -386,8 +383,9 @@
       </div>
       <div class="grainy-overlay" aria-hidden="true"></div>
 
-      <!-- Fade final sobre blobs → blanco puro para empalmar con la siguiente sección -->
-      <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 55%, rgba(255,255,255,0.95) 88%, #ffffff 100%);pointer-events:none;z-index:4;"></div>
+      <!-- Fade final → blanco puro para empalmar con la siguiente sección.
+           z-index:1 para que quede detrás del contenido. -->
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 55%, rgba(255,255,255,0.95) 88%, #ffffff 100%);pointer-events:none;z-index:1;"></div>
 
       <div class="container" style="position:relative;z-index:3;">
 
