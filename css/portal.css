@@ -6,9 +6,11 @@
 
 /* ── ROOT VARS — Geometría de puertas ─────────────────────── */
 :root {
-  --door-width:  clamp(220px, 22vw, 300px);
-  --door-height: clamp(360px, 36vw, 480px);
-  --door-radius: clamp(280px, 30vw, 440px);
+  --door-width:  clamp(200px, 20vw, 280px);
+  /* Altura responsiva al viewport vertical — evita que las puertas
+     se desborden sobre el título en pantallas cortas (laptops 13"). */
+  --door-height: min(clamp(320px, 32vw, 440px), 52vh);
+  --door-radius: clamp(260px, 28vw, 400px);
 }
 
 /* ============================================================
@@ -213,11 +215,13 @@
   position: relative;
   flex: 1;
   perspective: 1500px;
-  perspective-origin: 50% 55%;
+  perspective-origin: 50% 50%;
   display: flex;
-  align-items: flex-end;          /* antes: center — ahora ancladas abajo */
+  align-items: center;
   justify-content: center;
-  padding-bottom: clamp(40px, 6vh, 90px);
+  /* Empuja ligeramente las puertas hacia abajo del centro óptico
+     para dar aire al título arriba sin que se sientan flotantes */
+  padding-top: clamp(40px, 8vh, 120px);
   z-index: 2;
 }
 
