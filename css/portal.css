@@ -161,7 +161,7 @@
 .portal-room__header {
   position: relative;
   z-index: 3;
-  padding: clamp(48px, 8vh, 96px) var(--padding-x) 0;
+  padding: clamp(20px, 3.5vh, 48px) var(--padding-x) 0;
   text-align: center;
 }
 
@@ -217,6 +217,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: clamp(32px, 5vh, 72px);
   z-index: 2;
 }
 
@@ -1418,98 +1419,72 @@
   z-index: 2;
 }
 
+/* Patrón de "puerta" — mismo lenguaje que las puertas del home:
+   transparente por defecto, sólo texto + borde fino. Al hover, la
+   puerta se "abre" con gradiente aurora del hero. */
 .final-hall__key-tag {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--space-16);
   align-items: center;
-  gap: var(--space-16);
-  padding: 14px 22px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid color-mix(in srgb, var(--color-violet-aurora) 18%, transparent);
-  border-radius: var(--radius-pill);
-  box-shadow:
-    0 3px 14px rgba(123, 94, 167, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+  padding: 20px 26px;
+  background: transparent;
+  border: 1px solid rgba(123, 94, 167, 0.35);
+  border-radius: 14px;
   text-decoration: none;
   color: var(--color-text-primary);
   transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s ease;
+    background 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    color 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
   position: relative;
   overflow: hidden;
 }
 
-.final-hall__key-tag::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-aurora-subtle);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 0;
-}
-
-.final-hall__key-tag:hover {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: color-mix(in srgb, var(--color-violet-aurora) 45%, transparent);
-  transform: translateX(6px) translateY(-2px);
-  box-shadow:
-    0 14px 32px -6px rgba(123, 94, 167, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-}
-
-.final-hall__key-tag:hover::before {
-  opacity: 1;
-}
-
-.final-hall__key-tag-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--gradient-aurora);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 6px 14px rgba(123, 94, 167, 0.28);
-  position: relative;
-  z-index: 1;
+.final-hall__key-tag-eyebrow {
+  grid-column: 1;
+  grid-row: 1;
+  display: block;
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+  transition: color 0.4s ease;
 }
 
 .final-hall__key-tag-label {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
+  grid-column: 1;
+  grid-row: 2;
+  display: block;
+  font-size: 17px;
   font-weight: var(--weight-medium);
-  letter-spacing: 0.01em;
-  flex: 1;
-  min-width: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.final-hall__key-tag-label small {
-  font-size: 11px;
-  font-weight: var(--weight-regular);
-  color: var(--color-text-muted);
-  letter-spacing: 0.04em;
-  margin-top: 3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  letter-spacing: -0.005em;
+  color: inherit;
+  transition: color 0.4s ease;
 }
 
 .final-hall__key-tag-arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
   font-size: 18px;
   color: var(--color-text-muted);
-  flex-shrink: 0;
-  transition: transform 0.3s ease, color 0.3s ease;
-  position: relative;
-  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
+}
+
+/* Hover — secundarios (LinkedIn, CV): borde violeta + flecha activa */
+.final-hall__key-tag:hover {
+  border-color: var(--color-violet-aurora);
+  transform: translateX(4px);
+  box-shadow: 0 10px 28px -12px rgba(123, 94, 167, 0.25);
+}
+
+.final-hall__key-tag:hover .final-hall__key-tag-eyebrow {
+  color: var(--color-violet-aurora);
 }
 
 .final-hall__key-tag:hover .final-hall__key-tag-arrow {
@@ -1648,50 +1623,42 @@
 }
 
 /* ============================================================
-   KEY-TAG PRIMARY — variant con gradiente aurora
+   KEY-TAG PRIMARY — transparente por defecto, aurora holográfico
+   (mismo lenguaje que el hero) al pasar por encima
    ============================================================ */
-.final-hall__key-tag--primary {
-  background: var(--gradient-aurora);
-  background-size: 200% 200%;
-  border-color: transparent;
-  color: var(--color-white);
-  box-shadow:
-    0 10px 28px -6px rgba(123, 94, 167, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.30);
-  animation: gradientDrift 8s ease-in-out infinite;
-}
-
-.final-hall__key-tag--primary::before {
-  display: none;
-}
-
-.final-hall__key-tag--primary .final-hall__key-tag-icon {
-  background: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  color: var(--color-white);
-  box-shadow: none;
-  backdrop-filter: blur(6px);
-}
-
-.final-hall__key-tag--primary .final-hall__key-tag-label {
-  color: var(--color-white);
-}
-
-.final-hall__key-tag--primary .final-hall__key-tag-label small {
-  color: rgba(255, 255, 255, 0.82);        /* ~5:1 on gradient mids — AA large */
-}
-
-.final-hall__key-tag--primary .final-hall__key-tag-arrow {
-  color: var(--color-white);
-  font-size: 20px;
-}
+/* En estado reposo es idéntico al resto — hereda del base.
+   El gradiente sólo aparece en hover, como una "puerta que se abre". */
 
 .final-hall__key-tag--primary:hover {
-  background: var(--gradient-aurora);
-  transform: translateX(6px) translateY(-2px);
+  background: linear-gradient(
+    125deg,
+    #D67FB0 0%,
+    #6FA8E8 28%,
+    #9E85E0 55%,
+    #8D88D8 78%,
+    #E86BA0 100%
+  );
+  background-size: 180% 180%;
+  border-color: transparent;
+  color: var(--color-white);
+  transform: translateX(4px) translateY(-2px);
   box-shadow:
-    0 18px 40px -8px rgba(123, 94, 167, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.30);
+    0 18px 40px -10px rgba(123, 94, 167, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation: gradientDrift 10s ease-in-out infinite;
+}
+
+.final-hall__key-tag--primary:hover .final-hall__key-tag-eyebrow {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.final-hall__key-tag--primary:hover .final-hall__key-tag-label {
+  color: var(--color-white);
+}
+
+.final-hall__key-tag--primary:hover .final-hall__key-tag-arrow {
+  color: var(--color-white);
+  transform: translateX(4px);
 }
 
 /* ── Mobile ──────────────────────────────────────────────── */
@@ -1730,12 +1697,10 @@
 
 @media (max-width: 520px) {
   .final-hall__key-tag {
-    padding: 12px 16px;
-    gap: var(--space-12);
+    padding: 16px 20px;
   }
 
-  .final-hall__key-tag-icon {
-    width: 36px;
-    height: 36px;
+  .final-hall__key-tag-label {
+    font-size: 16px;
   }
 }
