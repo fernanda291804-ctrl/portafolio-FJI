@@ -46,11 +46,11 @@
   animation: blobFloat1 14s ease-in-out infinite;
 }
 
-/* Azul cielo — arriba derecha */
+/* Azul periwinkle — arriba derecha · tono cercano al #4A90D9 de marca */
 .holo-blob--2 {
   width: clamp(380px, 50vw, 700px);
   height: clamp(380px, 50vw, 700px);
-  background: rgba(150, 200, 255, 0.88);
+  background: rgba(165, 198, 236, 0.88);
   filter: blur(50px);
   top: -80px;
   right: -80px;
@@ -68,22 +68,22 @@
   animation: blobFloat3 20s ease-in-out infinite;
 }
 
-/* Azul lavanda — derecha media (reemplaza el teal) */
+/* Turquesa pastel — derecha media · trae el #2BBFCF de marca al hero */
 .holo-blob--4 {
   width: clamp(280px, 36vw, 520px);
   height: clamp(280px, 36vw, 520px);
-  background: rgba(180, 175, 240, 0.82);
-  filter: blur(58px);
+  background: rgba(140, 220, 228, 0.78);
+  filter: blur(60px);
   top: 38%;
   right: -50px;
   animation: blobFloat4 23s ease-in-out infinite;
 }
 
-/* Violeta suave — centro, la más difusa para crear fondo */
+/* Violeta aurora — centro, difusa · pulla del #7B5EA7 de marca */
 .holo-blob--5 {
   width: clamp(300px, 40vw, 580px);
   height: clamp(300px, 40vw, 580px);
-  background: rgba(195, 172, 255, 0.78);
+  background: rgba(175, 150, 215, 0.78);
   filter: blur(72px);
   top: 22%;
   left: 32%;
@@ -100,18 +100,23 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* Paleta unificada del portafolio:
+     violeta #7B5EA7 → azul #4A90D9 → turquesa #2BBFCF → pink del botón
+     → rosa #E86BA0. Los mismos hues que viven en los títulos italic
+     ("seleccionados", "diseñar", "mensaje") y en el hover de los
+     botones de contacto. Cada sección habla el mismo idioma. */
   background: linear-gradient(
     125deg,
-    rgba(244, 160, 205, 0.30) 0%,
-    rgba(150, 200, 255, 0.24) 25%,
-    rgba(195, 172, 255, 0.28) 50%,
-    rgba(180, 175, 240, 0.22) 75%,
-    rgba(232, 107, 160, 0.22) 100%
+    rgba(123,  94, 167, 0.28) 0%,
+    rgba( 74, 144, 217, 0.24) 28%,
+    rgba( 43, 191, 207, 0.22) 52%,
+    rgba(214, 127, 176, 0.24) 76%,
+    rgba(232, 107, 160, 0.26) 100%
   );
   background-size: 400% 400%;
   animation: overlayDrift 22s ease-in-out infinite;
   mix-blend-mode: screen;
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 /* ── CAPA DOF: profundidad de campo ───────────────────────────
