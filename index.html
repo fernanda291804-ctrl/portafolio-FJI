@@ -130,12 +130,23 @@
     <!-- ── SECCIÓN 2: PROYECTOS — La Sala de las Puertas ───── -->
     <section id="proyectos" class="portal-room" aria-labelledby="proyectos-title">
 
+      <!-- Header tipográfico — fuera del sticky para que el stage
+           tenga el 100vh completo para las puertas -->
+      <header class="portal-room__header">
+        <span class="portal-room__label">Proyectos</span>
+        <h2 id="proyectos-title" class="portal-room__title">
+          Casos de estudio <br/><em>seleccionados.</em>
+        </h2>
+      </header>
+
       <div class="portal-room__sticky">
 
         <!-- Atmósfera holográfica de fondo -->
         <div class="portal-atmosphere" aria-hidden="true">
           <div class="portal-blob portal-blob--1"></div>
-          <div class="portal-blob portal-blob--2"></div>
+          <!-- portal-blob--2 eliminado: bottom:-80px; left:5% sangraba
+               fuera del sticky y creaba un artefacto rectangular en la
+               zona de transición hacia Contacto -->
           <div class="portal-blob portal-blob--3"></div>
         </div>
 
@@ -145,76 +156,18 @@
         <!-- Partículas flotantes generadas por JS -->
         <div class="portal-particles" aria-hidden="true"></div>
 
-        <!-- Header tipográfico -->
-        <header class="portal-room__header">
-          <span class="portal-room__label">Proyectos</span>
-          <h2 id="proyectos-title" class="portal-room__title">
-            Casos de estudio <br/><em>seleccionados.</em>
-          </h2>
-        </header>
-
-        <!-- Escenario 3D — aquí viven las puertas -->
+        <!-- Escenario 3D — aquí viven las puertas en hélice -->
         <div class="portal-stage" role="region" aria-roledescription="carrusel" aria-label="Selecciona un proyecto">
 
           <div class="portal-carousel" id="portal-carousel">
 
-            <!-- ── PUERTA 01 · DreamSync — violeta profundo · noche ── -->
+            <!-- ── PUERTA 01 · LUMA — lavanda + rosa · posición alta ── -->
             <article class="portal-door"
-                     data-project="dreamsync"
+                     data-project="luma"
                      data-index="0"
                      style="
                        --door-angle: 0deg;
-                       --accent: #4C319A;
-                       --enter-core: #4C319A;
-                       --enter-mid:  #1E1B4B;
-                       --enter-edge: #0F172A;
-                     ">
-              <a href="dreamsync.html"
-                 class="portal-door__link"
-                 aria-label="Entrar al mundo de DreamSync — Landing page 2025">
-                <span class="portal-door__aura" aria-hidden="true"></span>
-                <div class="portal-door__frame">
-                  <span class="portal-door__meta" aria-hidden="true">Landing · 2025</span>
-                  <h3 class="portal-door__name">DreamSync</h3>
-
-                  <!-- Hojas que se abren al entrar -->
-                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
-                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
-                </div>
-              </a>
-            </article>
-
-            <!-- ── PUERTA 02 · KYROS (estrella) — coral cálido + azul periwinkle ── -->
-            <article class="portal-door portal-door--featured"
-                     data-project="kyros"
-                     data-index="1"
-                     style="
-                       --door-angle: 120deg;
-                       --accent: #738DE1;
-                       --enter-core: #FBBBA2;
-                       --enter-mid:  #A9B3E8;
-                       --enter-edge: #738DE1;
-                     ">
-              <a href="kyros.html"
-                 class="portal-door__link"
-                 aria-label="Entrar al mundo de KYROS — App de salud con IA, proyecto estrella">
-                <span class="portal-door__aura" aria-hidden="true"></span>
-                <div class="portal-door__frame">
-                  <span class="portal-door__meta" aria-hidden="true">App · IA · 2026</span>
-                  <h3 class="portal-door__name">KYROS</h3>
-
-                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
-                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
-                </div>
-              </a>
-            </article>
-
-            <!-- ── PUERTA 03 · LUMA (WIP) — lavanda saturado + rosa + lila luz ── -->
-            <article class="portal-door"
-                     data-project="luma"
-                     data-index="2"
-                     style="
-                       --door-angle: 240deg;
+                       --door-offset-y: -210px;
                        --accent: #9B7CBF;
                        --enter-core: #F1E8FB;
                        --enter-mid:  #FEC0F9;
@@ -227,7 +180,56 @@
                 <div class="portal-door__frame">
                   <span class="portal-door__meta" aria-hidden="true">TFM · Bienestar · WIP</span>
                   <h3 class="portal-door__name">LUMA</h3>
+                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
+                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
+                </div>
+              </a>
+            </article>
 
+            <!-- ── PUERTA 02 · KYROS — coral + periwinkle · posición media ── -->
+            <article class="portal-door portal-door--featured"
+                     data-project="kyros"
+                     data-index="1"
+                     style="
+                       --door-angle: 120deg;
+                       --door-offset-y: 0px;
+                       --accent: #738DE1;
+                       --enter-core: #FBBBA2;
+                       --enter-mid:  #A9B3E8;
+                       --enter-edge: #738DE1;
+                     ">
+              <a href="kyros.html"
+                 class="portal-door__link"
+                 aria-label="Entrar al mundo de KYROS — App de salud con IA, proyecto estrella">
+                <span class="portal-door__aura" aria-hidden="true"></span>
+                <div class="portal-door__frame">
+                  <span class="portal-door__meta" aria-hidden="true">App · IA · 2026</span>
+                  <h3 class="portal-door__name">KYROS</h3>
+                  <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
+                  <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
+                </div>
+              </a>
+            </article>
+
+            <!-- ── PUERTA 03 · DreamSync — violeta profundo · posición baja ── -->
+            <article class="portal-door"
+                     data-project="dreamsync"
+                     data-index="2"
+                     style="
+                       --door-angle: 240deg;
+                       --door-offset-y: 210px;
+                       --accent: #4C319A;
+                       --enter-core: #4C319A;
+                       --enter-mid:  #1E1B4B;
+                       --enter-edge: #0F172A;
+                     ">
+              <a href="dreamsync.html"
+                 class="portal-door__link"
+                 aria-label="Entrar al mundo de DreamSync — Landing page 2025">
+                <span class="portal-door__aura" aria-hidden="true"></span>
+                <div class="portal-door__frame">
+                  <span class="portal-door__meta" aria-hidden="true">Landing · 2025</span>
+                  <h3 class="portal-door__name">DreamSync</h3>
                   <span class="portal-door__half portal-door__half--left"  aria-hidden="true"></span>
                   <span class="portal-door__half portal-door__half--right" aria-hidden="true"></span>
                 </div>
@@ -238,38 +240,10 @@
 
         </div><!-- /portal-stage -->
 
-        <!-- Controles -->
-        <div class="portal-controls">
-
-          <div class="portal-dots" role="tablist">
-            <button class="portal-arrow portal-arrow--prev" aria-label="Puerta anterior">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-
-            <button class="portal-dot is-active" data-index="0" role="tab" aria-label="DreamSync">
-              <span class="portal-dot__indicator" aria-hidden="true"></span>
-            </button>
-            <button class="portal-dot" data-index="1" role="tab" aria-label="KYROS">
-              <span class="portal-dot__indicator" aria-hidden="true"></span>
-            </button>
-            <button class="portal-dot" data-index="2" role="tab" aria-label="LUMA">
-              <span class="portal-dot__indicator" aria-hidden="true"></span>
-            </button>
-
-            <button class="portal-arrow portal-arrow--next" aria-label="Siguiente puerta">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-
-          <p class="portal-hint">
-            Haz <span>scroll</span> para girar el pasillo · <span>clic</span> para caer dentro
-          </p>
-
-        </div>
+        <!-- Hint mínimo — solo texto, sin botones de navegación -->
+        <p class="portal-hint" aria-label="Haz scroll para navegar entre proyectos">
+          Haz <span>scroll</span> para girar el pasillo · <span>clic</span> para caer dentro
+        </p>
 
       </div><!-- /portal-room__sticky -->
 
@@ -414,11 +388,10 @@
   <!-- ── FOOTER ──────────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">
 
-    <!-- Atmósfera sutil — continuidad con final-hall -->
-    <div class="footer__atmosphere" aria-hidden="true">
-      <div class="footer__blob footer__blob--1"></div>
-      <div class="footer__blob footer__blob--2"></div>
-    </div>
+    <!-- footer__blob--1 eliminado: top:-80px sangraba sobre la zona de
+         transición y creaba la línea parcial izquierda arriba de "Fernanda Jaimes".
+         footer__blob--2 eliminado también: bottom:-100px sangraba hacia abajo
+         y el footer ya es visualmente limpio sobre el body #F5F3FD. -->
 
     <div class="footer__inner">
 

@@ -1,16 +1,19 @@
 /* ============================================================
-   PORTAL.CSS — La Sala de las Puertas
-   Carrusel 3D de proyectos · Alice en el País de las Maravillas
+   PORTAL.CSS — La Sala de las Puertas en Hélice
+   Carrusel 3D con escalonado vertical · Alice en el País de las Maravillas
    Portfolio Personal · Fernanda Jaimes · UX/UI Designer
    ============================================================ */
 
 /* ── ROOT VARS — Geometría de puertas ─────────────────────── */
 :root {
-  --door-width:  clamp(200px, 20vw, 280px);
-  /* Altura responsiva al viewport vertical — evita que las puertas
-     se desborden sobre el título en pantallas cortas (laptops 13"). */
-  --door-height: min(clamp(320px, 32vw, 440px), 52vh);
-  --door-radius: clamp(260px, 28vw, 400px);
+  /* Ancho proporcional a la altura — forma "puerta/píldora" */
+  --door-width:  clamp(195px, 16vw, 250px);
+  /* Altura relativa al viewport: nunca supera 460px ni el 50vh,
+     así la tarjeta activa cabe siempre con margen arriba y abajo */
+  --door-height: clamp(300px, 50vh, 460px);
+  /* Radio compacto: separa las puertas sin que el cilindro
+     quede demasiado ancho (rango 560–660 px) */
+  --door-radius: clamp(560px, 42vw, 660px);
 }
 
 /* ============================================================
@@ -18,13 +21,20 @@
    ============================================================ */
 .portal-room {
   position: relative;
-  background: #F5F3FD;
-  min-height: 260vh;      /* runway para scroll-driven rotation */
-  isolation: isolate;
-  overflow: clip;
+  background: transparent;
+  min-height: calc(500vh + 300px);
+  /* isolation: isolate ELIMINADO — con él, el ::after (z-index:4)
+     quedaba atrapado en el stacking context del portal y no podía
+     cubrir el halo del final-hall que sangra hacia arriba.
+     Sin isolation, el ::after pasa al root context (z-index:4 > 0
+     del final-hall), lo cual lo pone POR ENCIMA del halo sangrante
+     y crea una transición suave invisible. */
+
+  /* Respiro extra al fondo: el sticky termina de rotar, luego el
+     usuario ve 15vh de escena difuminada antes de llegar a Contacto */
+  padding-bottom: clamp(60px, 10vh, 140px);
 }
 
-/* Fade superior — empalme con la frase anterior */
 .portal-room::before {
   content: '';
   position: absolute;
@@ -35,25 +45,41 @@
   pointer-events: none;
 }
 
-/* Fade inferior — empalme con contacto */
 .portal-room::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 140px;
-  background: linear-gradient(to top, #F5F3FD 0%, transparent 100%);
+  /* Fade largo: la escena 3D se disuelve en el color del body
+     a lo largo de 28vh (~250–380px) antes de que comience Contacto.
+     Con isolation eliminado del padre, este z-index:4 en el root
+     context cubre el halo del final-hall que sangra hacia arriba. */
+  height: clamp(220px, 28vh, 380px);
+  background: linear-gradient(
+    to top,
+    #F5F3FD 0%,
+    rgba(245, 243, 253, 0.85) 35%,
+    rgba(245, 243, 253, 0.40) 65%,
+    transparent 100%
+  );
   z-index: 4;
   pointer-events: none;
 }
 
-/* ── Sticky stage — lo que queda anclado mientras haces scroll ── */
 .portal-room__sticky {
   position: sticky;
   top: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow-x: clip — recorta el suelo de 260vw y los blobs laterales
+     SIN crear un scroll container (a diferencia de overflow:hidden).
+     Esto preserva position:sticky que necesita el viewport como container.
+     overflow-y: visible — permite que el resplandor (aura) de las puertas
+     se extienda 160px más allá del límite inferior del sticky. */
+  overflow-x: clip;
+  overflow-y: visible;
+  /* clip-path mantiene el recorte del techo y permite el glow inferior */
+  clip-path: inset(0 0 -160px 0);
   z-index: 1;
 }
 
@@ -77,32 +103,20 @@
   height: clamp(320px, 42vw, 580px);
   background: rgba(74, 144, 217, 0.16);
   filter: blur(110px);
-  top: 10%;
-  right: -80px;
+  top: 10%; right: -80px;
   animation: blobFloat3 16s ease-in-out infinite;
 }
 
-.portal-blob--2 {
-  width: clamp(280px, 36vw, 500px);
-  height: clamp(280px, 36vw, 500px);
-  background: rgba(123, 94, 167, 0.14);
-  filter: blur(110px);
-  bottom: -80px;
-  left: 5%;
-  animation: blobFloat1 19s ease-in-out infinite;
-}
 
 .portal-blob--3 {
   width: clamp(200px, 26vw, 360px);
   height: clamp(200px, 26vw, 360px);
   background: rgba(232, 107, 160, 0.12);
   filter: blur(115px);
-  top: 50%;
-  left: 35%;
+  top: 50%; left: 35%;
   animation: blobFloat2 23s ease-in-out infinite;
 }
 
-/* Partículas — pequeños puntos que flotan hacia arriba */
 .portal-particles {
   position: absolute;
   inset: 0;
@@ -113,8 +127,7 @@
 
 .portal-particle {
   position: absolute;
-  width: 3px;
-  height: 3px;
+  width: 3px; height: 3px;
   border-radius: 50%;
   background: var(--color-violet-aurora);
   opacity: 0;
@@ -122,29 +135,19 @@
 }
 
 @keyframes portalParticleFloat {
-  0% {
-    transform: translateY(10vh) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.5;
-  }
-  90% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(-105vh) translateX(var(--drift, 20px));
-    opacity: 0;
-  }
+  0%   { transform: translateY(10vh) translateX(0);                       opacity: 0; }
+  10%  {                                                                    opacity: 0.5; }
+  90%  {                                                                    opacity: 0.5; }
+  100% { transform: translateY(-105vh) translateX(var(--drift, 20px));    opacity: 0; }
 }
 
-/* ── Suelo ajedrezado con perspectiva — guiño a Alicia ── */
 .portal-floor {
   position: absolute;
-  bottom: -5%;
-  left: 50%;
-  width: 260vw;
-  height: 70vh;
+  bottom: -5%; left: 50%;
+  /* 260vw centrado: el borde izquierdo queda ~80vw fuera del viewport
+     (off-screen) → no hay arista 3D visible. Con overflow-x:clip en el
+     sticky no se genera scroll horizontal. */
+  width: 260vw; height: 70vh;
   transform: translateX(-50%) perspective(600px) rotateX(62deg);
   transform-origin: center bottom;
   background-image:
@@ -158,13 +161,17 @@
 }
 
 /* ============================================================
-   3. HEADER — título tipográfico
+   3. HEADER
    ============================================================ */
 .portal-room__header {
+  /* Ahora vive fuera del sticky — es un bloque estático encima del
+     carrusel. Scroll normal: aparece al entrar a la sección, sube
+     y desaparece cuando el sticky toma el control. */
   position: relative;
-  z-index: 3;
-  padding: clamp(20px, 3.5vh, 48px) var(--padding-x) 0;
+  z-index: 2;
+  padding: clamp(80px, 12vh, 140px) var(--padding-x) clamp(40px, 6vh, 80px);
   text-align: center;
+  background: #F5F3FD;
 }
 
 .portal-room__label {
@@ -195,42 +202,26 @@
   color: transparent;
 }
 
-.portal-room__subtitle {
-  max-width: 520px;
-  margin: var(--space-16) auto 0;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--color-text-secondary);
-}
-
-.portal-room__subtitle em {
-  font-style: italic;
-  color: var(--color-violet-aurora);
-}
-
 /* ============================================================
    4. STAGE — contenedor 3D del carrusel
    ============================================================ */
 .portal-stage {
   position: relative;
   flex: 1;
-  perspective: 1500px;
+  /* Perspectiva grande para el radio de 1000px: a menor perspectiva
+     la puerta frontal se agranda demasiado. Con 2500px queda ~1.67× */
+  perspective: 2500px;
   perspective-origin: 50% 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Empuja ligeramente las puertas hacia abajo del centro óptico
-     para dar aire al título arriba sin que se sientan flotantes */
-  padding-top: clamp(40px, 8vh, 120px);
   z-index: 2;
 }
 
-/* Halo de luz detrás del carrusel */
 .portal-stage::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   width: clamp(500px, 60vw, 800px);
   height: clamp(500px, 60vw, 800px);
   transform: translate(-50%, -50%);
@@ -249,14 +240,13 @@
   width: var(--door-width);
   height: var(--door-height);
   transform-style: preserve-3d;
-  transform: rotateY(var(--rotation, 0deg));
-  /* Transición por defecto (navegación manual) */
+  /* rotateY gira el cilindro; translateY lo desplaza verticalmente
+     para centrar la puerta enfocada en pantalla al hacer scroll */
+  transform: rotateY(var(--rotation, 0deg)) translateY(var(--carousel-y, 210px));
   transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
-/* En modo scroll el JS aplica lerp frame a frame → la transición CSS
-   debe estar desactivada para que los dos sistemas no peleen. */
 .portal-carousel.is-scrolling {
   transition: none;
 }
@@ -266,16 +256,17 @@
    ============================================================ */
 .portal-door {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: var(--door-width);
   height: var(--door-height);
   transform-style: preserve-3d;
+  /* --door-offset-y escala la puerta verticalmente en la hélice:
+     LUMA sube (-115px), KYROS centro (0), DreamSync baja (+115px).
+     translateY va DESPUÉS de translateZ para quedar en espacio mundo. */
   transform:
     rotateY(var(--door-angle, 0deg))
-    translateZ(var(--door-radius));
-  /* Ya no usamos filter:blur — es muy costoso en scroll y causa jank.
-     La profundidad se siente por opacidad + la escena 3D del carrusel. */
+    translateZ(var(--door-radius))
+    translateY(var(--door-offset-y, 0px));
   opacity: 0.32;
   transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity;
@@ -285,12 +276,10 @@
   opacity: 1;
 }
 
-/* El link ocupa toda la puerta */
 .portal-door__link {
   display: block;
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -303,21 +292,14 @@
     0 30px 70px -20px rgba(13, 11, 26, 0.30);
 }
 
-/* ── Aura detrás de la puerta — brilla en foco ── */
+/* ── Aura detrás de la puerta ── */
 .portal-door__aura {
   position: absolute;
   inset: -30%;
-  background: radial-gradient(
-    ellipse at center,
-    var(--accent) 0%,
-    transparent 60%
-  );
+  background: radial-gradient(ellipse at center, var(--accent) 0%, transparent 60%);
   opacity: 0;
   filter: blur(40px);
-  transition:
-    opacity 0.6s ease,
-    background 0.45s ease,
-    transform 0.6s ease;
+  transition: opacity 0.6s ease, background 0.45s ease, transform 0.6s ease;
   z-index: 0;
   pointer-events: none;
 }
@@ -326,7 +308,7 @@
   opacity: 0.35;
 }
 
-/* ── Marco de la puerta — arco en la parte superior ── */
+/* ── Marco arqueado ── */
 .portal-door__frame {
   position: absolute;
   inset: 0;
@@ -335,14 +317,7 @@
     calc(var(--door-width) / 2)
     14px 14px;
   overflow: hidden;
-  /* Fondo sólido opaco en vez de semi-transparente + backdrop-filter:
-     elimina el coste de compositing durante el scroll. */
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #F8F4FF 100%
-    );
+  background: linear-gradient(180deg, #ffffff 0%, #F8F4FF 100%);
   box-shadow:
     0 40px 80px -30px rgba(13, 11, 26, 0.30),
     0 0 0 1px rgba(255, 255, 255, 0.5) inset,
@@ -350,32 +325,26 @@
   transform-style: preserve-3d;
   transition:
     box-shadow 0.6s ease,
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transform   0.6s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
 }
 
-/* Hover: la puerta se abre — gradiente completo del proyecto.
-   El gradiente (edge → mid → core, top → bottom) reproduce exactamente
-   el del hero del proyecto, así el palette te acompaña desde el home
-   hasta que aterrizas en el caso. */
+/* Hover: abre con la paleta del proyecto */
 .portal-door.is-focus .portal-door__link:hover .portal-door__frame {
   transform: translateZ(30px) scale(1.02);
-  background:
-    linear-gradient(
-      180deg,
-      var(--enter-edge, var(--accent)) 0%,
-      var(--enter-mid,  var(--accent)) 45%,
-      var(--enter-core, var(--accent)) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    var(--enter-edge, var(--accent)) 0%,
+    var(--enter-mid,  var(--accent)) 45%,
+    var(--enter-core, var(--accent)) 100%
+  );
   box-shadow:
     0 60px 120px -40px color-mix(in srgb, var(--enter-mid, var(--accent)) 55%, transparent),
     0 0 0 1px rgba(255, 255, 255, 0.35) inset,
     0 0 90px -10px var(--enter-core, var(--accent)) inset;
 }
 
-/* Contraste: en DreamSync el gradiente es oscuro, así que el texto
-   se flipea a blanco en hover. Los otros dos (Kyros, Luma) tienen
-   gradientes claros y conservan el color oscuro por defecto. */
+/* DreamSync: gradiente oscuro → texto blanco */
 .portal-door[data-project="dreamsync"].is-focus .portal-door__link:hover .portal-door__name {
   color: #FAFAFA;
 }
@@ -383,13 +352,11 @@
   color: rgba(255, 255, 255, 0.70);
 }
 
-/* Transición suave del color del texto para que acompañe al gradiente */
 .portal-door__name,
 .portal-door__meta {
   transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Aura en hover: usa la paleta completa, no solo el accent */
 .portal-door.is-focus .portal-door__link:hover .portal-door__aura {
   opacity: 0.6;
   background: radial-gradient(
@@ -400,87 +367,11 @@
   );
 }
 
-/* Motto en hover: más intenso */
-.portal-door.is-focus .portal-door__link:hover .portal-door__motto {
-  opacity: 1;
-  letter-spacing: 0.08em;
-}
-
-/* Borde dorado ornamental dentro del marco */
-.portal-door__ornament {
-  position: absolute;
-  inset: 14px;
-  border-radius:
-    calc(var(--door-width) / 2 - 14px)
-    calc(var(--door-width) / 2 - 14px)
-    6px 6px;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.portal-door__ornament::before,
-.portal-door__ornament::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
-}
-
-/* Ornamentos inferiores */
-.portal-door__ornament::before {
-  bottom: 20px;
-  left: 20px;
-  border-right: none;
-  border-top: none;
-}
-
-.portal-door__ornament::after {
-  bottom: 20px;
-  right: 20px;
-  border-left: none;
-  border-top: none;
-}
-
-/* ── Seam central — insinúa que es una puerta de dos hojas ── */
-.portal-door__seam {
-  position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    color-mix(in srgb, var(--accent) 30%, transparent) 15%,
-    color-mix(in srgb, var(--accent) 30%, transparent) 85%,
-    transparent 100%
-  );
-  transform: translateX(-50%);
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* ── Plaquita con número ── */
-.portal-door__plaque {
-  position: absolute;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-heading);
-  font-size: 12px;
-  letter-spacing: 0.32em;
-  color: color-mix(in srgb, var(--accent) 75%, transparent);
-  z-index: 4;
-}
-
-/* ── Etiqueta tipo "tag" ── */
+/* ── Etiqueta de tipo ── */
 .portal-door__meta {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 40%; left: 0; right: 0;
+  text-align: center;
   font-size: 10px;
   font-weight: var(--weight-medium);
   letter-spacing: 0.22em;
@@ -490,15 +381,10 @@
   z-index: 4;
 }
 
-/* ── Nombre del proyecto ──
-   Centrado vertical (≈50%) tras retirar la cerradura. El nombre es
-   el sello/emblema de la puerta; todo el resto del frame queda libre
-   para que el gradiente respire. */
+/* ── Nombre del proyecto ── */
 .portal-door__name {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
+  top: 50%; left: 0; right: 0;
   text-align: center;
   font-family: var(--font-heading);
   font-size: clamp(26px, 2.4vw, 38px);
@@ -511,98 +397,17 @@
   z-index: 4;
 }
 
-/* ── Cerradura ornamental ── */
-.portal-door__keyhole {
-  position: absolute;
-  top: 62%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 22px;
-  height: 34px;
-  z-index: 4;
-}
-
-.portal-door__keyhole::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.55;
-}
-
-.portal-door__keyhole::after {
-  content: '';
-  position: absolute;
-  top: 9px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 22px solid var(--accent);
-  opacity: 0.55;
-}
-
-/* Cerradura brilla cuando la puerta está en foco */
-.portal-door.is-focus .portal-door__keyhole::before,
-.portal-door.is-focus .portal-door__keyhole::after {
-  opacity: 1;
-  filter: drop-shadow(0 0 8px var(--accent));
-  animation: keyholeGlow 2.4s ease-in-out infinite;
-}
-
-@keyframes keyholeGlow {
-  0%, 100% { opacity: 0.7; }
-  50%      { opacity: 1; }
-}
-
-/* ── Lema al pie de la puerta ──
-   Usa color-mix para mantener el matiz del accent pero con contraste AA */
-.portal-door__motto {
-  position: absolute;
-  bottom: 44px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-family: var(--font-heading);
-  font-style: italic;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  color: color-mix(in srgb, var(--accent) 55%, var(--color-text-primary));
-  z-index: 4;
-  transition: letter-spacing 0.4s ease, color 0.4s ease;
-}
-
-.portal-door__motto::before,
-.portal-door__motto::after {
-  content: '·';
-  display: inline-block;
-  margin: 0 10px;
-  color: color-mix(in srgb, var(--accent) 70%, transparent);
-}
-
-/* ── Hojas que se abren — animación de entrada ── */
+/* ── Hojas que se abren al entrar ── */
 .portal-door__half {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 0; bottom: 0;
   width: 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(248, 244, 255, 1) 100%
-  );
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,244,255,1) 100%);
   pointer-events: none;
   z-index: 5;
   opacity: 0;
   transition:
-    opacity 0.15s ease-out,
+    opacity   0.15s ease-out,
     transform 0.85s cubic-bezier(0.55, 0, 0.25, 1);
   backface-visibility: hidden;
 }
@@ -611,35 +416,20 @@
   left: 0;
   transform-origin: left center;
   border-right: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  border-radius:
-    calc(var(--door-width) / 2)
-    0 0 14px;
+  border-radius: calc(var(--door-width) / 2) 0 0 14px;
 }
 
 .portal-door__half--right {
   right: 0;
   transform-origin: right center;
   border-left: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  border-radius:
-    0
-    calc(var(--door-width) / 2)
-    14px 0;
+  border-radius: 0 calc(var(--door-width) / 2) 14px 0;
 }
 
-/* Al entrar: las hojas se activan y se abren */
-.portal-door.is-opening .portal-door__half {
-  opacity: 1;
-}
+.portal-door.is-opening .portal-door__half           { opacity: 1; }
+.portal-door.is-opening .portal-door__half--left     { transform: rotateY(-105deg); }
+.portal-door.is-opening .portal-door__half--right    { transform: rotateY(105deg);  }
 
-.portal-door.is-opening .portal-door__half--left {
-  transform: rotateY(-105deg);
-}
-
-.portal-door.is-opening .portal-door__half--right {
-  transform: rotateY(105deg);
-}
-
-/* El marco se expande hacia ti mientras las hojas se abren */
 .portal-door.is-opening .portal-door__frame {
   transform: translateZ(140px) scale(1.14);
   box-shadow:
@@ -674,6 +464,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-16);
+  background: #F5F3FD;
 }
 
 .portal-dots {
@@ -684,8 +475,7 @@
 
 .portal-dot {
   position: relative;
-  width: 48px;
-  height: 40px;
+  width: 48px; height: 40px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -698,9 +488,7 @@
   transition: transform var(--transition-base);
 }
 
-.portal-dot:hover {
-  transform: translateY(-2px);
-}
+.portal-dot:hover { transform: translateY(-2px); }
 
 .portal-dot__num {
   font-family: var(--font-heading);
@@ -711,8 +499,7 @@
 }
 
 .portal-dot__indicator {
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: rgba(123, 94, 167, 0.20);
   transition:
@@ -723,8 +510,7 @@
 
 .portal-dot.is-active .portal-dot__indicator {
   background: var(--dot-accent, var(--color-violet-aurora));
-  width: 10px;
-  height: 10px;
+  width: 10px; height: 10px;
   box-shadow: 0 0 12px var(--dot-accent, var(--color-violet-aurora));
 }
 
@@ -732,10 +518,8 @@
   color: var(--dot-accent, var(--color-violet-aurora));
 }
 
-/* Flechas prev/next */
 .portal-arrow {
-  width: 42px;
-  height: 42px;
+  width: 42px; height: 42px;
   border-radius: 50%;
   border: 1px solid rgba(123, 94, 167, 0.20);
   background: rgba(255, 255, 255, 0.6);
@@ -759,22 +543,25 @@
 }
 
 .portal-arrow svg {
-  width: 18px;
-  height: 18px;
+  width: 18px; height: 18px;
   stroke: currentColor;
   stroke-width: 1.5;
   fill: none;
 }
 
-/* Hint textual */
 .portal-hint {
+  /* Hijo directo del sticky flex-column — vive abajo del stage */
+  flex-shrink: 0;
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 13px;
-  color: var(--color-text-secondary);    /* AAA 7.3:1 — sin opacity */
+  color: var(--color-text-secondary);
   letter-spacing: 0.04em;
   margin: 0;
   text-align: center;
+  padding: clamp(12px, 2.5vh, 24px) var(--padding-x) clamp(20px, 4vh, 40px);
+  position: relative;
+  z-index: 3;
 }
 
 .portal-hint span {
@@ -785,17 +572,7 @@
 
 /* ============================================================
    7. ENTER TRANSITION — Umbral luminoso + paleta del proyecto
-   Narrativa de dos tiempos:
-    (1) La puerta se abre y desde ella sale un resplandor BLANCO
-        que crece desde la cerradura hasta llenar la pantalla
-        — "estás cruzando el umbral".
-    (2) Sobre ese blanco, la paleta del proyecto se materializa
-        suavemente — "aterrizaste en el mundo".
-   Esto se siente coherente con cualquier paleta (oscura o clara)
-   porque la luz blanca es el puente visual entre los dos mundos.
    ============================================================ */
-
-/* Capa contenedora fija por encima de todo */
 .portal-enter-layer {
   position: fixed;
   inset: 0;
@@ -805,25 +582,17 @@
   transition: opacity 0.1s linear;
 }
 
-.portal-enter-layer.is-active {
-  opacity: 1;
-}
+.portal-enter-layer.is-active { opacity: 1; }
 
-/* CAPA 1 — Umbral luminoso (blanco)
-   Un disco de luz que crece rápido desde la cerradura de la
-   puerta clickeada. Tiene un leve matiz cálido en el centro
-   para no sentirse clínico y sí "luminoso". */
 .portal-enter-glow {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at var(--origin-x, 50%) var(--origin-y, 50%),
-      #ffffff 0%,
-      #ffffff 45%,
-      rgba(255, 252, 247, 0.98) 75%,
-      rgba(252, 246, 255, 0.94) 100%
-    );
+  background: radial-gradient(
+    circle at var(--origin-x, 50%) var(--origin-y, 50%),
+    #ffffff 0%, #ffffff 45%,
+    rgba(255, 252, 247, 0.98) 75%,
+    rgba(252, 246, 255, 0.94) 100%
+  );
   clip-path: circle(0 at var(--origin-x, 50%) var(--origin-y, 50%));
   -webkit-clip-path: circle(0 at var(--origin-x, 50%) var(--origin-y, 50%));
   transition:
@@ -837,61 +606,36 @@
   -webkit-clip-path: circle(170vmax at var(--origin-x, 50%) var(--origin-y, 50%));
 }
 
-/* CAPA 2 — Paleta del proyecto
-   Aparece ENCIMA del blanco con un retraso, cuando el umbral ya
-   cubre la mayor parte de la pantalla. Se materializa con un
-   fade-in LARGO y una curva suave (ease-out-cubic) para que la
-   paleta no "aparezca de golpe" sino que vaya tomando forma
-   gradualmente — como abrir los ojos en un mundo nuevo. */
 .portal-enter-color {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at var(--origin-x, 50%) var(--origin-y, 50%),
-      var(--enter-core, #7B5EA7) 0%,
-      var(--enter-mid,  #4A3078) 55%,
-      var(--enter-edge, #0D0B1A) 100%
-    );
+  background: radial-gradient(
+    circle at var(--origin-x, 50%) var(--origin-y, 50%),
+    var(--enter-core, #7B5EA7) 0%,
+    var(--enter-mid,  #4A3078) 55%,
+    var(--enter-edge, #0D0B1A) 100%
+  );
   opacity: 0;
   transform: scale(1.06);
   transform-origin: center center;
-  /* Duración larga + ease-out-cubic = materialización suave, no pop */
   transition:
-    opacity 1.1s cubic-bezier(0.33, 1, 0.68, 1) 0.5s,
+    opacity   1.1s cubic-bezier(0.33, 1, 0.68, 1) 0.5s,
     transform 1.25s cubic-bezier(0.33, 1, 0.68, 1) 0.5s;
   will-change: opacity, transform;
 }
 
 .portal-enter-layer.is-active .portal-enter-color {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1; transform: scale(1);
 }
 
-/* Motion reducido: simple fade directo al color del proyecto */
 @media (prefers-reduced-motion: reduce) {
   .portal-enter-layer { transition: opacity 0.2s ease; }
-  .portal-enter-glow  {
-    clip-path: none;
-    -webkit-clip-path: none;
-    transition: none;
-  }
-  .portal-enter-color {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  .portal-enter-glow  { clip-path: none; -webkit-clip-path: none; transition: none; }
+  .portal-enter-color { opacity: 1; transform: none; transition: none; }
 }
 
 /* ============================================================
-   7.b PORTRAIT PORTAL — transición hacia Sobre mí
-   ------------------------------------------------------------
-   Usa la misma narrativa "umbral blanco → paleta del mundo"
-   que el portal de proyectos, pero con la paleta cálida y
-   personal de la página Sobre mí (aurora suave en tonos
-   pastel: violeta, azul, rosa sobre crema). El origen del
-   efecto es el retrato de Fernanda — click → "entro a su
-   mundo".
+   7b. PORTRAIT PORTAL — transición hacia Sobre mí
    ============================================================ */
 .portrait-enter-layer {
   position: fixed;
@@ -902,22 +646,17 @@
   transition: opacity 0.1s linear;
 }
 
-.portrait-enter-layer.is-active {
-  opacity: 1;
-}
+.portrait-enter-layer.is-active { opacity: 1; }
 
-/* CAPA 1 — Umbral luminoso cálido (crema), crece desde el retrato */
 .portrait-enter-glow {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at var(--origin-x, 50%) var(--origin-y, 50%),
-      #fffaf3 0%,
-      #fdf6ee 42%,
-      rgba(253, 246, 238, 0.97) 78%,
-      rgba(250, 245, 240, 0.93) 100%
-    );
+  background: radial-gradient(
+    circle at var(--origin-x, 50%) var(--origin-y, 50%),
+    #fffaf3 0%, #fdf6ee 42%,
+    rgba(253, 246, 238, 0.97) 78%,
+    rgba(250, 245, 240, 0.93) 100%
+  );
   clip-path: circle(0 at var(--origin-x, 50%) var(--origin-y, 50%));
   -webkit-clip-path: circle(0 at var(--origin-x, 50%) var(--origin-y, 50%));
   transition:
@@ -931,76 +670,49 @@
   -webkit-clip-path: circle(170vmax at var(--origin-x, 50%) var(--origin-y, 50%));
 }
 
-/* CAPA 2 — Aurora suave pastel (matching the Sobre mí hero).
-   Fade-in sobre el umbral blanco, mismo timing que el portal de
-   proyectos para mantener ritmo visual consistente. */
 .portrait-enter-aurora {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at var(--origin-x, 50%) var(--origin-y, 50%),
-      #faf7fc 0%,
-      #ede0f0 38%,
-      #e4d5ea 68%,
-      #d9c8e3 100%
-    );
+  background: radial-gradient(
+    circle at var(--origin-x, 50%) var(--origin-y, 50%),
+    #faf7fc 0%, #ede0f0 38%, #e4d5ea 68%, #d9c8e3 100%
+  );
   opacity: 0;
   transform: scale(1.06);
   transform-origin: center center;
   transition:
-    opacity 1.1s cubic-bezier(0.33, 1, 0.68, 1) 0.5s,
+    opacity   1.1s cubic-bezier(0.33, 1, 0.68, 1) 0.5s,
     transform 1.25s cubic-bezier(0.33, 1, 0.68, 1) 0.5s;
   will-change: opacity, transform;
 }
 
 .portrait-enter-layer.is-active .portrait-enter-aurora {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1; transform: scale(1);
 }
 
-/* CAPA 3 — Partículas aurora (dorado + rosa + violeta), un guiño
-   al "polvo" del final hall. Fade-in al final para que sobresalgan
-   sobre la aurora suave. */
 .portrait-enter-sparkle {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(2px 2px at 18% 32%, rgba(255, 214, 165, 0.85), transparent 55%),
-    radial-gradient(1.5px 1.5px at 72% 24%, rgba(232, 107, 160, 0.75), transparent 55%),
-    radial-gradient(1.5px 1.5px at 40% 70%, rgba(155, 126, 200, 0.75), transparent 55%),
-    radial-gradient(2px 2px at 85% 62%, rgba(255, 214, 165, 0.70), transparent 55%),
-    radial-gradient(1px 1px at 28% 82%, rgba(232, 107, 160, 0.65), transparent 55%),
-    radial-gradient(1.5px 1.5px at 58% 44%, rgba(155, 126, 200, 0.70), transparent 55%);
+    radial-gradient(2px 2px at 18% 32%, rgba(255,214,165,0.85), transparent 55%),
+    radial-gradient(1.5px 1.5px at 72% 24%, rgba(232,107,160,0.75), transparent 55%),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(155,126,200,0.75), transparent 55%),
+    radial-gradient(2px 2px at 85% 62%, rgba(255,214,165,0.70), transparent 55%),
+    radial-gradient(1px 1px at 28% 82%, rgba(232,107,160,0.65), transparent 55%),
+    radial-gradient(1.5px 1.5px at 58% 44%, rgba(155,126,200,0.70), transparent 55%);
   opacity: 0;
   transition: opacity 0.7s ease-out 1.1s;
 }
 
-.portrait-enter-layer.is-active .portrait-enter-sparkle {
-  opacity: 1;
-}
+.portrait-enter-layer.is-active .portrait-enter-sparkle { opacity: 1; }
 
-/* Reduced motion: fade directo sin clip-path ni partículas */
 @media (prefers-reduced-motion: reduce) {
   .portrait-enter-layer { transition: opacity 0.2s ease; }
-  .portrait-enter-glow {
-    clip-path: none;
-    -webkit-clip-path: none;
-    transition: none;
-  }
-  .portrait-enter-aurora {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .portrait-enter-sparkle {
-    opacity: 0;
-    transition: none;
-  }
+  .portrait-enter-glow  { clip-path: none; -webkit-clip-path: none; transition: none; }
+  .portrait-enter-aurora { opacity: 1; transform: none; transition: none; }
+  .portrait-enter-sparkle { opacity: 0; transition: none; }
 }
 
-/* Feedback táctil sobre el retrato al hacer click (justo antes de
-   disparar la transición). Pequeño hundimiento + halo cálido. */
 .final-hall__portrait-link.is-entering {
   transform: scale(0.985);
   transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
@@ -1029,43 +741,22 @@
 
   .portal-room__sticky {
     position: relative;
+    top: auto;
     height: auto;
     overflow: visible;
+    clip-path: none;
   }
 
-  .portal-stage {
-    min-height: clamp(380px, 82vw, 520px);
-    padding: 20px 0;
-  }
-
-  .portal-controls {
-    padding: var(--space-32) var(--padding-x-mobile) var(--space-16);
-  }
-
-  .portal-hint {
-    display: none;
-  }
-
-  .portal-floor {
-    display: none;
-  }
-
-  /* En móvil, la rotación se controla por botones/swipe, no por scroll */
+  .portal-stage { min-height: clamp(380px, 82vw, 520px); padding: 20px 0; }
+  .portal-controls { padding: var(--space-32) var(--padding-x-mobile) var(--space-16); }
+  .portal-hint { display: none; }
+  .portal-floor { display: none; }
 }
 
 @media (max-width: 520px) {
-  .portal-room__title {
-    font-size: clamp(30px, 9vw, 44px);
-  }
-
-  .portal-arrow {
-    width: 38px;
-    height: 38px;
-  }
-
-  .portal-dots {
-    gap: var(--space-12);
-  }
+  .portal-room__title { font-size: clamp(30px, 9vw, 44px); }
+  .portal-arrow { width: 38px; height: 38px; }
+  .portal-dots { gap: var(--space-12); }
 }
 
 /* ============================================================
@@ -1077,57 +768,49 @@
   .portal-door__frame,
   .portal-door__half,
   .portal-enter-layer,
-  .portal-enter-disc,
-  .final-hall__key,
-  .final-hall__portrait-glow {
+  .portrait-enter-layer {
     transition: none !important;
     animation: none !important;
   }
-
-  .portal-particle,
-  .final-hall__dust-mote {
-    display: none;
-  }
+  .portal-particle { display: none; }
 }
+
 
 /* ============================================================
    ============================================================
    FINAL HALL — "Al fondo de la madriguera"
-   Sección de contacto como continuación narrativa de las puertas
+   Sección de contacto · continuación narrativa
    ============================================================
    ============================================================ */
 
 .final-hall {
   position: relative;
-  background: #F5F3FD;
+  background: transparent;
   padding-block: clamp(80px, 12vw, 160px);
-  overflow: hidden;
-  isolation: isolate;
+  overflow-x: clip;
+  overflow-y: visible;
+  /* isolation: isolate ELIMINADO — creaba un stacking context cuya capa
+     compositeada generaba un artefacto de 1-2px en el borde inferior
+     exactamente donde empieza el footer, formando la "línea fantasma".
+     Sin isolation los elementos del final-hall participan directamente
+     en el root stacking context y el body #F5F3FD fluye sin interrupciones. */
 }
 
-/* Fade superior — empalma con la sala de las puertas */
 .final-hall::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 160px;
+  height: 240px;
   background: linear-gradient(to bottom, #F5F3FD 0%, transparent 100%);
   z-index: 2;
   pointer-events: none;
 }
 
-/* Fade inferior — empalma con el footer */
-.final-hall::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(to top, #F5F3FD 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
-}
+/* final-hall::after ELIMINADO — el #F5F3FD al 0% en el último pixel
+   era el origen visual de la línea entre Contacto y Footer.
+   Con footer y final-hall ambos transparent sobre body #F5F3FD
+   no se necesita gradiente de salida inferior. */
 
-/* ── Ambiente atmosférico ─────────────────────────────────── */
 .final-hall__atmosphere {
   position: absolute;
   inset: 0;
@@ -1135,13 +818,15 @@
   z-index: 0;
 }
 
-/* Halo dorado — la luz que entra desde la abertura del hoyo */
 .final-hall__halo {
   position: absolute;
-  top: -15%;
-  left: 50%;
-  width: 140vw;
-  height: 80vh;
+  top: -15%; left: 50%;
+  /* 140vw centrado: el gradiente radial ocupa más espacio que el
+     viewport, asegurando que los bordes laterales del gradiente (que
+     se desvanecen en transparent) siempre queden off-screen.
+     El final-hall tiene isolation:isolate → su overflow no genera
+     scroll ya que el body/html no tiene overflow-x:hidden. */
+  width: 140vw; height: 80vh;
   transform: translateX(-50%);
   background: radial-gradient(
     ellipse at center top,
@@ -1153,19 +838,16 @@
   filter: blur(30px);
 }
 
-/* Blobs aurora */
-.final-hall__blob {
-  position: absolute;
-  border-radius: 50%;
-}
+.final-hall__blob { position: absolute; border-radius: 50%; }
 
 .final-hall__blob--1 {
   width: clamp(380px, 50vw, 700px);
   height: clamp(380px, 50vw, 700px);
   background: rgba(123, 94, 167, 0.18);
   filter: blur(110px);
-  top: -80px;
-  right: -80px;
+  /* top negativo OK (bleeding vertical deseado hacia portal-room);
+     right:0 en lugar de -80px evita desbordamiento horizontal */
+  top: -80px; right: 0;
   animation: blobFloat1 14s ease-in-out infinite;
 }
 
@@ -1174,8 +856,9 @@
   height: clamp(300px, 40vw, 560px);
   background: rgba(74, 144, 217, 0.14);
   filter: blur(110px);
-  bottom: -100px;
-  left: -60px;
+  /* bottom negativo OK (bleeding vertical hacia footer);
+     left:0 en lugar de -60px evita desbordamiento horizontal */
+  bottom: -100px; left: 0;
   animation: blobFloat2 17s ease-in-out infinite;
 }
 
@@ -1184,12 +867,10 @@
   height: clamp(240px, 30vw, 420px);
   background: rgba(232, 107, 160, 0.16);
   filter: blur(100px);
-  top: 45%;
-  left: 50%;
+  top: 45%; left: 50%;
   animation: blobFloat3 20s ease-in-out infinite;
 }
 
-/* Polvo flotante — partículas generadas por JS */
 .final-hall__dust {
   position: absolute;
   inset: 0;
@@ -1199,8 +880,7 @@
 
 .final-hall__dust-mote {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 2px; height: 2px;
   border-radius: 50%;
   background: rgba(255, 214, 165, 0.7);
   box-shadow: 0 0 6px rgba(255, 214, 165, 0.5);
@@ -1209,19 +889,14 @@
 }
 
 @keyframes dustFloat {
-  0%   { transform: translateY(20vh) translateX(0);     opacity: 0; }
-  10%  {                                                 opacity: 0.7; }
-  90%  {                                                 opacity: 0.7; }
-  100% { transform: translateY(-110vh) translateX(var(--drift, 30px)); opacity: 0; }
+  0%   { transform: translateY(20vh)   translateX(0);                    opacity: 0; }
+  10%  {                                                                   opacity: 0.7; }
+  90%  {                                                                   opacity: 0.7; }
+  100% { transform: translateY(-110vh) translateX(var(--drift, 30px));   opacity: 0; }
 }
 
-/* ── Container principal ─────────────────────────────────── */
-.final-hall__container {
-  position: relative;
-  z-index: 3;
-}
+.final-hall__container { position: relative; z-index: 3; }
 
-/* ── Intro (eyebrow + headline) ──────────────────────────── */
 .final-hall__intro {
   text-align: center;
   margin-bottom: clamp(48px, 6vw, 96px);
@@ -1239,14 +914,12 @@
   margin-bottom: var(--space-20);
 }
 
-/* Líneas ornamentales a los lados del eyebrow */
 .final-hall__eyebrow::before,
 .final-hall__eyebrow::after {
   content: '';
   position: absolute;
   top: 50%;
-  width: 32px;
-  height: 1px;
+  width: 32px; height: 1px;
   background: var(--color-violet-aurora);
   opacity: 0.45;
 }
@@ -1274,7 +947,6 @@
   animation: gradientDrift 8s ease-in-out infinite;
 }
 
-/* ── Grid: retrato + contenido ───────────────────────────── */
 .final-hall__grid {
   display: grid;
   grid-template-columns: minmax(260px, 360px) 1fr;
@@ -1284,11 +956,7 @@
   margin: 0 auto;
 }
 
-/* ── Retrato: marco arqueado que rima con las puertas ────── */
-.final-hall__portrait {
-  margin: 0;
-  position: relative;
-}
+.final-hall__portrait { margin: 0; position: relative; }
 
 .final-hall__portrait-frame {
   position: relative;
@@ -1296,11 +964,7 @@
   aspect-ratio: 3 / 4;
   border-radius: 50% 50% 18px 18px / 30% 30% 18px 18px;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(248, 244, 255, 0.95) 100%
-  );
+  background: linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(248,244,255,.95) 100%);
   box-shadow:
     0 40px 80px -30px rgba(13, 11, 26, 0.28),
     0 0 0 1px rgba(255, 255, 255, 0.6) inset,
@@ -1310,35 +974,26 @@
   z-index: 2;
 }
 
-.final-hall__portrait-frame:hover {
-  transform: translateY(-4px);
-}
+.final-hall__portrait-frame:hover { transform: translateY(-4px); }
 
 .final-hall__portrait-img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
   position: relative;
   z-index: 1;
 }
 
-/* Glow suave alrededor del retrato */
 .final-hall__portrait-glow {
   position: absolute;
   inset: -30px;
   border-radius: inherit;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(232, 107, 160, 0.18) 0%,
-    transparent 60%
-  );
+  background: radial-gradient(ellipse at center, rgba(232,107,160,.18) 0%, transparent 60%);
   filter: blur(30px);
   z-index: 0;
   pointer-events: none;
 }
 
-/* Marco exterior sutil */
 .final-hall__portrait-frame::before {
   content: '';
   position: absolute;
@@ -1369,17 +1024,11 @@
   margin-top: 6px;
 }
 
-/* ── Columna de contenido ────────────────────────────────── */
-.final-hall__content {
-  position: relative;
-  padding-top: var(--space-16);
-}
+.final-hall__content { position: relative; padding-top: var(--space-16); }
 
-/* Llave flotante — SVG ornamental */
 .final-hall__key {
   position: absolute;
-  top: -50px;
-  right: -20px;
+  top: -50px; right: 8px;
   width: clamp(70px, 9vw, 120px);
   height: auto;
   opacity: 0.55;
@@ -1392,10 +1041,9 @@
 
 @keyframes keyFloat {
   0%, 100% { transform: translateY(0)     rotate(-8deg); }
-  50%      { transform: translateY(-10px) rotate(-3deg); }
+  50%       { transform: translateY(-10px) rotate(-3deg); }
 }
 
-/* Frase de bienvenida */
 .final-hall__lede {
   font-size: 17px;
   line-height: 1.65;
@@ -1412,7 +1060,6 @@
   color: var(--color-violet-aurora);
 }
 
-/* ── CTAs como etiquetas de llave ────────────────────────── */
 .final-hall__keys {
   display: flex;
   flex-direction: column;
@@ -1423,9 +1070,6 @@
   z-index: 2;
 }
 
-/* Patrón de "puerta" — mismo lenguaje que las puertas del home:
-   transparente por defecto, sólo texto + borde fino. Al hover, la
-   puerta se "abre" con gradiente aurora del hero. */
 .final-hall__key-tag {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -1448,8 +1092,7 @@
 }
 
 .final-hall__key-tag-eyebrow {
-  grid-column: 1;
-  grid-row: 1;
+  grid-column: 1; grid-row: 1;
   display: block;
   font-size: 10px;
   font-weight: var(--weight-medium);
@@ -1461,8 +1104,7 @@
 }
 
 .final-hall__key-tag-label {
-  grid-column: 1;
-  grid-row: 2;
+  grid-column: 1; grid-row: 2;
   display: block;
   font-size: 17px;
   font-weight: var(--weight-medium);
@@ -1472,39 +1114,31 @@
 }
 
 .final-hall__key-tag-arrow {
-  grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-column: 2; grid-row: 1 / span 2;
   align-self: center;
   font-size: 18px;
   color: var(--color-text-muted);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
 }
 
-/* Hover — secundarios (LinkedIn, CV): borde violeta + flecha activa */
 .final-hall__key-tag:hover {
   border-color: var(--color-violet-aurora);
   transform: translateX(4px);
   box-shadow: 0 10px 28px -12px rgba(123, 94, 167, 0.25);
 }
 
-.final-hall__key-tag:hover .final-hall__key-tag-eyebrow {
-  color: var(--color-violet-aurora);
-}
-
+.final-hall__key-tag:hover .final-hall__key-tag-eyebrow { color: var(--color-violet-aurora); }
 .final-hall__key-tag:hover .final-hall__key-tag-arrow {
   color: var(--color-violet-aurora);
   transform: translateX(4px);
 }
 
-/* Fila contenedora para centrar el indicador en su propia línea */
 .final-hall__avail-row {
   display: flex;
   justify-content: center;
   margin: var(--space-16) 0 var(--space-28);
 }
 
-/* ── Indicador de disponibilidad — NO es botón, NO va en cápsula ──
-   Solo tipografía en mayúsculas con un punto pulsante y trazos laterales */
 .final-hall__avail {
   display: inline-flex;
   align-items: center;
@@ -1514,25 +1148,22 @@
   font-weight: var(--weight-medium);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-teal-dark);          /* #0E5F68 · AAA 7.6:1 */
+  color: var(--color-teal-dark);
   padding: 0;
   background: transparent;
   border: none;
 }
 
-/* Trazo decorativo al final — balance con el punto pulsante */
 .final-hall__avail::after {
   content: '';
   display: inline-block;
-  width: 32px;
-  height: 1px;
+  width: 32px; height: 1px;
   background: var(--color-teal-dark);
   opacity: 0.5;
 }
 
 .final-hall__avail-dot {
-  width: 8px;
-  height: 8px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--color-teal-dark);
   box-shadow: 0 0 0 4px rgba(43, 191, 207, 0.22);
@@ -1540,9 +1171,6 @@
   flex-shrink: 0;
 }
 
-/* ============================================================
-   PORTRAIT LINK + OVERLAY — ¿Quieres saber más sobre mí?
-   ============================================================ */
 .final-hall__portrait-link {
   display: block;
   text-decoration: none;
@@ -1569,17 +1197,14 @@
   gap: var(--space-16);
   padding: 20px;
   text-align: center;
-  background: linear-gradient(
-    160deg,
-    rgba(123, 94, 167, 0.88) 0%,
-    rgba(74, 144, 217, 0.84) 50%,
-    rgba(232, 107, 160, 0.88) 100%
+  background: linear-gradient(160deg,
+    rgba(123,94,167,.88) 0%,
+    rgba(74,144,217,.84) 50%,
+    rgba(232,107,160,.88) 100%
   );
   opacity: 0;
   transform: scale(0.96);
-  transition:
-    opacity 0.45s ease,
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
   z-index: 4;
   backdrop-filter: blur(2px);
@@ -1588,8 +1213,7 @@
 
 .final-hall__portrait-link:hover .final-hall__portrait-overlay,
 .final-hall__portrait-link:focus-visible .final-hall__portrait-overlay {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1; transform: scale(1);
 }
 
 .final-hall__portrait-overlay-text {
@@ -1608,7 +1232,7 @@
   gap: 10px;
   padding: 10px 22px;
   background: rgba(255, 255, 255, 0.95);
-  color: var(--color-text-primary);       /* AAA 15:1 on white */
+  color: var(--color-text-primary);
   border-radius: var(--radius-pill);
   font-size: 13px;
   font-weight: var(--weight-medium);
@@ -1618,29 +1242,12 @@
   transition: transform 0.3s ease;
 }
 
-.final-hall__portrait-link:hover .final-hall__portrait-overlay-cta {
-  transform: translateY(-2px);
-}
-
-.final-hall__portrait-overlay-cta svg {
-  stroke: currentColor;
-}
-
-/* ============================================================
-   KEY-TAG PRIMARY — transparente por defecto, aurora holográfico
-   (mismo lenguaje que el hero) al pasar por encima
-   ============================================================ */
-/* En estado reposo es idéntico al resto — hereda del base.
-   El gradiente sólo aparece en hover, como una "puerta que se abre". */
+.final-hall__portrait-link:hover .final-hall__portrait-overlay-cta { transform: translateY(-2px); }
+.final-hall__portrait-overlay-cta svg { stroke: currentColor; }
 
 .final-hall__key-tag--primary:hover {
-  background: linear-gradient(
-    125deg,
-    #D67FB0 0%,
-    #6FA8E8 28%,
-    #9E85E0 55%,
-    #8D88D8 78%,
-    #E86BA0 100%
+  background: linear-gradient(125deg,
+    #D67FB0 0%, #6FA8E8 28%, #9E85E0 55%, #8D88D8 78%, #E86BA0 100%
   );
   background-size: 180% 180%;
   border-color: transparent;
@@ -1652,59 +1259,28 @@
   animation: gradientDrift 10s ease-in-out infinite;
 }
 
-.final-hall__key-tag--primary:hover .final-hall__key-tag-eyebrow {
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.final-hall__key-tag--primary:hover .final-hall__key-tag-label {
-  color: var(--color-white);
-}
-
-.final-hall__key-tag--primary:hover .final-hall__key-tag-arrow {
+.final-hall__key-tag--primary:hover .final-hall__key-tag-eyebrow { color: rgba(255,255,255,.85); }
+.final-hall__key-tag--primary:hover .final-hall__key-tag-label   { color: var(--color-white); }
+.final-hall__key-tag--primary:hover .final-hall__key-tag-arrow   {
   color: var(--color-white);
   transform: translateX(4px);
 }
 
-/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 820px) {
   .final-hall__grid {
     grid-template-columns: 1fr;
     max-width: 520px;
     gap: clamp(32px, 8vw, 56px);
   }
-
-  .final-hall__portrait {
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .final-hall__key {
-    top: -64px;
-    right: 0;
-    width: 64px;
-  }
-
-  .final-hall__headline {
-    font-size: clamp(30px, 9vw, 48px);
-  }
-
-  .final-hall__eyebrow {
-    font-size: 10px;
-    padding: 0 32px;
-  }
-
+  .final-hall__portrait { max-width: 320px; margin: 0 auto; }
+  .final-hall__key { top: -64px; right: 0; width: 64px; }
+  .final-hall__headline { font-size: clamp(30px, 9vw, 48px); }
+  .final-hall__eyebrow { font-size: 10px; padding: 0 32px; }
   .final-hall__eyebrow::before,
-  .final-hall__eyebrow::after {
-    width: 22px;
-  }
+  .final-hall__eyebrow::after { width: 22px; }
 }
 
 @media (max-width: 520px) {
-  .final-hall__key-tag {
-    padding: 16px 20px;
-  }
-
-  .final-hall__key-tag-label {
-    font-size: 16px;
-  }
+  .final-hall__key-tag { padding: 16px 20px; }
+  .final-hall__key-tag-label { font-size: 16px; }
 }

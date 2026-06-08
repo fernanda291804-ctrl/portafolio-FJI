@@ -1360,52 +1360,26 @@
    estética aurora, pero sobrio y legible (AA/AAA contraste)    */
 .footer {
   position: relative;
-  background: #F5F3FD;
+  /* transparent: el body #F5F3FD es el lienzo; sin bloque sólido
+     que cree una línea dura contra el final-hall de arriba */
+  background: transparent;
   padding-block: clamp(56px, 8vw, 96px) clamp(28px, 4vw, 40px);
-  overflow: hidden;
-  isolation: isolate;
+  overflow: visible;
+  /* isolation: isolate eliminado — confinaba el stacking context
+     y causaba que el texto "Product Designer · Barcelona" se
+     pintara fuera del flujo visual normal del grid */
 }
 
-/* Fade superior — empalma con final-hall */
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, #F5F3FD 0%, transparent 100%);
-  z-index: 1;
-  pointer-events: none;
-}
+/* footer::before eliminado: con footer y final-hall ambos transparent
+   sobre body #F5F3FD, el gradiente semi-opaco (0.6) creaba exactamente
+   la línea horizontal visible que el ojo detecta en la unión. Sin él,
+   el fondo del body fluye uniforme de un extremo al otro. */
 
-/* Atmósfera — blobs aurora muy sutiles */
-.footer__atmosphere {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.footer__blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-}
-
-.footer__blob--1 {
-  width: clamp(260px, 36vw, 480px);
-  height: clamp(260px, 36vw, 480px);
-  background: rgba(123, 94, 167, 0.12);
-  top: -80px;
-  left: -60px;
-}
-
-.footer__blob--2 {
-  width: clamp(240px, 32vw, 420px);
-  height: clamp(240px, 32vw, 420px);
-  background: rgba(74, 144, 217, 0.10);
-  bottom: -100px;
-  right: -80px;
-}
+/* footer__atmosphere, footer__blob--1/2 eliminados:
+   blob--1 top:-80px sangraba arriba del footer y creaba una línea
+   parcial izquierda visible justo encima de "Fernanda Jaimes".
+   El footer es visualmente limpio sobre el lienzo #F5F3FD del body
+   sin necesitar atmósfera propia. */
 
 /* Contenedor principal */
 .footer__inner {
@@ -1724,9 +1698,9 @@
 .hero-phrase-section {
   padding-block: clamp(88px, 11vw, 148px);
   text-align: center;
-  background: #F5F3FD;
+  background: transparent;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Ambient blob de fondo para coherencia con el resto */
@@ -1886,7 +1860,9 @@
 .sobre-mi-section {
   background: #F5F3FD;
   position: relative;
-  overflow: hidden;
+  /* overflow: visible — blobs en los bordes se difuminan entre
+     secciones; ya tiene ::before/::after fades para la transición */
+  overflow: visible;
   padding-block: clamp(80px, 11vw, 160px);
 }
 

@@ -15,6 +15,12 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* background en html colorea la franja del scrollbar vertical —
+     sin esto el canvas blanco del browser asoma por la derecha.
+     NO ponemos overflow-x: hidden aquí porque eso convertiría a html
+     en el scroll container y rompería position: sticky en portal-room */
+  background-color: #F5F3FD;
+  width: 100%;
 }
 
 body {
@@ -23,8 +29,11 @@ body {
   font-weight: var(--weight-regular);
   line-height: var(--leading-relaxed);
   color: var(--color-text-primary);
-  background-color: var(--color-white);
-  overflow-x: hidden;
+  /* Lienzo global #F5F3FD — secciones transparent muestran este color */
+  background-color: #F5F3FD;
+  /* overflow-x eliminado de body también: cualquier overflow en el eje X
+     lo resolvemos en la fuente (blobs sin left/right negativo, nada > 100vw)
+     para no crear un scroll container que interfiera con position: sticky */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -267,7 +276,9 @@ body.scroll-locked {
 /* Indicador lateral flotante estilo editorial */
 .section-indicator {
   position: fixed;
-  right: 32px;
+  /* 20px del borde derecho real del viewport — más margen que antes (32px
+     podía quedar pegado al scrollbar en Windows); min para seguridad */
+  right: clamp(12px, 2vw, 28px);
   top: 50%;
   transform: translateY(-50%);
   z-index: var(--z-nav);

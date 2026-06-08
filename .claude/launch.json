@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "/Users/fernandajaimes/Documents/GitHub/aura-guidance"],
       "port": 8080
+    },
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3456", "--directory", "/Users/fernandajaimes/Desktop/fernanda-portfolio"],
+      "port": 3456
     }
   ]
 }

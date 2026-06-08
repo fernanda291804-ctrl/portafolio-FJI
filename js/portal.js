@@ -1,5 +1,5 @@
 /* ============================================================
-   PORTAL.JS — La Sala de las Puertas
+   PORTAL.JS — La Sala de las Puertas en Hélice
    Rotación por scroll · navegación · animación de entrada
    Portfolio Personal · Fernanda Jaimes
    ============================================================ */
@@ -8,63 +8,48 @@
   const room = document.querySelector('.portal-room');
   if (!room) return;
 
-  const sticky     = room.querySelector('.portal-room__sticky');
-  const carousel   = room.querySelector('.portal-carousel');
-  const doors      = Array.from(room.querySelectorAll('.portal-door'));
-  const dots       = Array.from(room.querySelectorAll('.portal-dot'));
-  const prevBtn    = room.querySelector('.portal-arrow--prev');
-  const nextBtn    = room.querySelector('.portal-arrow--next');
-  const particles  = room.querySelector('.portal-particles');
+  const carousel  = room.querySelector('.portal-carousel');
+  const doors     = Array.from(room.querySelectorAll('.portal-door'));
+  const dots      = Array.from(room.querySelectorAll('.portal-dot'));
+  const prevBtn   = room.querySelector('.portal-arrow--prev');
+  const nextBtn   = room.querySelector('.portal-arrow--next');
+  const particles = room.querySelector('.portal-particles');
 
   if (!carousel || doors.length === 0) return;
 
-  const total        = doors.length;             // 3
-  const stepAngle    = 360 / total;              // 120°
+  const total        = doors.length;
+  const stepAngle    = 360 / total;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile     = window.matchMedia('(max-width: 900px)').matches;
 
-  // Estado
-  let rotationTarget  = 0;             // ángulo objetivo (según scroll / navegación)
-  let rotationCurrent = 0;             // ángulo aplicado (interpolado)
-  let currentIdx      = 0;             // puerta en foco
-  let manualLock      = false;         // true = botones/dots dominan (no scroll)
+  let rotationTarget  = 0;
+  let rotationCurrent = 0;
+  let currentIdx      = 0;
+  let manualLock      = false;
   let lockTimer       = null;
-  let animRAF         = null;          // rAF id del loop de animación
+  let animRAF         = null;
 
-  /* ──────────────────────────────────────────
-     1. PARTÍCULAS — reducidas para mejor perf
-     ────────────────────────────────────────── */
+  /* ── Partículas ────────────────────────────────────────────── */
   if (particles && !reduceMotion) {
-    // Recortamos a la mitad: a 36 partículas con box-shadow pintan
-    // cada frame y consumen GPU innecesariamente.
     const count = isMobile ? 10 : 18;
+    const palette = ['#7B5EA7', '#4A90D9', '#2BBFCF', '#E86BA0'];
     for (let i = 0; i < count; i++) {
       const p = document.createElement('span');
       p.className = 'portal-particle';
-
-      // Colores alternos de la paleta aurora
-      const palette = ['#7B5EA7', '#4A90D9', '#2BBFCF', '#E86BA0'];
-      p.style.background = palette[i % palette.length];
-
-      p.style.left           = Math.random() * 100 + '%';
-      p.style.bottom         = -Math.random() * 20 + '%';
+      p.style.background      = palette[i % palette.length];
+      p.style.left            = Math.random() * 100 + '%';
+      p.style.bottom          = -Math.random() * 20 + '%';
       p.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
-      p.style.animationDelay = -Math.random() * 14 + 's';
+      p.style.animationDelay    = -Math.random() * 14 + 's';
       p.style.animationDuration = (10 + Math.random() * 10) + 's';
-      p.style.width  = p.style.height = (2 + Math.random() * 3) + 'px';
-
+      p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
       particles.appendChild(p);
     }
   }
 
-  /* ──────────────────────────────────────────
-     2. APLICAR ROTACIÓN + CALCULAR DOOR EN FOCO
-     Ahora el aplicador solo escribe el CSS var y recalcula foco.
-     La suavidad vive en el loop de animación (lerp rAF).
-     ────────────────────────────────────────── */
+  /* ── Calcular qué puerta está en foco dado el ángulo actual ── */
   const computeFocus = (angle) => {
-    let bestIdx  = 0;
-    let bestDist = Infinity;
+    let bestIdx = 0, bestDist = Infinity;
     doors.forEach((door, i) => {
       const doorBase = i * stepAngle;
       let eff = (doorBase + angle) % 360;
@@ -76,8 +61,25 @@
     return bestIdx;
   };
 
+  /* ── Máximo offset vertical de los doors (debe coincidir con el
+       --door-offset-y de la última puerta en el HTML) ─────────── */
+  const MAX_DOOR_OFFSET = 210; // px
+
   const paintRotation = (angle) => {
     carousel.style.setProperty('--rotation', angle + 'deg');
+
+    /* Desplaza el carousel en Y para que la puerta enfocada quede
+       centrada en pantalla. Aplica tanto en desktop (scroll) como en
+       mobile (swipe), ya que los doors tienen offsets verticales.
+       Cuando angle=0 → LUMA (offset -210px) → carouselY = +210px
+       Cuando angle=-240 → DreamSync (offset +210px) → carouselY = -210px
+       Fórmula: carouselY = maxOffset * (1 + 2*angle / totalAngle) */
+    const totalAngle = (total - 1) * stepAngle; // 240 para 3 puertas
+    const carouselY  = totalAngle > 0
+      ? MAX_DOOR_OFFSET * (1 + 2 * angle / totalAngle)
+      : 0;
+    carousel.style.setProperty('--carousel-y', carouselY.toFixed(2) + 'px');
+
     const newIdx = computeFocus(angle);
     if (newIdx !== currentIdx) {
       currentIdx = newIdx;
@@ -86,37 +88,13 @@
   };
 
   const updateFocus = () => {
-    doors.forEach((door, i) => {
-      door.classList.toggle('is-focus', i === currentIdx);
-    });
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('is-active', i === currentIdx);
-    });
+    doors.forEach((door, i) => door.classList.toggle('is-focus', i === currentIdx));
+    dots.forEach((dot, i)   => dot.classList.toggle('is-active', i === currentIdx));
   };
 
-  /* ──────────────────────────────────────────
-     3. ROTACIÓN POR SCROLL (desktop)
-     Usamos dos pasos:
-     a) onScroll actualiza el ÁNGULO OBJETIVO
-     b) un rAF loop interpola el ángulo actual hacia el objetivo
-        con un lerp suave. Esto elimina el jank del seguimiento
-        1:1 del scroll y se siente mucho más fluido.
-     ────────────────────────────────────────── */
-  const computeTargetFromScroll = () => {
-    if (isMobile) return 0;
-    const rect = room.getBoundingClientRect();
-    const runway = room.offsetHeight - window.innerHeight;
-    if (runway <= 0) return rotationTarget;
-    const scrolled = Math.min(Math.max(-rect.top, 0), runway);
-    const progress = scrolled / runway;
-    // progreso 0 → 1  ⇒  rotación 0 → -(total-1) * stepAngle
-    return -progress * (total - 1) * stepAngle;
-  };
-
-  // Loop: corre cuando la sección está en viewport y el ángulo actual
-  // difiere del objetivo. Se auto-detiene al llegar para no gastar CPU.
-  const LERP = 0.18;                  // factor de suavizado (0–1)
-  const EPSILON = 0.02;               // umbral para detener el loop
+  /* ── Loop de animación con lerp (suaviza el scroll) ──────── */
+  const LERP    = 0.18;
+  const EPSILON = 0.02;
 
   const runAnim = () => {
     animRAF = null;
@@ -135,10 +113,29 @@
     if (animRAF === null) animRAF = requestAnimationFrame(runAnim);
   };
 
+  /* ── Header externo (fuera del sticky) ──────────────────────
+     El header vive antes del sticky en el DOM. Su altura hay que
+     restarla del runway para que la rotación empiece justo cuando
+     el sticky se activa (no durante el scroll del header). */
+  const headerEl  = room.querySelector('.portal-room__header');
+  const headerH   = () => headerEl ? headerEl.offsetHeight : 0;
+
+  /* ── Rotación por scroll ─────────────────────────────────── */
+  const computeTargetFromScroll = () => {
+    if (isMobile) return 0;
+    const rect   = room.getBoundingClientRect();
+    const hh     = headerH();
+    const runway = room.offsetHeight - window.innerHeight - hh;
+    if (runway <= 0) return rotationTarget;
+    // scrolled empieza en 0 cuando el sticky se activa (rect.top = -hh)
+    const scrolled  = Math.min(Math.max(-rect.top - hh, 0), runway);
+    const progress  = scrolled / runway;
+    return -progress * (total - 1) * stepAngle;
+  };
+
   const onScroll = () => {
     if (manualLock || isMobile) return;
     rotationTarget = computeTargetFromScroll();
-    // Desactivamos transición CSS durante el scroll — el lerp JS se encarga
     carousel.classList.add('is-scrolling');
     ensureAnim();
   };
@@ -146,64 +143,47 @@
   if (!isMobile) {
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
-    // Estado inicial
-    rotationTarget = computeTargetFromScroll();
+    rotationTarget  = computeTargetFromScroll();
     rotationCurrent = rotationTarget;
     paintRotation(rotationCurrent);
     carousel.classList.add('is-scrolling');
   } else {
-    // Mobile: arrancamos con la primera puerta en foco
     paintRotation(0);
   }
 
-  /* ──────────────────────────────────────────
-     4. NAVEGACIÓN MANUAL (flechas / dots / teclado / swipe)
-     En navegación manual queremos la transición CSS larga (feel
-     de "puerta giratoria"), así que quitamos .is-scrolling.
-     ────────────────────────────────────────── */
+  /* ── Navegación manual (flechas / dots / teclado / swipe) ── */
   const goTo = (idx) => {
     idx = ((idx % total) + total) % total;
     currentIdx = idx;
     const target = -idx * stepAngle;
 
     manualLock = true;
-    // Usa la transición CSS (0.85s) en vez del lerp para este movimiento
     carousel.classList.remove('is-scrolling');
-    // Cancela cualquier lerp en curso
     if (animRAF !== null) { cancelAnimationFrame(animRAF); animRAF = null; }
     rotationTarget  = target;
     rotationCurrent = target;
     paintRotation(target);
     updateFocus();
 
-    // Desktop: además sincronizamos la posición del scroll
-    // para que cuando termine el lock no salte el cilindro
     if (!isMobile) {
-      const runway = room.offsetHeight - window.innerHeight;
+      const hh         = headerH();
+      const runway     = room.offsetHeight - window.innerHeight - hh;
+      const sectionTop = room.getBoundingClientRect().top + window.scrollY;
       if (runway > 0) {
-        const sectionTop  = room.getBoundingClientRect().top + window.scrollY;
-        const targetScroll = sectionTop + (idx / (total - 1)) * runway;
-        window.scrollTo({
-          top: targetScroll,
-          behavior: reduceMotion ? 'auto' : 'smooth'
-        });
+        // El scroll objetivo empieza desde el punto en que el sticky activa
+        const targetScroll = sectionTop + hh + (idx / (total - 1)) * runway;
+        window.scrollTo({ top: targetScroll, behavior: reduceMotion ? 'auto' : 'smooth' });
       }
     }
 
     clearTimeout(lockTimer);
-    lockTimer = setTimeout(() => {
-      manualLock = false;
-    }, 1100);
+    lockTimer = setTimeout(() => { manualLock = false; }, 1100);
   };
 
   if (prevBtn) prevBtn.addEventListener('click', () => goTo(currentIdx - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => goTo(currentIdx + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => goTo(i));
-  });
-
-  // Teclado — solo cuando la sección está en viewport
   const isRoomVisible = () => {
     const r = room.getBoundingClientRect();
     return r.top < window.innerHeight * 0.6 && r.bottom > window.innerHeight * 0.4;
@@ -215,37 +195,21 @@
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIdx + 1); }
   });
 
-  // Swipe en móvil
   if (isMobile) {
     let touchStartX = null;
     const stage = room.querySelector('.portal-stage');
     if (stage) {
-      stage.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-      }, { passive: true });
-
-      stage.addEventListener('touchend', (e) => {
+      stage.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend',   (e) => {
         if (touchStartX === null) return;
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) {
-          if (dx < 0) goTo(currentIdx + 1);
-          else        goTo(currentIdx - 1);
-        }
+        if (Math.abs(dx) > 40) goTo(dx < 0 ? currentIdx + 1 : currentIdx - 1);
         touchStartX = null;
       }, { passive: true });
     }
   }
 
-  /* ──────────────────────────────────────────
-     5. ENTRAR AL PROYECTO — Umbral + Paleta
-     Dos capas narrativas:
-       (a) un resplandor BLANCO crece desde la cerradura y llena
-           la pantalla — cruzaste el umbral de la puerta
-       (b) sobre ese blanco, la paleta del proyecto se materializa
-           con fade-in — aterrizaste en el mundo
-     Navegamos cuando la paleta ya está totalmente presente para
-     que la nueva página aparezca sin corte visual.
-     ────────────────────────────────────────── */
+  /* ── Entrar al proyecto — Umbral + Paleta ───────────────── */
   const enterLayer = document.createElement('div');
   enterLayer.className = 'portal-enter-layer';
   enterLayer.setAttribute('aria-hidden', 'true');
@@ -255,14 +219,6 @@
   `;
   document.body.appendChild(enterLayer);
 
-  const paintEnterPalette = (core, mid, edge, ox, oy) => {
-    enterLayer.style.setProperty('--enter-core', core);
-    enterLayer.style.setProperty('--enter-mid',  mid);
-    enterLayer.style.setProperty('--enter-edge', edge);
-    if (ox != null) enterLayer.style.setProperty('--origin-x', ox + 'px');
-    if (oy != null) enterLayer.style.setProperty('--origin-y', oy + 'px');
-  };
-
   doors.forEach((door) => {
     const link = door.querySelector('.portal-door__link');
     if (!link) return;
@@ -271,7 +227,6 @@
       const href = link.getAttribute('href');
       if (!href || href === '#') return;
 
-      // Si la puerta no está en foco, primero la traemos al centro
       const idx = doors.indexOf(door);
       if (idx !== currentIdx) {
         e.preventDefault();
@@ -279,58 +234,40 @@
         return;
       }
 
-      if (reduceMotion) return; // dejamos que navegue normal
+      if (reduceMotion) return;
 
       e.preventDefault();
 
-      // Origen del efecto = cerradura de la puerta
-      const keyhole = door.querySelector('.portal-door__keyhole');
-      const rect = (keyhole || door).getBoundingClientRect();
-      const ox = rect.left + rect.width / 2;
-      const oy = rect.top  + rect.height / 2;
+      // Origen = centro de la puerta (no hay cerradura en el HTML simplificado)
+      const rect = door.getBoundingClientRect();
+      const ox   = rect.left + rect.width  / 2;
+      const oy   = rect.top  + rect.height / 2;
 
       const style = getComputedStyle(door);
-      const core  = style.getPropertyValue('--enter-core').trim()
-                 || style.getPropertyValue('--accent').trim()
-                 || '#7B5EA7';
-      const mid   = style.getPropertyValue('--enter-mid').trim()
-                 || style.getPropertyValue('--accent').trim()
-                 || '#4A3078';
-      const edge  = style.getPropertyValue('--enter-edge').trim()
-                 || '#0D0B1A';
+      const core  = style.getPropertyValue('--enter-core').trim() || style.getPropertyValue('--accent').trim() || '#7B5EA7';
+      const mid   = style.getPropertyValue('--enter-mid').trim()  || style.getPropertyValue('--accent').trim() || '#4A3078';
+      const edge  = style.getPropertyValue('--enter-edge').trim() || '#0D0B1A';
 
-      paintEnterPalette(core, mid, edge, ox, oy);
+      enterLayer.style.setProperty('--enter-core', core);
+      enterLayer.style.setProperty('--enter-mid',  mid);
+      enterLayer.style.setProperty('--enter-edge', edge);
+      enterLayer.style.setProperty('--origin-x',   ox + 'px');
+      enterLayer.style.setProperty('--origin-y',   oy + 'px');
 
-      // 1. Abrir las hojas de la puerta
       door.classList.add('is-opening');
-
-      // 2. Activar el umbral — el resplandor blanco crece desde la
-      //    cerradura y, con 0.4s de delay, la paleta del proyecto
-      //    aparece encima (ambas transiciones se disparan por CSS).
-      requestAnimationFrame(() => {
-        enterLayer.classList.add('is-active');
-      });
-
-      // 3. Navegar cuando la paleta ya está totalmente asentada y
-      //    tuvo un breve momento para "respirar" en pantalla.
-      //    (0.5s delay + 1.1s fade + 100ms linger = ~1700ms)
-      setTimeout(() => {
-        window.location.href = href;
-      }, 1700);
+      requestAnimationFrame(() => { enterLayer.classList.add('is-active'); });
+      setTimeout(() => { window.location.href = href; }, 1700);
     });
   });
 
-  /* ──────────────────────────────────────────
-     6. Pintar color de cada dot según su accent
-     ────────────────────────────────────────── */
+  /* ── Color acento en dots ──────────────────────────────── */
   dots.forEach((dot, i) => {
-    const door = doors[i];
+    const door   = doors[i];
     if (!door) return;
     const accent = getComputedStyle(door).getPropertyValue('--accent').trim();
     if (accent) dot.style.setProperty('--dot-accent', accent);
   });
 
-  // Estado inicial
   updateFocus();
 })();
 
@@ -345,10 +282,10 @@
 
   const count = window.matchMedia('(max-width: 820px)').matches ? 18 : 40;
   const palette = [
-    'rgba(255, 214, 165, 0.75)',   // dorado cálido
-    'rgba(232, 107, 160, 0.55)',   // rosa aurora
-    'rgba(155, 126, 200, 0.55)',   // violeta
-    'rgba(43, 191, 207, 0.45)'     // turquesa sutil
+    'rgba(255, 214, 165, 0.75)',
+    'rgba(232, 107, 160, 0.55)',
+    'rgba(155, 126, 200, 0.55)',
+    'rgba(43, 191, 207, 0.45)'
   ];
 
   for (let i = 0; i < count; i++) {
@@ -371,11 +308,6 @@
 
 /* ============================================================
    PORTRAIT PORTAL — transición "Conóceme" hacia Sobre mí
-   ------------------------------------------------------------
-   Click en el retrato → resplandor cálido crece desde la foto,
-   la aurora pastel se materializa encima, y navegamos cuando
-   el color ya está totalmente asentado. Mismo timing que el
-   portal de proyectos para mantener un lenguaje consistente.
    ============================================================ */
 (() => {
   const link = document.querySelector('.final-hall__portrait-link');
@@ -386,8 +318,6 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Construye la capa de transición una sola vez (perezosamente al
-  // primer click para no inyectar DOM innecesario en la carga).
   let enterLayer = null;
   const ensureLayer = () => {
     if (enterLayer) return enterLayer;
@@ -404,37 +334,22 @@
   };
 
   link.addEventListener('click', (e) => {
-    // Respeta cmd/ctrl/middle-click para abrir en nueva pestaña
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
-    if (reduceMotion) return; // navegación normal
+    if (reduceMotion) return;
 
     e.preventDefault();
 
-    // Origen del efecto = centro del retrato (para que el umbral
-    // emerja desde la foto, no desde el click exacto).
     const frame = link.querySelector('.final-hall__portrait-frame') || link;
     const rect  = frame.getBoundingClientRect();
-    const ox    = rect.left + rect.width / 2;
+    const ox    = rect.left + rect.width  / 2;
     const oy    = rect.top  + rect.height / 2;
 
     const layer = ensureLayer();
     layer.style.setProperty('--origin-x', ox + 'px');
     layer.style.setProperty('--origin-y', oy + 'px');
 
-    // Feedback visual en el retrato antes de la expansión
     link.classList.add('is-entering');
-
-    // Dispara la expansión en el siguiente frame para que los
-    // custom props ya estén aplicados cuando el navegador
-    // interpole clip-path.
-    requestAnimationFrame(() => {
-      layer.classList.add('is-active');
-    });
-
-    // Navegar cuando la aurora ya está totalmente presente:
-    //  0.5s delay + 1.1s fade + 0.1s linger ≈ 1700ms
-    setTimeout(() => {
-      window.location.href = href;
-    }, 1700);
+    requestAnimationFrame(() => { layer.classList.add('is-active'); });
+    setTimeout(() => { window.location.href = href; }, 1700);
   });
 })();
