@@ -135,12 +135,15 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── App sections grid ─────────────────────────────── */
-    .app-section-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-20);
+    /* ── App carousel ──────────────────────────────────── */
+    .app-carousel-wrap {
+      position: relative;
       margin-bottom: var(--space-64);
+    }
+    .app-carousel {
+      display: flex;
+      gap: var(--space-20);
+      overflow: hidden;
     }
     .app-section-card {
       background: white;
@@ -148,6 +151,8 @@
       border: 1px solid rgba(155,124,191,0.12);
       overflow: hidden;
       transition: transform 0.25s, box-shadow 0.25s;
+      flex: 0 0 calc((100% - var(--space-20) * 2) / 3);
+      min-width: 0;
     }
     .app-section-card:hover {
       transform: translateY(-3px);
@@ -295,11 +300,42 @@
       color: white;
     }
 
+    /* ── Carousel controls ─────────────────────────────── */
+    .carousel-btn {
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid rgba(155,124,191,0.22);
+      box-shadow: 0 4px 16px rgba(155,124,191,0.16);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .carousel-btn:hover { background: #9B7CBF; }
+    .carousel-btn:hover svg { stroke: white; }
+    .carousel-btn svg { stroke: #9B7CBF; transition: stroke 0.2s; }
+    .carousel-btn--prev { left: -20px; }
+    .carousel-btn--next { right: -20px; }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+    .carousel-dots {
+      display: flex; gap: 6px; justify-content: center; margin-top: var(--space-20);
+    }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(155,124,191,0.25); border: none; cursor: pointer; padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active { background: #9B7CBF; transform: scale(1.3); }
+
     @media (max-width: 768px) {
-      .app-section-grid { grid-template-columns: 1fr 1fr; }
+      .app-section-card { flex: 0 0 calc((100% - var(--space-20)) / 2); }
     }
     @media (max-width: 480px) {
-      .app-section-grid { grid-template-columns: 1fr; }
+      .app-section-card { flex: 0 0 100%; }
     }
   </style>
 </head>
@@ -620,101 +656,135 @@
           LUMA no es un tracker: es un ecosistema completo que acompaña a la usuaria desde que abre la app hasta que cierra el día. Aquí cada sección tiene un propósito estratégico.
         </p>
 
-        <!-- Grupo 1: pantallas principales -->
-        <p class="anim-ready" style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:600;margin-bottom:var(--space-20);">Navegación principal</p>
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-16);margin-bottom:var(--space-64);" class="anim-ready">
+        <!-- Carrusel: todas las pantallas -->
+        <div class="app-carousel-wrap anim-ready" id="carousel-app">
+          <button class="carousel-btn carousel-btn--prev" id="carousel-prev" aria-label="Anterior">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn carousel-btn--next" id="carousel-next" aria-label="Siguiente">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
 
-          <!-- Inicio -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-              <img src="./assets/images/luma/inicio.png" alt="Inicio" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="app-carousel" id="carousel-track">
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/inicio.png" alt="Inicio" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">01 · Inicio</p>
+                <p class="app-section-card__desc">Dashboard del ecosistema activo, energía del día y recomendaciones según tu fase.</p>
+              </div>
             </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">01 · Inicio</p>
-              <h3 class="app-section-card__title">Inicio</h3>
-              <p class="app-section-card__desc">Dashboard del ecosistema activo, energía del día y recomendaciones según la fase del ciclo.</p>
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/calendario.png" alt="Calendario" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">02 · Calendario</p>
+                <p class="app-section-card__desc">Vista mensual del ciclo con fases como ecosistemas, no como números clínicos.</p>
+              </div>
             </div>
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/chat.png" alt="Chat con Lumi" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">03 · Chat con Lumi</p>
+                <p class="app-section-card__desc">IA conversacional que recuerda tu historial y adapta su tono a tu fase del ciclo.</p>
+              </div>
+            </div>
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/comunidad.png" alt="Comunidad" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">04 · Comunidad</p>
+                <p class="app-section-card__desc">Espacio seguro por ecosistema activo. Sin estigmas, sin comparaciones.</p>
+              </div>
+            </div>
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/perfil.png" alt="Perfil" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">05 · Perfil</p>
+                <p class="app-section-card__desc">Historial biográfico completo y configuración personalizada. Tus datos, tu control.</p>
+              </div>
+            </div>
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/nuevo-evento.png" alt="Nuevo evento" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">06 · Nuevo evento</p>
+                <p class="app-section-card__desc">Registro rápido de síntomas, estado de ánimo y eventos. La interfaz se adapta al ecosistema activo.</p>
+              </div>
+            </div>
+
+            <div class="app-section-card">
+              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
+                <img src="./assets/images/luma/entrenamiento-luma.png" alt="Entrenamiento" style="width:100%;height:auto;display:block;"/>
+              </div>
+              <div class="app-section-card__body">
+                <p class="app-section-card__num">07 · Entrenamiento</p>
+                <p class="app-section-card__desc">Rutinas adaptadas a tu fase: más fuerza en folicular, más recuperación en lútea.</p>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Calendario -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-              <img src="./assets/images/luma/calendario.png" alt="Calendario" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">02 · Calendario</p>
-              <h3 class="app-section-card__title">Calendario</h3>
-              <p class="app-section-card__desc">Vista mensual del ciclo con fases como ecosistemas, no como números clínicos.</p>
-            </div>
-          </div>
-
-          <!-- Chat con Lumi -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-              <img src="./assets/images/luma/chat.png" alt="Chat con Lumi" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">03 · Chat</p>
-              <h3 class="app-section-card__title">Chat con Lumi</h3>
-              <p class="app-section-card__desc">IA conversacional que recuerda tu historial y adapta su tono a tu fase del ciclo.</p>
-            </div>
-          </div>
-
-          <!-- Comunidad -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-              <img src="./assets/images/luma/comunidad.png" alt="Comunidad" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">04 · Comunidad</p>
-              <h3 class="app-section-card__title">Comunidad</h3>
-              <p class="app-section-card__desc">Espacio seguro por ecosistema activo. Sin estigmas, sin comparaciones.</p>
-            </div>
-          </div>
-
-          <!-- Perfil -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-              <img src="./assets/images/luma/perfil.png" alt="Perfil" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">05 · Perfil</p>
-              <h3 class="app-section-card__title">Perfil</h3>
-              <p class="app-section-card__desc">Historial biográfico completo y configuración personalizada. Tus datos, tu control.</p>
-            </div>
-          </div>
-
+          <div class="carousel-dots" id="carousel-dots"></div>
         </div>
 
-        <!-- Grupo 2: acciones clave -->
-        <p class="anim-ready" style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:600;margin-bottom:var(--space-20);">Acciones clave</p>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-16);max-width:520px;margin-bottom:var(--space-64);" class="anim-ready">
+        <script>
+        (function(){
+          const track = document.getElementById('carousel-track');
+          const prev  = document.getElementById('carousel-prev');
+          const next  = document.getElementById('carousel-next');
+          const dotsWrap = document.getElementById('carousel-dots');
+          if(!track) return;
+          const cards = Array.from(track.querySelectorAll('.app-section-card'));
+          function perPage(){ return window.innerWidth < 480 ? 1 : window.innerWidth < 768 ? 2 : 3; }
+          let current = 0;
+          let pp = perPage();
+          let total = Math.ceil(cards.length / pp);
 
-          <!-- Nuevo evento -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-              <img src="./assets/images/luma/nuevo-evento.png" alt="Nuevo evento" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">06 · Registro</p>
-              <h3 class="app-section-card__title">Nuevo evento</h3>
-              <p class="app-section-card__desc">Registro rápido de síntomas, estado de ánimo y eventos. La interfaz se adapta al ecosistema activo.</p>
-            </div>
-          </div>
+          function buildDots(){
+            dotsWrap.innerHTML = '';
+            pp = perPage();
+            total = Math.ceil(cards.length / pp);
+            for(let i=0;i<total;i++){
+              const d = document.createElement('button');
+              d.className = 'carousel-dot' + (i===0?' active':'');
+              d.setAttribute('aria-label','Página '+(i+1));
+              d.addEventListener('click',()=>goTo(i));
+              dotsWrap.appendChild(d);
+            }
+          }
 
-          <!-- Entrenamiento -->
-          <div class="app-section-card">
-            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-              <img src="./assets/images/luma/entrenamiento-luma.png" alt="Entrenamiento" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-size:11px;color:#9B7CBF;text-align:center;padding:8px;\'>Captura pendiente</span>'"/>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">07 · Ejercicio</p>
-              <h3 class="app-section-card__title">Entrenamiento</h3>
-              <p class="app-section-card__desc">Rutinas adaptadas a tu fase: más fuerza en folicular, más recuperación en lútea.</p>
-            </div>
-          </div>
+          function goTo(idx){
+            current = Math.max(0, Math.min(idx, total-1));
+            const cardWidth = cards[0].offsetWidth + 20;
+            track.style.transform = 'translateX(-'+(current * pp * cardWidth)+'px)';
+            track.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+            dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+            prev.disabled = current === 0;
+            next.disabled = current >= total - 1;
+          }
 
-        </div>
+          prev.addEventListener('click',()=>goTo(current-1));
+          next.addEventListener('click',()=>goTo(current+1));
+          window.addEventListener('resize',()=>{ buildDots(); goTo(0); });
+          buildDots();
+          goTo(0);
+        })();
+        </script>
 
         <!-- Validación -->
         <div class="grid grid-3 anim-ready" style="gap:var(--space-20);margin-bottom:var(--space-40);">
