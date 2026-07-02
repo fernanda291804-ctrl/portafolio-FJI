@@ -132,21 +132,38 @@
     }
     .app-carousel {
       display: flex;
-      gap: var(--space-24);
+      gap: var(--space-40);
       overflow: hidden;
+      align-items: flex-start;
+      justify-content: center;
     }
     .app-section-card {
-      background: white;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(155,124,191,0.14);
-      transition: transform 0.25s, box-shadow 0.25s;
-      flex: 0 0 calc((100% - var(--space-24) * 2) / 3);
+      flex: 0 0 calc((100% - var(--space-40) * 2) / 3);
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-16);
     }
-    .app-section-card:hover {
+    .app-section-card__phone {
+      width: 100%;
+      border-radius: 38px;
+      border: 5px solid rgba(155,124,191,0.22);
+      overflow: hidden;
+      box-shadow:
+        0 32px 80px rgba(155,124,191,0.22),
+        0 0 0 1px rgba(155,124,191,0.08);
+      background: #000;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .app-section-card__phone:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(155,124,191,0.20);
+      box-shadow: 0 40px 96px rgba(155,124,191,0.28), 0 0 0 1px rgba(155,124,191,0.10);
+    }
+    .app-section-card__phone img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     .app-section-card__img {
       width: 100%;
@@ -658,73 +675,59 @@
           <div class="app-carousel" id="carousel-track">
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/inicio.png" alt="Inicio" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/inicio.png" alt="Inicio"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">01 · Inicio</p>
-                <p class="app-section-card__desc">Dashboard del ecosistema activo, energía del día y recomendaciones según tu fase.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">01 · Inicio</p>
+              <p class="app-section-card__desc" style="text-align:center;">Dashboard del ecosistema activo, energía del día y recomendaciones según tu fase.</p>
             </div>
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/calendario.png" alt="Calendario" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/calendario.png" alt="Calendario"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">02 · Calendario</p>
-                <p class="app-section-card__desc">Vista mensual del ciclo con fases como ecosistemas, no como números clínicos.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">02 · Calendario</p>
+              <p class="app-section-card__desc" style="text-align:center;">Vista mensual del ciclo con fases como ecosistemas, no como números clínicos.</p>
             </div>
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/chat.png" alt="Chat con Lumi" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/chat.png" alt="Chat con Lumi"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">03 · Chat con Lumi</p>
-                <p class="app-section-card__desc">IA conversacional que recuerda tu historial y adapta su tono a tu fase del ciclo.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">03 · Chat con Lumi</p>
+              <p class="app-section-card__desc" style="text-align:center;">IA conversacional que recuerda tu historial y adapta su tono a tu fase del ciclo.</p>
             </div>
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/comunidad.png" alt="Comunidad" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/comunidad.png" alt="Comunidad"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">04 · Comunidad</p>
-                <p class="app-section-card__desc">Espacio seguro por ecosistema activo. Sin estigmas, sin comparaciones.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">04 · Comunidad</p>
+              <p class="app-section-card__desc" style="text-align:center;">Espacio seguro por ecosistema activo. Sin estigmas, sin comparaciones.</p>
             </div>
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/perfil.png" alt="Perfil" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/perfil.png" alt="Perfil"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">05 · Perfil</p>
-                <p class="app-section-card__desc">Historial biográfico completo y configuración personalizada. Tus datos, tu control.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">05 · Perfil</p>
+              <p class="app-section-card__desc" style="text-align:center;">Historial biográfico completo y configuración personalizada. Tus datos, tu control.</p>
             </div>
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/nuevo-evento.png" alt="Nuevo evento" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/nuevo-evento.png" alt="Nuevo evento"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">06 · Nuevo evento</p>
-                <p class="app-section-card__desc">Registro rápido de síntomas, estado de ánimo y eventos. La interfaz se adapta al ecosistema activo.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">06 · Nuevo evento</p>
+              <p class="app-section-card__desc" style="text-align:center;">Registro rápido de síntomas, estado de ánimo y eventos. La interfaz se adapta al ecosistema activo.</p>
             </div>
 
             <div class="app-section-card">
-              <div style="background:rgba(155,124,191,0.04);border-bottom:1px solid rgba(155,124,191,0.10);overflow:hidden;">
-                <img src="./assets/images/luma/entrenamiento-luma.png" alt="Entrenamiento" style="width:100%;height:auto;display:block;"/>
+              <div class="app-section-card__phone">
+                <img src="./assets/images/luma/entrenamiento-luma.png" alt="Entrenamiento"/>
               </div>
-              <div class="app-section-card__body">
-                <p class="app-section-card__num">07 · Entrenamiento</p>
-                <p class="app-section-card__desc">Rutinas adaptadas a tu fase: más fuerza en folicular, más recuperación en lútea.</p>
-              </div>
+              <p class="app-section-card__num" style="text-align:center;">07 · Entrenamiento</p>
+              <p class="app-section-card__desc" style="text-align:center;">Rutinas adaptadas a tu fase: más fuerza en folicular, más recuperación en lútea.</p>
             </div>
 
           </div>
