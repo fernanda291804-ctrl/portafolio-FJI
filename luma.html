@@ -71,16 +71,31 @@
       font-size: 11px;
     }
 
-    /* ── Video hero ────────────────────────────────────── */
-    .luma-video-wrap {
+    /* ── Video phone ───────────────────────────────────── */
+    .luma-video-phone {
       width: 100%;
-      max-width: 720px;
+      max-width: 280px;
       margin: 0 auto var(--space-16);
-      border-radius: var(--radius-lg);
+      border-radius: 38px;
+      border: 5px solid rgba(155,124,191,0.22);
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(155,124,191,0.22);
+      box-shadow:
+        0 32px 80px rgba(155,124,191,0.28),
+        0 0 0 1px rgba(155,124,191,0.10);
+      position: relative;
+      background: #000;
     }
-    .luma-video-wrap video {
+    .luma-video-phone::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 24px;
+      background: rgba(53,51,52,0.12);
+      border-radius: 0 0 16px 16px;
+      z-index: 5;
+    }
+    .luma-video-phone video {
       width: 100%;
       display: block;
     }
@@ -508,13 +523,15 @@
           La identidad de LUMA se aleja de la estética clínica tradicional para abrazar una narrativa de acompañamiento y sabiduría. Cada elemento visual comunica: <em>"Te entiendo, te escucho y estoy aquí para guiarte."</em>
         </p>
 
-        <!-- Video -->
-        <div class="luma-video-wrap anim-ready">
-          <video autoplay muted loop playsinline>
-            <source src="./assets/images/luma/luma-inicio.mov" type="video/mp4" />
-          </video>
+        <!-- Video en formato móvil -->
+        <div class="anim-ready" style="display:flex;flex-direction:column;align-items:center;margin-bottom:var(--space-64);">
+          <div class="luma-video-phone">
+            <video autoplay muted loop playsinline>
+              <source src="./assets/images/luma/luma-inicio.mov" type="video/mp4" />
+            </video>
+          </div>
+          <p style="text-align:center;font-size:var(--text-small);color:var(--color-text-muted);margin-top:var(--space-16);">Presentación ante el tribunal · Máster BAU</p>
         </div>
-        <p style="text-align:center;font-size:var(--text-small);color:var(--color-text-muted);margin-bottom:var(--space-64);">Presentación ante el tribunal · Máster BAU</p>
 
         <!-- Pilares de tono -->
         <h3 class="anim-ready" style="margin-bottom:var(--space-20);font-size:18px;color:#6A3FA0;">Nuestra voz se construye sobre tres pilares:</h3>
@@ -603,101 +620,97 @@
           LUMA no es un tracker: es un ecosistema completo que acompaña a la usuaria desde que abre la app hasta que cierra el día. Aquí cada sección tiene un propósito estratégico.
         </p>
 
-        <div class="app-section-grid anim-ready">
-
-          <!-- Onboarding -->
-          <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">🌱</span>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">01 · Onboarding</p>
-              <h3 class="app-section-card__title">Onboarding inteligente</h3>
-              <p class="app-section-card__desc">Lumi da la bienvenida con un flujo conversacional que adapta la experiencia desde el primer segundo. Sin formularios clínicos, sin juicios.</p>
-            </div>
-          </div>
+        <!-- Grupo 1: pantallas principales -->
+        <p class="anim-ready" style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:600;margin-bottom:var(--space-20);">Navegación principal</p>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-16);margin-bottom:var(--space-64);" class="anim-ready">
 
           <!-- Inicio -->
           <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">🌙</span>
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <img src="./assets/images/luma/Bienestar-luma.png" alt="Inicio" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-size:11px;color:#9B7CBF;text-align:center;padding:8px;\'>Captura pendiente</span>'"/>
             </div>
             <div class="app-section-card__body">
-              <p class="app-section-card__num">02 · Inicio</p>
-              <h3 class="app-section-card__title">Dashboard del ciclo</h3>
-              <p class="app-section-card__desc">Vista diaria del ecosistema activo (Sabana, Oasis, Meseta o Refugio), energía estimada y recomendaciones personalizadas basadas en la fase.</p>
-            </div>
-          </div>
-
-          <!-- Chat con Lumi -->
-          <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">💬</span>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">03 · Chat</p>
-              <h3 class="app-section-card__title">Chat con Lumi</h3>
-              <p class="app-section-card__desc">Conversación con IA contextual: Lumi recuerda el historial, adapta su tono a la fase del ciclo y nunca usa lenguaje clínico negativo.</p>
+              <p class="app-section-card__num">01 · Inicio</p>
+              <h3 class="app-section-card__title">Inicio</h3>
+              <p class="app-section-card__desc">Dashboard del ecosistema activo, energía del día y recomendaciones según la fase del ciclo.</p>
             </div>
           </div>
 
           <!-- Calendario -->
           <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">📅</span>
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <span style="font-size:11px;color:#9B7CBF;text-align:center;padding:8px;">Captura pendiente</span>
             </div>
             <div class="app-section-card__body">
-              <p class="app-section-card__num">04 · Calendario</p>
-              <h3 class="app-section-card__title">Calendario cíclico</h3>
-              <p class="app-section-card__desc">Vista mensual que superpone el ciclo hormonal sobre la agenda. Las fases se visualizan como ecosistemas, no como números.</p>
+              <p class="app-section-card__num">02 · Calendario</p>
+              <h3 class="app-section-card__title">Calendario</h3>
+              <p class="app-section-card__desc">Vista mensual del ciclo con fases como ecosistemas, no como números clínicos.</p>
             </div>
           </div>
 
-          <!-- Añadir síntomas/eventos -->
+          <!-- Chat con Lumi -->
           <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">✏️</span>
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <span style="font-size:11px;color:#9B7CBF;text-align:center;padding:8px;">Captura pendiente</span>
             </div>
             <div class="app-section-card__body">
-              <p class="app-section-card__num">05 · Registro</p>
-              <h3 class="app-section-card__title">Añadir síntomas y eventos</h3>
-              <p class="app-section-card__desc">Registro rápido de síntomas, estado de ánimo y eventos. La interfaz cambia de color según el ecosistema activo para reforzar la conciencia corporal.</p>
-            </div>
-          </div>
-
-          <!-- Ejercicio -->
-          <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">🏃‍♀️</span>
-            </div>
-            <div class="app-section-card__body">
-              <p class="app-section-card__num">06 · Ejercicio</p>
-              <h3 class="app-section-card__title">Entrenamiento sincronizado</h3>
-              <p class="app-section-card__desc">Rutinas de fuerza, cardio o recuperación adaptadas a la fase del ciclo. En fase lútea: más recuperación. En fase folicular: más intensidad.</p>
+              <p class="app-section-card__num">03 · Chat</p>
+              <h3 class="app-section-card__title">Chat con Lumi</h3>
+              <p class="app-section-card__desc">IA conversacional que recuerda tu historial y adapta su tono a tu fase del ciclo.</p>
             </div>
           </div>
 
           <!-- Comunidad -->
           <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">🤝</span>
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <span style="font-size:11px;color:#9B7CBF;text-align:center;padding:8px;">Captura pendiente</span>
             </div>
             <div class="app-section-card__body">
-              <p class="app-section-card__num">07 · Comunidad</p>
-              <h3 class="app-section-card__title">Comunidad LUMA</h3>
-              <p class="app-section-card__desc">Espacio seguro donde las usuarias comparten experiencias por ecosistema activo. Sin estigmas, sin comparaciones, con moderación empática de Lumi.</p>
+              <p class="app-section-card__num">04 · Comunidad</p>
+              <h3 class="app-section-card__title">Comunidad</h3>
+              <p class="app-section-card__desc">Espacio seguro por ecosistema activo. Sin estigmas, sin comparaciones.</p>
             </div>
           </div>
 
           <!-- Perfil -->
           <div class="app-section-card">
-            <div class="app-section-card__body" style="background:linear-gradient(135deg,rgba(155,124,191,0.08),rgba(254,192,249,0.08));min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-              <span style="font-size:48px;">👤</span>
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <span style="font-size:11px;color:#9B7CBF;text-align:center;padding:8px;">Captura pendiente</span>
             </div>
             <div class="app-section-card__body">
-              <p class="app-section-card__num">08 · Perfil</p>
-              <h3 class="app-section-card__title">Tu perfil cíclico</h3>
-              <p class="app-section-card__desc">Historial biográfico completo, estadísticas del ciclo y configuración personalizada. La usuaria es dueña de sus datos en todo momento.</p>
+              <p class="app-section-card__num">05 · Perfil</p>
+              <h3 class="app-section-card__title">Perfil</h3>
+              <p class="app-section-card__desc">Historial biográfico completo y configuración personalizada. Tus datos, tu control.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Grupo 2: acciones clave -->
+        <p class="anim-ready" style="font-size:var(--text-label);letter-spacing:0.12em;text-transform:uppercase;color:#9B7CBF;font-weight:600;margin-bottom:var(--space-20);">Acciones clave</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-16);max-width:520px;margin-bottom:var(--space-64);" class="anim-ready">
+
+          <!-- Nuevo evento -->
+          <div class="app-section-card">
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <span style="font-size:11px;color:#9B7CBF;text-align:center;padding:8px;">Captura pendiente</span>
+            </div>
+            <div class="app-section-card__body">
+              <p class="app-section-card__num">06 · Registro</p>
+              <h3 class="app-section-card__title">Nuevo evento</h3>
+              <p class="app-section-card__desc">Registro rápido de síntomas, estado de ánimo y eventos. La interfaz se adapta al ecosistema activo.</p>
+            </div>
+          </div>
+
+          <!-- Entrenamiento -->
+          <div class="app-section-card">
+            <div style="aspect-ratio:9/16;background:rgba(155,124,191,0.07);border-bottom:1px solid rgba(155,124,191,0.10);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              <img src="./assets/images/luma/entrenamiento-luma.png" alt="Entrenamiento" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-size:11px;color:#9B7CBF;text-align:center;padding:8px;\'>Captura pendiente</span>'"/>
+            </div>
+            <div class="app-section-card__body">
+              <p class="app-section-card__num">07 · Ejercicio</p>
+              <h3 class="app-section-card__title">Entrenamiento</h3>
+              <p class="app-section-card__desc">Rutinas adaptadas a tu fase: más fuerza en folicular, más recuperación en lútea.</p>
             </div>
           </div>
 
