@@ -560,23 +560,30 @@
     <section class="case-section" style="background:#faf8fe;" id="identidad" aria-labelledby="identidad-title">
       <div class="container">
 
-        <p class="case-section__number anim-ready">03 — La identidad: LUMA</p>
-        <h2 id="identidad-title" class="case-section__title anim-ready">
-          Diseñar para la claridad, <br />no para la estadística.
-        </h2>
+        <!-- Texto + Video lado a lado -->
+        <div class="anim-ready" style="display:flex;gap:var(--space-64);align-items:center;flex-wrap:wrap;margin-bottom:var(--space-64);">
 
-        <p class="anim-ready" style="color:var(--color-text-secondary);max-width:640px;margin-bottom:var(--space-40);font-size:var(--text-body-lg);">
-          La identidad de LUMA se aleja de la estética clínica tradicional para abrazar una narrativa de acompañamiento y sabiduría. Cada elemento visual comunica: <em>"Te entiendo, te escucho y estoy aquí para guiarte."</em>
-        </p>
-
-        <!-- Video en formato móvil -->
-        <div class="anim-ready" style="display:flex;flex-direction:column;align-items:center;margin-bottom:var(--space-64);">
-          <div class="luma-video-phone">
-            <video autoplay muted loop playsinline>
-              <source src="./assets/images/luma/luma-inicio.mov" type="video/mp4" />
-            </video>
+          <!-- Texto -->
+          <div style="flex:1 1 320px;min-width:260px;">
+            <p class="case-section__number">03 — La identidad: LUMA</p>
+            <h2 id="identidad-title" class="case-section__title">
+              Diseñar para la claridad, <br />no para la estadística.
+            </h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:var(--space-24);font-size:var(--text-body-lg);line-height:1.7;">
+              La identidad de LUMA se aleja de la estética clínica tradicional para abrazar una narrativa de acompañamiento y sabiduría. Cada elemento visual comunica: <em>"Te entiendo, te escucho y estoy aquí para guiarte."</em>
+            </p>
+            <p style="font-size:var(--text-small);color:var(--color-text-muted);">Presentación ante el tribunal · Máster BAU</p>
           </div>
-          <p style="text-align:center;font-size:var(--text-small);color:var(--color-text-muted);margin-top:var(--space-16);">Presentación ante el tribunal · Máster BAU</p>
+
+          <!-- Video -->
+          <div style="flex:0 0 auto;display:flex;justify-content:center;">
+            <div class="luma-video-phone">
+              <video autoplay muted loop playsinline>
+                <source src="./assets/images/luma/luma-inicio.mov" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+
         </div>
 
         <!-- Pilares de tono -->
