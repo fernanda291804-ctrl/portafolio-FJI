@@ -908,49 +908,20 @@
 
         <!-- Prototipo en vivo: iframe con la app real desplegada en Vercel -->
         <div class="anim-ready" style="display:flex;flex-direction:column;align-items:center;gap:var(--space-12);margin-bottom:var(--space-64);">
-          <div class="ky-phone-live" style="position:relative;width:100%;max-width:260px;aspect-ratio:9/19.5;border-radius:36px;border:7px solid rgba(20,15,35,0.90);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.10);background:#000;">
-            <div class="ky-phone-live__notch" aria-hidden="true" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:82px;height:22px;background:#000;border-radius:0 0 14px 14px;z-index:5;"></div>
-            <div class="ky-phone-live__screen" style="position:absolute;inset:0;overflow:hidden;">
-              <iframe
-                src="https://kyros-five.vercel.app/"
-                title="KYROS — App en vivo"
-                loading="lazy"
-                style="width:390px;height:845px;border:0;transform-origin:top left;display:block;background:#fff;"
-                allow="clipboard-read; clipboard-write"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+          <div style="width:260px;height:563px;border-radius:36px;border:7px solid rgba(20,15,35,0.90);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.22);background:#000;position:relative;flex-shrink:0;">
+            <div aria-hidden="true" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:82px;height:22px;background:#000;border-radius:0 0 14px 14px;z-index:5;"></div>
+            <iframe
+              src="https://kyros-five.vercel.app/"
+              title="KYROS — App en vivo"
+              loading="lazy"
+              style="width:390px;height:844px;border:0;transform:scale(0.667);transform-origin:top left;display:block;"
+              allow="clipboard-read; clipboard-write"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <a href="https://kyros-five.vercel.app/" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-muted);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;">
             Abrir prototipo en pestaña nueva ↗
           </a>
         </div>
-
-        <script>
-          (function(){
-            function scaleKyrosLive(){
-              document.querySelectorAll('.ky-phone-live').forEach(function(frame){
-                var screen = frame.querySelector('.ky-phone-live__screen');
-                var iframe = frame.querySelector('iframe');
-                if(!screen || !iframe) return;
-                var w = screen.clientWidth;
-                var h = screen.clientHeight;
-                if(w <= 0 || h <= 0) return;
-                var baseW = 390;
-                var scale = w / baseW;
-                iframe.style.width = baseW + 'px';
-                iframe.style.height = (h / scale) + 'px';
-                iframe.style.transform = 'scale(' + scale + ')';
-              });
-            }
-            if(document.readyState === 'loading'){
-              document.addEventListener('DOMContentLoaded', scaleKyrosLive);
-            } else {
-              scaleKyrosLive();
-            }
-            window.addEventListener('load', scaleKyrosLive);
-            window.addEventListener('resize', scaleKyrosLive);
-          })();
-        </script>
 
         <!-- Key features -->
         <div class="grid grid-3 anim-ready" style="gap:var(--space-20);" data-stagger="0.1">
