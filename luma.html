@@ -74,30 +74,21 @@
     /* ── Video phone ───────────────────────────────────── */
     .luma-video-phone {
       width: 100%;
-      max-width: 280px;
+      max-width: 200px;
       margin: 0 auto var(--space-16);
-      border-radius: 38px;
-      border: 5px solid rgba(155,124,191,0.22);
+      border-radius: 32px;
+      border: 4px solid rgba(155,124,191,0.22);
       overflow: hidden;
       box-shadow:
-        0 32px 80px rgba(155,124,191,0.28),
-        0 0 0 1px rgba(155,124,191,0.10);
+        0 20px 56px rgba(155,124,191,0.24),
+        0 0 0 1px rgba(155,124,191,0.08);
       position: relative;
       background: #000;
-    }
-    .luma-video-phone::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 80px; height: 24px;
-      background: rgba(53,51,52,0.12);
-      border-radius: 0 0 16px 16px;
-      z-index: 5;
     }
     .luma-video-phone video {
       width: 100%;
       display: block;
+      margin-top: -6%;   /* recorta el status bar del video */
     }
 
     /* ── Lumi gallery ──────────────────────────────────── */
@@ -744,22 +735,32 @@
 
         <script>
         (function(){
-          const track = document.getElementById('carousel-track');
-          const prev  = document.getElementById('carousel-prev');
-          const next  = document.getElementById('carousel-next');
+          const track    = document.getElementById('carousel-track');
+          const prev     = document.getElementById('carousel-prev');
+          const next     = document.getElementById('carousel-next');
           const dotsWrap = document.getElementById('carousel-dots');
           if(!track) return;
+
+          /* scroll-snap based: each "page" = track visible width */
+          track.style.overflowX = 'scroll';
+          track.style.scrollSnapType = 'x mandatory';
+          track.style.scrollBehavior = 'smooth';
+          track.style.msOverflowStyle = 'none';
+          track.style.scrollbarWidth = 'none';
+          track.style.webkitOverflowScrolling = 'touch';
+          const styleEl = document.createElement('style');
+          styleEl.textContent = '#carousel-track::-webkit-scrollbar{display:none} #carousel-track .app-section-card{scroll-snap-align:start;}';
+          document.head.appendChild(styleEl);
+
           const cards = Array.from(track.querySelectorAll('.app-section-card'));
-          function perPage(){ return window.innerWidth < 480 ? 1 : window.innerWidth < 768 ? 2 : 3; }
+          function pp(){ return window.innerWidth < 480 ? 1 : window.innerWidth < 768 ? 2 : 3; }
           let current = 0;
-          let pp = perPage();
-          let total = Math.ceil(cards.length / pp);
+
+          function total(){ return Math.ceil(cards.length / pp()); }
 
           function buildDots(){
             dotsWrap.innerHTML = '';
-            pp = perPage();
-            total = Math.ceil(cards.length / pp);
-            for(let i=0;i<total;i++){
+            for(let i=0;i<total();i++){
               const d = document.createElement('button');
               d.className = 'carousel-dot' + (i===0?' active':'');
               d.setAttribute('aria-label','Página '+(i+1));
@@ -769,13 +770,14 @@
           }
 
           function goTo(idx){
-            current = Math.max(0, Math.min(idx, total-1));
-            const cardWidth = cards[0].offsetWidth + 20;
-            track.style.transform = 'translateX(-'+(current * pp * cardWidth)+'px)';
-            track.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+            current = Math.max(0, Math.min(idx, total()-1));
+            /* scroll by page: one page = pp() card widths + gaps */
+            const gap = 20;
+            const cardW = cards[0].offsetWidth + gap;
+            track.scrollLeft = current * pp() * cardW;
             dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
             prev.disabled = current === 0;
-            next.disabled = current >= total - 1;
+            next.disabled = current >= total()-1;
           }
 
           prev.addEventListener('click',()=>goTo(current-1));
