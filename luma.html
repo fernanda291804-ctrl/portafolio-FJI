@@ -783,8 +783,7 @@
 
           function goTo(idx){
             current = Math.max(0, Math.min(idx, total()-1));
-            /* scroll by page: one page = pp() card widths + gaps */
-            const gap = 20;
+            const gap = 32;
             const cardW = cards[0].offsetWidth + gap;
             track.scrollLeft = current * pp() * cardW;
             dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
@@ -796,7 +795,8 @@
           next.addEventListener('click',()=>goTo(current+1));
           window.addEventListener('resize',()=>{ buildDots(); goTo(0); });
           buildDots();
-          goTo(0);
+          /* defer until layout is painted so offsetWidth is accurate */
+          requestAnimationFrame(()=>{ track.scrollLeft = 0; goTo(0); });
         })();
         </script>
 
